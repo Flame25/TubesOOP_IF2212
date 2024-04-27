@@ -1,6 +1,5 @@
 package org.game;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class Main {
@@ -8,6 +7,7 @@ public class Main {
     {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
         window.setResizable(false);
         window.setTitle("Plant VS Zombie");
 
@@ -17,5 +17,6 @@ public class Main {
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+		gamePanel.startGameThread();
     }
 }

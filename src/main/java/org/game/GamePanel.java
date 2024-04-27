@@ -11,8 +11,10 @@ public class GamePanel extends JPanel implements  Runnable {
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-    final int screenHeight = tileSize * maxScreenRow; // 576 pixels
+	final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 	
+	// FPS 
+	int FPS = 60; 
 	KeyHandler keyH = new KeyHandler(); 
     Thread gameThread; // Game Clock
 	
@@ -34,13 +36,31 @@ public class GamePanel extends JPanel implements  Runnable {
         gameThread.start();
     }
     @Override
-    public void run() {
-        while(gameThread != null){
-            System.out.printf("Game is running....");
-            // TODO : 1. UPDATE game state
-            update();
-            // TODO : 2. Draw screen and information
-            repaint();
+	public void run() {
+		double drawInterval = 1000000000 / FPS; // 0.01666 seconds
+		double delta = 0;
+		long currentTime;
+		long lastTime = System.nanoTime();
+		int drawCount = 0;
+		long timer = 0;
+		
+		while (gameThread != null) {
+			currentTime = System.nanoTime();
+			delta += (currentTime - lastTime) / drawInterval;
+			timer += (currentTime - lastTime);
+			lastTime = currentTime;
+			if (delta >= 1) {
+				update();
+				repaint();
+				delta--;
+				drawCount++;
+			}
+
+			if (timer >= 1000000000) {
+				System.out.println("FPS: " + drawCount);
+				timer = 0;
+				drawCount = 0;
+			}
         }
     }
 
@@ -56,18 +76,13 @@ public class GamePanel extends JPanel implements  Runnable {
 		}
 		else if(keyH.rightPressed == true){
 			playerX += playerSpeed;
-            rightPres = true;
 		}
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-		if(rightPres){
-            g2.setColor(Color.CYAN);
-        }
-        else
-            g2.setColor(Color.RED);
+		g2.setColor(Color.RED);
 		g2.fillRect(playerX, playerY, tileSize, tileSize);
 
 		g2.dispose();
