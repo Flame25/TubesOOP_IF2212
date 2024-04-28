@@ -22,14 +22,15 @@ public class GamePanel extends JPanel implements  Runnable {
 	KeyHandler keyH = new KeyHandler(); 
 	Thread gameThread; // Game Clock
 	Player player = new Player(this, keyH);
-	
+	NPC npc = new  NPC(this);
+
 	int playerX = 100; 
 	int playerY = 100; 
 	int playerSpeed = 4;
     boolean rightPres = false;
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
+        this.setBackground(new Color(155,212,195));
         this.setDoubleBuffered(true);
 		this.setFocusable(true);
 		this.requestFocus();
@@ -71,6 +72,7 @@ public class GamePanel extends JPanel implements  Runnable {
 
     public void update(){
 		player.update();
+		npc.update();
     }
 
     public void paintComponent(Graphics g){
@@ -79,6 +81,7 @@ public class GamePanel extends JPanel implements  Runnable {
 
 		tileManager.draw(g2);
 		player.draw(g2);
+		npc.draw(g2);
 		g2.dispose();
 		
     }
