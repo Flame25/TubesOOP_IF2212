@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class NPC extends Entity{
     GamePanel gp;
-    BufferedImage left1, left2, right1, right2;
+    BufferedImage left1, left2, right1, right2, left_idle;
     int changeStep = 0;
     public NPC(GamePanel gp){
         this.gp = gp;
@@ -18,8 +18,8 @@ public class NPC extends Entity{
     }
 
     public void setDefaultValues() {
-        x = 300;
-        y = 150;
+        worldX = 300;
+        worldY = 150;
         speed = 4;
         direction = "left";
     }
@@ -29,6 +29,7 @@ public class NPC extends Entity{
             left2= ImageIO.read(getClass().getResourceAsStream("/npc/left2.png"));
             right1= ImageIO.read(getClass().getResourceAsStream("/npc/right1.png"));
             right2= ImageIO.read(getClass().getResourceAsStream("/npc/right2.png"));
+            left_idle = ImageIO.read(getClass().getResourceAsStream("/npc/left_idle.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -36,10 +37,10 @@ public class NPC extends Entity{
 
     public void update(){
         if(direction.equals("right")){
-            x += speed;
+            worldX += speed;
         }
         else if(direction.equals("left")){
-            x-= speed;
+            worldX -= speed;
         }
         spriteCounter++;
         changeStep++;
@@ -102,6 +103,6 @@ public class NPC extends Entity{
                 break;
         }
 
-        g2.drawImage(image,x,y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image,worldX,worldY, gp.tileSize, gp.tileSize, null);
     }
 }
