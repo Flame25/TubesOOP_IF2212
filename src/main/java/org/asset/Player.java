@@ -15,12 +15,16 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
+	private int EggTotal = 0;
+
 	public Player(GamePanel gp, KeyHandler keyH) {
 		this.gp = gp;
 		this.keyH = keyH;
 		this.screenX = gp.screenWidth/2 - (gp.tileSize/2);
 		this.screenY = gp.screenHeight/2 - (gp.tileSize/2);
 		solidArea = new Rectangle(8,16,32,32);
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 
 		setDefaultValues();
 		getPlayerImage();
@@ -49,24 +53,45 @@ public class Player extends Entity {
     }
 	
 	public void update() {
-		if(keyH.downPressed){
-			worldY += speed;
-			direction = "down";
+		if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed){
+			if(keyH.downPressed){
+				direction = "down";
+			}
+			else if(keyH.upPressed){
+				direction = "up";
+			}
+			else if(keyH.leftPressed){
+				direction = "left";
+			}
+			else if(keyH.rightPressed){
+				direction = "right";
+			}
+
+			// Check Tile Collision
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+
+			// Check Object Collision
+			int objectIndex = gp.cChecker.checkObject(this,true);
+			pickUpItem(objectIndex);
+			// If Collision is False, player can move
+			if(!collisionOn){
+				switch (direction){
+					case "down":
+						worldY += speed;
+						break;
+					case "up":
+						worldY -= speed;
+						break;
+					case "left":
+						worldX -= speed;
+						break;
+					case "right":
+						worldX += speed;
+						break;
+				}
+			}
 		}
-		else if(keyH.upPressed){
-			worldY -= speed;
-			direction = "up";
-		}
-		else if(keyH.leftPressed){
-			worldX -= speed;
-			direction = "left";
-		}
-		else if(keyH.rightPressed){
-			worldX += speed;
-			direction = "right";
-		}
-		collisionOn = false;
-		gp.cChecker.checkTile(this);
 		spriteCounter++;
 		if(spriteCounter > 10){
 			if(spriteNum == 1){
@@ -79,6 +104,16 @@ public class Player extends Entity {
 		}
 	}
 
+	public void pickUpItem(int index){
+		if(index != 9999){
+			switch (gp.obj[index].name){
+				case "Egg":
+					gp.obj[index] = null ;
+					EggTotal ++;
+					System.out.println("Total Egg : " + EggTotal);
+			}
+		}
+	}
 	public void draw(Graphics2D g2){
 //		g2.setColor(Color.RED);
 //		g2.fillRect(x, y, gp.tileSize, gp.tileSize);

@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import org.asset.*;
 import org.map.TileManager;
+import org.object.SuperObject;
+import org.projectiles.Peashooter_Peas;
+import org.projectiles.SuperProjectiles;
 
 public class GamePanel extends JPanel implements  Runnable {
     final int originalTileSize = 16; // 16 x 16 tile
@@ -28,8 +31,11 @@ public class GamePanel extends JPanel implements  Runnable {
 	KeyHandler keyH = new KeyHandler(); 
 	Thread gameThread; // Game Clock
 	public CollisionChecker cChecker = new CollisionChecker(this);
+	public AssetSetter aSetter = new AssetSetter(this);
 	public Player player = new Player(this, keyH);
 	NPC npc = new  NPC(this);
+	public SuperObject obj[] = new SuperObject[10];
+	public SuperProjectiles proj[] = new SuperProjectiles[10];
 
 	int playerX = 100; 
 	int playerY = 100; 
@@ -44,6 +50,9 @@ public class GamePanel extends JPanel implements  Runnable {
 		this.addKeyListener(keyH);
     }
 
+	public void setupGame(){
+		aSetter.setObject();
+	}
     public void startGameThread(){
         gameThread = new Thread(this); // Passing game panel to thread
         gameThread.start();
@@ -56,7 +65,7 @@ public class GamePanel extends JPanel implements  Runnable {
 		long lastTime = System.nanoTime();
 		int drawCount = 0;
 		long timer = 0;
-		
+		long elapsedTime = 0;
 		while (gameThread != null) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
@@ -70,26 +79,52 @@ public class GamePanel extends JPanel implements  Runnable {
 			}
 
 			if (timer >= 1000000000) {
-				System.out.println("FPS: " + drawCount);
+				elapsedTime++;
+				aSetter.setProjectiles(elapsedTime);
 				timer = 0;
 				drawCount = 0;
 			}
         }
     }
 
-    public void update(){
+    public void update() {
 		player.update();
 		npc.update();
-    }
+
+		for(int i =0; i< proj.length; i++){
+			if(proj[i] != null) {
+				if (proj[i].worldX >= 50 * tileSize) {
+					proj[i] = null;
+				} else {
+					proj[i].update();
+				}
+			}
+		}
+	}
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
+		// Tile
 		tileManager.draw(g2);
+		// Object
+        for (SuperObject superObject : obj) {
+            if (superObject != null) {
+                superObject.draw(g2, this);
+            }
+        }
+		// Projectiles
+		for(int i =0; i < proj.length; i++){
+			if(proj[i] != null)
+				proj[i].draw(g2,this);
+			}
+		// Player
 		player.draw(g2);
 		npc.draw(g2);
 		g2.dispose();
 		
     }
+
+
 }
