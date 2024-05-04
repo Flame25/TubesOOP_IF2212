@@ -27,20 +27,24 @@ public class GamePanel extends JPanel implements  Runnable {
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
 
+	// SYSTEM
 	TileManager tileManager = new TileManager(this);
-	KeyHandler keyH = new KeyHandler(); 
+	KeyHandler keyH = new KeyHandler(this);
 	Thread gameThread; // Game Clock
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
+	public UI ui = new UI(this);
+
+	// ENTITY AND OBJECT
 	public Player player = new Player(this, keyH);
-	NPC npc = new  NPC(this);
 	public SuperObject obj[] = new SuperObject[10];
 	public SuperProjectiles proj[] = new SuperProjectiles[10];
+	public Entity npc[] = new Entity[10];
+	// GAME STATE
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 0;
 
-	int playerX = 100; 
-	int playerY = 100; 
-	int playerSpeed = 4;
-    boolean rightPres = false;
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(new Color(155,212,195));
@@ -52,6 +56,8 @@ public class GamePanel extends JPanel implements  Runnable {
 
 	public void setupGame(){
 		aSetter.setObject();
+		aSetter.setNPC();
+		gameState = playState;
 	}
     public void startGameThread(){
         gameThread = new Thread(this); // Passing game panel to thread
@@ -63,7 +69,8 @@ public class GamePanel extends JPanel implements  Runnable {
 		double delta = 0;
 		long currentTime;
 		long lastTime = System.nanoTime();
-		int drawCount = 0;
+		int drawCount = 0
+				;
 		long timer = 0;
 		long elapsedTime = 0;
 		while (gameThread != null) {
@@ -88,17 +95,27 @@ public class GamePanel extends JPanel implements  Runnable {
     }
 
     public void update() {
-		player.update();
-		npc.update();
+		if(gameState == playState){
+			player.update();
 
-		for(int i =0; i< proj.length; i++){
-			if(proj[i] != null) {
-				if (proj[i].worldX >= 50 * tileSize) {
-					proj[i] = null;
-				} else {
-					proj[i].update();
+			for(int i =0; i< proj.length; i++){
+				if(proj[i] != null) {
+					if (proj[i].worldX >= 50 * tileSize) {
+						proj[i] = null;
+					} else {
+						proj[i].update();
+					}
 				}
 			}
+
+			for(int i =0; i < npc.length; i++){
+				if(npc[i] != null){
+					npc[i].update();
+				}
+			}
+		}
+		else if(gameState == pauseState){
+
 		}
 	}
 
@@ -119,9 +136,17 @@ public class GamePanel extends JPanel implements  Runnable {
 			if(proj[i] != null)
 				proj[i].draw(g2,this);
 			}
+		// NPC
+		for(int i =0; i < npc.length; i++){
+			if(npc[i] != null){
+				npc[i].draw(g2);
+			}
+		}
 		// Player
 		player.draw(g2);
-		npc.draw(g2);
+
+		// UI
+		ui.draw(g2);
 		g2.dispose();
 		
     }

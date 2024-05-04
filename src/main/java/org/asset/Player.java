@@ -15,9 +15,10 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
-	private int EggTotal = 0;
+	public int EggTotal = 0;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
+		super(gp);
 		this.gp = gp;
 		this.keyH = keyH;
 		this.screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -51,7 +52,12 @@ public class Player extends Entity {
             e.printStackTrace();
         }
     }
-	
+
+	@Override
+	public void setAction() {
+
+	}
+
 	public void update() {
 		if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed){
 			if(keyH.downPressed){
@@ -74,6 +80,10 @@ public class Player extends Entity {
 			// Check Object Collision
 			int objectIndex = gp.cChecker.checkObject(this,true);
 			pickUpItem(objectIndex);
+
+			// Check NPC Collision
+			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
+			interactNPC(npcIndex);
 			// If Collision is False, player can move
 			if(!collisionOn){
 				switch (direction){
@@ -110,7 +120,7 @@ public class Player extends Entity {
 				case "Egg":
 					gp.obj[index] = null ;
 					EggTotal ++;
-					System.out.println("Total Egg : " + EggTotal);
+					gp.ui.showMessage("You got a Eggs");
 			}
 		}
 	}
@@ -157,4 +167,10 @@ public class Player extends Entity {
 		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
+	public void interactNPC(int i){
+		if(i != 9999){
+			System.out.println("You are hitting an npc!");
+		}
+	}
 }
