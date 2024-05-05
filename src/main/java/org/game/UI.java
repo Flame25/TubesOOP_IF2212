@@ -14,6 +14,7 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter =0;
+    public String currentDialogue = "";
 
     double playTime;
     DecimalFormat dFormat = new DecimalFormat("#0.00");
@@ -33,6 +34,8 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
+
+        // PLAY STATE
         if(gp.gameState == gp.playState){
             g2.drawImage(eggImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
             g2.drawString("x " + gp.player.EggTotal, 74,65);
@@ -53,9 +56,42 @@ public class UI {
                 }
             }
         }
+        // PAUSE STATE
         else if(gp.gameState == gp.pauseState){
             drawPauseScreen();
         }
+        else if(gp.gameState == gp.dialogState){
+            drawDialogueScreen();
+        }
+    }
+
+    public void drawDialogueScreen(){
+        // WINDOW
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2 ;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 5;
+        drawSubWindow(x,y,width,height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+
+        x += gp.tileSize;
+        y += gp.tileSize;
+        for(String line : currentDialogue.split("\n")){
+            g2.drawString(line,x,y);
+            y += 40;
+        }
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c = new Color(0,0,0,200);
+        g2.setColor(c);
+        g2.fillRoundRect(x,y,width,height,35, 35);
+
+        c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5,y+5, width-10, height-10,25,25);
     }
 
     public void drawPauseScreen(){

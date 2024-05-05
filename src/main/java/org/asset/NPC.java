@@ -18,9 +18,15 @@ public class NPC extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         getPlayerImage();
+        setDialogue();
     }
 
-
+    public void setDialogue(){
+        dialogues[0] = "Hello, There!";
+        dialogues[1] = "Hello, \nThere1!";
+        dialogues[2] = "Hello, There2!";
+        dialogues[3] = "Hello, There3!";
+    }
     public void getPlayerImage(){
         try{
             up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/npc/up1.png")));
@@ -61,5 +67,10 @@ public class NPC extends Entity{
 
             actionLockCounter = 0;
         }
+    }
+
+    public void speak(){
+        // Do this char spesific action
+        super.speak();
     }
 }
