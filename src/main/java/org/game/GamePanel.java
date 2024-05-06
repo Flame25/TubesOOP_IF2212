@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements  Runnable {
 	public SuperObject obj[] = new SuperObject[10];
 	public SuperProjectiles proj[] = new SuperProjectiles[10];
 	public Entity npc[] = new Entity[10];
+	public Zombie zombie[] = new Zombie[10];
 
 	// GAME STATE
 	public int gameState;
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel implements  Runnable {
 	public void setupGame(){
 		aSetter.setObject();
 		aSetter.setNPC();
+		aSetter.setZombie();
 		gameState = playState;
 	}
     public void startGameThread(){
@@ -71,8 +73,7 @@ public class GamePanel extends JPanel implements  Runnable {
 		double delta = 0;
 		long currentTime;
 		long lastTime = System.nanoTime();
-		int drawCount = 0
-				;
+		int drawCount = 0;
 		long timer = 0;
 		long elapsedTime = 0;
 		while (gameThread != null) {
@@ -115,6 +116,12 @@ public class GamePanel extends JPanel implements  Runnable {
 					npc[i].update();
 				}
 			}
+
+			for(int i =0; i < zombie.length; i++){
+				if(zombie[i] != null){
+					zombie[i].update();
+				}
+			}
 		}
 		else if(gameState == pauseState){
 
@@ -142,6 +149,12 @@ public class GamePanel extends JPanel implements  Runnable {
 		for(int i =0; i < npc.length; i++){
 			if(npc[i] != null){
 				npc[i].draw(g2);
+			}
+		}
+		// ZOMBIE
+		for(int i = 0; i < zombie.length; i++){
+			if(zombie[i] != null){
+				zombie[i].draw(g2);
 			}
 		}
 		// Player

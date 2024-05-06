@@ -59,6 +59,11 @@ public class Player extends Entity {
 	}
 
 	public void update() {
+
+		// Check Projectiles Collision ( Will be deleted )
+		int projIndex = gp.cChecker.checkProjectile(this);
+		actionProjectiles(projIndex);
+
 		if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed){
 			if(keyH.downPressed){
 				direction = "down";
@@ -84,6 +89,8 @@ public class Player extends Entity {
 			// Check NPC Collision
 			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
 			interactNPC(npcIndex);
+
+
 			// If Collision is False, player can move
 			if(!collisionOn){
 				switch (direction){
@@ -125,8 +132,6 @@ public class Player extends Entity {
 		}
 	}
 	public void draw(Graphics2D g2){
-//		g2.setColor(Color.RED);
-//		g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 		BufferedImage image = null;
 
 		switch (direction){
@@ -175,6 +180,13 @@ public class Player extends Entity {
 				gp.npc[i].speak();
 				gp.keyH.eKeyPressed = false;
 			}
+		}
+	}
+
+	private void actionProjectiles(int i){
+		if(i != 9999){
+			System.out.println("Player Hit");
+			gp.proj[i] = null;
 		}
 	}
 }

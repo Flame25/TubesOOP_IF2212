@@ -1,6 +1,8 @@
 package org.game;
 
 import org.asset.Entity;
+import org.object.SuperObject;
+import org.projectiles.SuperProjectiles;
 
 public class CollisionChecker {
     GamePanel gp;
@@ -187,6 +189,31 @@ public class CollisionChecker {
         }
         return index;
     }
+    public int checkProjectile(Entity entity){
+        // Get entity solid area
+        int index = 9999;
+        for(int i = 0; i< gp.proj.length; i++){
+            if(gp.proj[i] != null ){
+                gp.proj[i].solidArea.x = gp.proj[i].worldX +  gp.proj[i].solidArea.x;
+                gp.proj[i].solidArea.y = gp.proj[i].worldY + gp.proj[i].solidArea.y;
+
+                // Get player's solid area position
+                entity.solidArea.x = entity.worldX + entity.solidArea.x;
+                entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+                if(entity.solidArea.intersects(gp.proj[i].solidArea)){
+                    index = i;
+                }
+                gp.proj[i].solidArea.x = gp.proj[i].solidAreaDefaultX;
+                gp.proj[i].solidArea.y = gp.proj[i].solidAreaDefaultY;
+
+                entity.solidArea.x = gp.player.solidAreaDefaultX;
+                entity.solidArea.y = gp.player.solidAreaDefaultY;
+            }
+        }
+        return index;
+    }
+
     public void checkPlayer(Entity entity){
 
         // Get entity solid area

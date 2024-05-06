@@ -58,6 +58,8 @@ public abstract class Entity {
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this,false);
 		gp.cChecker.checkPlayer(this);
+		gp.cChecker.checkProjectile(this);
+
 
 		// Check Object Collision
 		int objectIndex = gp.cChecker.checkObject(this,true);

@@ -10,10 +10,12 @@ public class SuperProjectiles {
     public BufferedImage image;
     public String name;
     public boolean collision = false;
+    public boolean collisionOn = false;
     public int worldX, worldY;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+    public int damage = 5;
 
     public void draw(Graphics2D g2, GamePanel gp){
 
@@ -29,6 +31,8 @@ public class SuperProjectiles {
     }
 
     public void update(){
-        worldX += speed;
+        if(!collisionOn){
+            worldX += speed;
+        }
     }
 }

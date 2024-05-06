@@ -16,5 +16,6 @@ public class Peashooter_Peas extends SuperProjectiles {
             e.printStackTrace();
         }
     }
+
     //TODO : Add Hitbox for this peas
 }

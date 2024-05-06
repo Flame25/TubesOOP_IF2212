@@ -1,6 +1,7 @@
 package org.game;
 
 import org.asset.NPC;
+import org.asset.Zombie_Normal;
 import org.object.Object_Egg;
 import org.object.Object_Peashooter;
 import org.object.Object_Wallnut;
@@ -45,5 +46,11 @@ public class AssetSetter {
         gp.npc[0] = new NPC(gp);
         gp.npc[0].worldX = gp.tileSize * 21;
         gp.npc[0].worldY = gp.tileSize * 14;
+    }
+
+    public void setZombie(){
+        gp.zombie[0] = new Zombie_Normal(gp, 10, 1 );
+        gp.zombie[0].worldX = gp.tileSize * 27;
+        gp.zombie[0].worldY = 7 * gp.tileSize - 16;
     }
 }
