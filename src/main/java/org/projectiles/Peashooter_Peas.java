@@ -10,6 +10,7 @@ public class Peashooter_Peas extends SuperProjectiles {
     public Peashooter_Peas(){
         name = "Peashooter Peas";
         collision = true;
+        statusEffect = "None";
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/plants/PeaShooter_Ball.png"));
         }catch (IOException e){
@@ -17,5 +18,5 @@ public class Peashooter_Peas extends SuperProjectiles {
         }
     }
 
-    //TODO : Add Hitbox for this peas
+    // DONE : Add Hitbox for this peas
 }

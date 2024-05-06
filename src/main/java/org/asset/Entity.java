@@ -5,7 +5,7 @@ import org.game.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 public abstract class Entity {
-	GamePanel gp;
+	public GamePanel gp;
 	public int worldX, worldY;
 	public int speed;
 
@@ -20,6 +20,7 @@ public abstract class Entity {
 	public int solidAreaDefaultY;
 	public boolean collisionOn = false;
 	public int actionLockCounter;
+	public boolean collision = false;
 	String dialogues[] = new String[20];
 	int indexDialogue = 0;
 
@@ -56,10 +57,8 @@ public abstract class Entity {
 		setAction();
 		collisionOn = false;
 		gp.cChecker.checkTile(this);
-		gp.cChecker.checkObject(this,false);
 		gp.cChecker.checkPlayer(this);
-		gp.cChecker.checkProjectile(this);
-
+		gp.cChecker.checkEntity(this, gp.plants);
 
 		// Check Object Collision
 		int objectIndex = gp.cChecker.checkObject(this,true);

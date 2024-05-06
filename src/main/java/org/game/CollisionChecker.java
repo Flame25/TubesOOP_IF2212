@@ -59,7 +59,7 @@ public class CollisionChecker {
                 break;
         }
     }
-    public int checkObject(Entity entity, boolean player){
+    public int checkObject(Entity entity, boolean interact){
         int index = 9999;
         for(int i =0; i< gp.obj.length; i++){
             if(gp.obj[i] != null){
@@ -79,7 +79,7 @@ public class CollisionChecker {
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
+                            if(interact){
                                 index = i;
                             }
                         }
@@ -91,7 +91,7 @@ public class CollisionChecker {
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
+                            if(interact){
                                 index = i;
                             }
                         }
@@ -103,7 +103,7 @@ public class CollisionChecker {
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
+                            if(interact){
                                 index = i;
                             }
                         }
@@ -115,7 +115,7 @@ public class CollisionChecker {
                             if(gp.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if (player) {
+                            if (interact) {
                                 index = i;
                             }
                         }

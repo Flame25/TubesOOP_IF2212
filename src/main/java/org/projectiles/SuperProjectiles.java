@@ -16,6 +16,7 @@ public class SuperProjectiles {
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
     public int damage = 5;
+    public String statusEffect;
 
     public void draw(Graphics2D g2, GamePanel gp){
 

@@ -8,23 +8,32 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Zombie_Normal extends Zombie {
-    // DONE: CREATE ABSTRACT ZOMBIE CLASS
+    // DONE: CREATE BASE ZOMBIE CLASS
 
-    public Zombie_Normal(GamePanel gp, int healthPoint, int speed) {
-        super(gp, healthPoint, speed);
-        this.gp = gp;
-        this.healthPoint = healthPoint;
-        this.speed = speed;
+    public Zombie_Normal(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed) {
+        super(gp, healthPoint, speed, damage, attack_speed);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        counter =0;
         getPlayerImage();
     }
 
     @Override
-    public void setAction() {
+    public void update() {
+        if(counter>= 60){
+            speed = defaultSpeed;
+            counter =0;
+            howManySecs++;
+        }
+        super.update();
+        this.speed = 0;
+        counter++;
+    }
 
+    @Override
+    public void setAction() {
     }
 
 

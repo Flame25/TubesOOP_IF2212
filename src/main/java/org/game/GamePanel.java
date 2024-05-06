@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import org.asset.*;
 import org.map.TileManager;
+import org.object.Plants;
 import org.object.SuperObject;
 import org.projectiles.Peashooter_Peas;
 import org.projectiles.SuperProjectiles;
@@ -40,13 +41,18 @@ public class GamePanel extends JPanel implements  Runnable {
 	public SuperObject obj[] = new SuperObject[10];
 	public SuperProjectiles proj[] = new SuperProjectiles[10];
 	public Entity npc[] = new Entity[10];
+	public Zombie listOfZombie[] = new Zombie[10]; // List of Available Zombie
 	public Zombie zombie[] = new Zombie[10];
+	public Plants plants[] = new Plants[10];
 
 	// GAME STATE
 	public int gameState;
 	public final int playState = 1;
 	public final int pauseState = 0;
 	public final int dialogState = 2;
+
+	// ELAPSED TIME
+	public long elapsedTime = 0;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -61,6 +67,12 @@ public class GamePanel extends JPanel implements  Runnable {
 		aSetter.setObject();
 		aSetter.setNPC();
 		aSetter.setZombie();
+		aSetter.setPlants();
+		try {
+			aSetter.spawnZombie();
+		}catch (CloneNotSupportedException e){
+			e.printStackTrace();
+		}
 		gameState = playState;
 	}
     public void startGameThread(){
@@ -75,7 +87,6 @@ public class GamePanel extends JPanel implements  Runnable {
 		long lastTime = System.nanoTime();
 		int drawCount = 0;
 		long timer = 0;
-		long elapsedTime = 0;
 		while (gameThread != null) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
@@ -91,6 +102,20 @@ public class GamePanel extends JPanel implements  Runnable {
 			if (timer >= 1000000000) {
 				elapsedTime++;
 				aSetter.setProjectiles(elapsedTime);
+				for(int i =0; i < zombie.length; i++){
+					if(zombie[i] != null){
+						if(elapsedTime % zombie[i].attack_speed == 0){
+							zombie[i].actionAttack();
+						}
+					}
+				}
+				for(int i =0; i< plants.length; i++){
+					if(plants[i] != null){
+						if(elapsedTime % plants[i].attack_speed == 0){
+							plants[i].actionAttack();
+						}
+					}
+				}
 				timer = 0;
 				drawCount = 0;
 			}
@@ -162,9 +187,14 @@ public class GamePanel extends JPanel implements  Runnable {
 
 		// UI
 		ui.draw(g2);
+
+		// PLANTS
+		for(int i =0; i< plants.length; i++){
+			if(plants[i] != null){
+				plants[i].draw(g2);
+			}
+		}
 		g2.dispose();
 		
     }
-
-
 }
