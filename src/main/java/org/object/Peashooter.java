@@ -8,9 +8,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class Peashooter extends Plants {
-
     public Peashooter(GamePanel gp, int healthPoint, int damage, int attack_speed)  {
         super(gp,healthPoint,attack_speed,damage);
+        direction = "up";
         getImage();
     }
 
@@ -27,7 +27,6 @@ public class Peashooter extends Plants {
         }
     }
     public void update() {
-
     }
 
     @Override

@@ -9,6 +9,7 @@ public abstract class Entity {
 	public int worldX, worldY;
 	public int speed;
 
+	protected BufferedImage image = null;
 	public BufferedImage up1, up2, down1, down2, left1, left2,
 						right1, right2;
 	public String direction;
@@ -97,7 +98,6 @@ public abstract class Entity {
 
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
-		BufferedImage image = null;
 
 		if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
 				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
