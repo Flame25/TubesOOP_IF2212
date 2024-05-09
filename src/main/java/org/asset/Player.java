@@ -3,11 +3,13 @@ package org.asset;
 import org.game.KeyHandler;
 
 import org.game.GamePanel;
+import org.object.Plants;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Player extends Entity {
@@ -16,6 +18,9 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public int EggTotal = 0;
+	public ArrayList<Plants> inventory = new ArrayList<>();
+	public ArrayList<Plants> deck = new ArrayList<>();
+	public final int inventorySize =20;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -29,6 +34,7 @@ public class Player extends Entity {
 
 		setDefaultValues();
 		getPlayerImage();
+		setItems();
 	}
 	
 	public void setDefaultValues() {
@@ -129,6 +135,14 @@ public class Player extends Entity {
 					gp.obj[index] = null ;
 					EggTotal ++;
 					gp.ui.showMessage("You got a Eggs");
+			}
+		}
+	}
+
+	public void setItems(){
+		for(int i =0; i< gp.plants.length; i++){
+			if(gp.plants[i] != null){
+				inventory.add(gp.plants[i]);
 			}
 		}
 	}

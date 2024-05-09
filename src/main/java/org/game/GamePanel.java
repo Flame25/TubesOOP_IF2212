@@ -37,19 +37,20 @@ public class GamePanel extends JPanel implements  Runnable {
 	public UI ui = new UI(this);
 
 	// ENTITY AND OBJECT
-	public Player player = new Player(this, keyH);
 	public SuperObject obj[] = new SuperObject[10];
 	public SuperProjectiles proj[] = new SuperProjectiles[10];
 	public Entity npc[] = new Entity[10];
 	public Zombie listOfZombie[] = new Zombie[10]; // List of Available Zombie
 	public Zombie zombie[] = new Zombie[10];
 	public Plants plants[] = new Plants[10];
+	public Player player = new Player(this, keyH);
 
 	// GAME STATE
 	public int gameState;
 	public final int playState = 1;
 	public final int pauseState = 0;
 	public final int dialogState = 2;
+	public final int characterState = 3;
 
 	// ELAPSED TIME
 	public long elapsedTime = 0;
@@ -74,6 +75,7 @@ public class GamePanel extends JPanel implements  Runnable {
 			e.printStackTrace();
 		}
 		gameState = playState;
+		player = new Player(this,keyH);
 	}
     public void startGameThread(){
         gameThread = new Thread(this); // Passing game panel to thread
@@ -111,8 +113,10 @@ public class GamePanel extends JPanel implements  Runnable {
 				}
 				for(int i =0; i< plants.length; i++){
 					if(plants[i] != null){
-						if(elapsedTime % plants[i].attack_speed == 0){
-							plants[i].actionAttack();
+						if(plants[i].attack_speed !=  0){
+							if(elapsedTime % plants[i].attack_speed == 0){
+								plants[i].actionAttack();
+							}
 						}
 					}
 				}

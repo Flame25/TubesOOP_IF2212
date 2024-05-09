@@ -11,6 +11,7 @@ public class Peashooter extends Plants {
     public Peashooter(GamePanel gp, int healthPoint, int damage, int attack_speed)  {
         super(gp,healthPoint,attack_speed,damage);
         direction = "up";
+        description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
         getImage();
     }
 
@@ -19,12 +20,8 @@ public class Peashooter extends Plants {
 
     }
     private void getImage(){
-        try{
-            up1= ImageIO.read(getClass().getResourceAsStream("/plants/Peashooter.png"));
-            up2= ImageIO.read(getClass().getResourceAsStream("/plants/Peashooter.png"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        up1 = setup("/plants/Peashooter", gp.tileSize,gp.tileSize);
+        up2 = setup("/plants/Peashooter", gp.tileSize,gp.tileSize);
     }
     public void update() {
     }

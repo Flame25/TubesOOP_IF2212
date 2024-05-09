@@ -2,6 +2,7 @@ package org.game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class KeyHandler implements KeyListener{
 	GamePanel gp;
@@ -37,6 +38,9 @@ public class KeyHandler implements KeyListener{
 			if(code == KeyEvent.VK_E){
 				eKeyPressed = true;
 			}
+			if(code == KeyEvent.VK_C){
+				gp.gameState = gp.characterState;
+			}
 		}
 
 		// PAUSE STATE
@@ -51,6 +55,37 @@ public class KeyHandler implements KeyListener{
 		else if(gp.gameState == gp.dialogState){
 			if(code == KeyEvent.VK_ESCAPE){
 				gp.gameState = gp.playState;
+			}
+		}
+		else if(gp.gameState == gp.characterState){
+			if(code  == KeyEvent.VK_C){
+				gp.gameState = gp.playState;
+			}
+			if(code == KeyEvent.VK_W){
+				if(gp.ui.slotRow != 0){
+					gp.ui.slotRow--;
+				}
+			}
+			if(code == KeyEvent.VK_A){
+				if(gp.ui.slotCol !=0){
+					gp.ui.slotCol--;
+				}
+			}
+			if(code == KeyEvent.VK_D){
+				if(gp.ui.slotCol!= 4){
+					gp.ui.slotCol++;
+				}
+			}
+			if(code == KeyEvent.VK_S){
+				if(gp.ui.slotRow != 3){
+					gp.ui.slotRow++;
+				}
+			}
+			if(code == KeyEvent.VK_E){
+				if(!gp.player.deck.contains(gp.plants[gp.ui.getItemIndexOnSlot()])){
+					gp.player.deck.add(gp.plants[gp.ui.getItemIndexOnSlot()]);
+				}
+
 			}
 		}
 	}

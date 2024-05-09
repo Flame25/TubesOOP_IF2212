@@ -11,6 +11,7 @@ public class Snowpea extends Plants{
 
     public Snowpea(GamePanel gp, int healthPoint, int damage, int attack_speed)  {
         super(gp,healthPoint,attack_speed,damage);
+        description = "[" + "Snowpea" + "]\nPeashooter with snow and slow";
         getImage();
     }
 
@@ -19,12 +20,8 @@ public class Snowpea extends Plants{
 
     }
     private void getImage(){
-        try{
-            up1= ImageIO.read(getClass().getResourceAsStream("/plants/SnowPea.png"));
-            up2= ImageIO.read(getClass().getResourceAsStream("/plants/SnowPea.png"));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+            up1 = setup("/plants/SnowPea", gp.tileSize,gp.tileSize);
+            up1 = setup("/plants/SnowPea", gp.tileSize,gp.tileSize);
     }
     public void update() {
 
@@ -41,5 +38,4 @@ public class Snowpea extends Plants{
             }
         }
     }
-
 }

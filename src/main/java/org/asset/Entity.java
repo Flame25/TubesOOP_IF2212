@@ -1,9 +1,13 @@
 package org.asset;
 
 import org.game.GamePanel;
+import org.game.UtilityTool;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 public abstract class Entity {
 	public GamePanel gp;
 	public int worldX, worldY;
@@ -53,6 +57,20 @@ public abstract class Entity {
 	}
 
 	public abstract void setAction();
+
+	public BufferedImage setup(String imagePath, int width, int height){
+		UtilityTool uTool = new UtilityTool();
+		BufferedImage image = null;
+
+		try{
+			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+			image = uTool.scaleImage(image,width,height);
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+
+		return  image;
+	}
 
 	public void update(){
 		setAction();
@@ -139,6 +157,7 @@ public abstract class Entity {
 					}
 					break;
 			}
+
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
 	}

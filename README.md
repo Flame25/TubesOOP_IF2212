@@ -20,8 +20,8 @@ Run ```./gradlew ``` within root project
 - [x]  Plant Base
 - [x]  Game Time 
 - [ ]  Game Start and Stop
-- [ ]  Inventory
-- [ ]  Deck
+- [x]  Inventory
+- [x]  Deck
 - [ ]  All Zombie
 - [ ]  All Zombie
 

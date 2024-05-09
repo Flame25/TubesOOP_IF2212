@@ -2,10 +2,7 @@ package org.game;
 
 import org.asset.NPC;
 import org.asset.Zombie_Normal;
-import org.object.Object_Egg;
-import org.object.Peashooter;
-import org.object.Snowpea;
-import org.object.Wallnut;
+import org.object.*;
 import org.projectiles.Peashooter_Peas;
 
 public class AssetSetter {
@@ -23,6 +20,11 @@ public class AssetSetter {
         gp.plants[1] = new Snowpea(gp,125,25,10);
         gp.plants[1].worldX = 22 * gp.tileSize + 3;
         gp.plants[1].worldY = 7 * gp.tileSize - 16;
+
+        gp.plants[2] = new Lilypad(gp,100, 0, 0);
+        gp.plants[2].worldX = 21 * gp.tileSize + 3;
+        gp.plants[2].worldY = 7 * gp.tileSize - 16;
+
     }
     public void setObject(){
 

@@ -15,6 +15,7 @@ public class Plants extends Entity {
     int range;
     int cooldown;
     int cost;
+    public String description;
 
     public Plants(GamePanel gp, int healthPoint, int attack_speed, int damage)  {
         super(gp);
