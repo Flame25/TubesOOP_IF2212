@@ -1,20 +1,17 @@
-package org.asset;
+package org.zombies;
 
 import org.game.GamePanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
-public class Zombie_Catapult extends Zombie implements SpecialAction{
+public class Zombie_Template extends Zombie{
 
     /* TODO
     - Copy this class
     - Add attack (actionAttack) if there is any difference with normal attack and Special Skill in setAction
     - Add zombie to zombie list (look at setZombie() at AssetSetter
      */
-    public Zombie_Catapult(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed) {
+    public Zombie_Template(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed) {
         super(gp, healthPoint, speed, damage, attack_speed);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
@@ -41,10 +38,6 @@ public class Zombie_Catapult extends Zombie implements SpecialAction{
     public void setAction() {
     }
 
-    @Override
-    public void setSpecialAction(){
-        
-    }
 
     public void getPlayerImage() {
     }

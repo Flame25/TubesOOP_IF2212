@@ -1,6 +1,5 @@
 package org.asset;
 
-public interface Action {
+public interface ActionZombie {
     public void setAction();
-    
 }

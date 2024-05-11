@@ -1,11 +1,7 @@
 package org.object;
 
-import org.asset.Zombie;
 import org.game.GamePanel;
 import org.projectiles.Peashooter_Peas;
-
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 public class Peashooter extends Plants {
     public Peashooter(GamePanel gp, int healthPoint, int damage, int attack_speed)  {

@@ -1,4 +1,4 @@
-package org.asset;
+package org.zombies;
 
 import org.game.GamePanel;
 

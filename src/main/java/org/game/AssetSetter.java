@@ -1,9 +1,8 @@
 package org.game;
 
 import org.asset.NPC;
-import org.asset.Zombie_Normal;
+import org.zombies.Zombie_Normal;
 import org.object.*;
-import org.projectiles.Peashooter_Peas;
 
 public class AssetSetter {
     GamePanel gp;

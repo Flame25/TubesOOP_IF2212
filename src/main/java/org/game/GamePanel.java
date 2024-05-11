@@ -6,8 +6,8 @@ import org.asset.*;
 import org.map.TileManager;
 import org.object.Plants;
 import org.object.SuperObject;
-import org.projectiles.Peashooter_Peas;
 import org.projectiles.SuperProjectiles;
+import org.zombies.Zombie;
 
 public class GamePanel extends JPanel implements  Runnable {
     final int originalTileSize = 16; // 16 x 16 tile

@@ -1,5 +1,6 @@
-package org.asset;
+package org.zombies;
 
+import org.asset.Entity;
 import org.game.GamePanel;
 
 import javax.imageio.ImageIO;
