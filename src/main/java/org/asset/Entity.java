@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public abstract class Entity {
+public abstract class Entity implements Action{
 	public GamePanel gp;
 	public int worldX, worldY;
 	public int speed;
@@ -56,7 +56,7 @@ public abstract class Entity {
 		this.gp = gp;
 	}
 
-	public abstract void setAction();
+	
 
 	public BufferedImage setup(String imagePath, int width, int height){
 		UtilityTool uTool = new UtilityTool();
