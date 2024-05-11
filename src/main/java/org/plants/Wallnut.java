@@ -1,9 +1,6 @@
-package org.object;
+package org.plants;
 
 import org.game.GamePanel;
-
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 public class Wallnut extends Plants {
 

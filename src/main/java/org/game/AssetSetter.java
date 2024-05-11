@@ -1,6 +1,9 @@
 package org.game;
 
 import org.asset.NPC;
+import org.plants.Lilypad;
+import org.plants.Peashooter;
+import org.plants.Snowpea;
 import org.zombies.Zombie_Normal;
 import org.object.*;
 
@@ -22,7 +25,7 @@ public class AssetSetter {
 
         gp.plants[2] = new Lilypad(gp,100, 0, 0);
         gp.plants[2].worldX = 21 * gp.tileSize + 3;
-        gp.plants[2].worldY = 7 * gp.tileSize - 16;
+        gp.plants[2].worldY = 12 * gp.tileSize - 16;
 
     }
     public void setObject(){
@@ -30,6 +33,10 @@ public class AssetSetter {
         gp.obj[1] = new Object_Egg();
         gp.obj[1].worldX = 23 * gp.tileSize;
         gp.obj[1].worldY = 40 * gp.tileSize;
+
+        gp.obj[2] = new Object_Bed();
+        gp.obj[2].worldX = 9 * gp.tileSize;
+        gp.obj[2].worldY = 4 * gp.tileSize;
 
 //        gp.obj[2] = new Wallnut();
 //        gp.obj[2].worldX = 23 * gp.tileSize;

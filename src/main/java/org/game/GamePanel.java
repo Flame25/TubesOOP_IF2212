@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import org.asset.*;
 import org.map.TileManager;
-import org.object.Plants;
+import org.plants.Plants;
 import org.object.SuperObject;
 import org.projectiles.SuperProjectiles;
 import org.zombies.Zombie;
@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements  Runnable {
 	public final int pauseState = 0;
 	public final int dialogState = 2;
 	public final int characterState = 3;
-
+	public final int sleepState = 4;
 	// ELAPSED TIME
 	public long elapsedTime = 0;
 
@@ -127,7 +127,7 @@ public class GamePanel extends JPanel implements  Runnable {
     }
 
     public void update() {
-		if(gameState == playState){
+		if(gameState == playState || gameState == sleepState){
 			player.update();
 
 			for(int i =0; i< proj.length; i++){

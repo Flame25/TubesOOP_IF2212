@@ -1,11 +1,7 @@
-package org.object;
+package org.plants;
 
 import org.asset.Entity;
 import org.game.GamePanel;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Plants extends Entity {
     public int healthPoint;

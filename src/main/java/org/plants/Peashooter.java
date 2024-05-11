@@ -1,4 +1,4 @@
-package org.object;
+package org.plants;
 
 import org.game.GamePanel;
 import org.projectiles.Peashooter_Peas;

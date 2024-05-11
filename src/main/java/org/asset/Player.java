@@ -3,7 +3,8 @@ package org.asset;
 import org.game.KeyHandler;
 
 import org.game.GamePanel;
-import org.object.Plants;
+import org.object.Object_Bed;
+import org.plants.Plants;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -92,6 +93,7 @@ public class Player extends Entity {
 			// Check Object Collision
 			int objectIndex = gp.cChecker.checkObject(this,true);
 			pickUpItem(objectIndex);
+			interactObject(objectIndex);
 
 			// Check NPC Collision
 			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
@@ -116,15 +118,17 @@ public class Player extends Entity {
 				}
 			}
 		}
-		spriteCounter++;
-		if(spriteCounter > 10){
-			if(spriteNum == 1){
-				spriteNum = 2;
+		if(gp.gameState == gp.playState){
+			spriteCounter++;
+			if(spriteCounter > 10){
+				if(spriteNum == 1){
+					spriteNum = 2;
+				}
+				else if(spriteNum == 2){
+					spriteNum =1;
+				}
+				spriteCounter = 0;
 			}
-			else if(spriteNum == 2){
-				spriteNum =1;
-			}
-			spriteCounter = 0;
 		}
 	}
 
@@ -184,6 +188,13 @@ public class Player extends Entity {
 				}
 				break;
 		}
+		if(gp.gameState == gp.sleepState){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/objects/Invisible.png"));
+			}catch (IOException e){
+				e.printStackTrace();
+			}
+		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
@@ -198,6 +209,23 @@ public class Player extends Entity {
 		}
 	}
 
+	public void interactObject(int i) {
+		if(i != 9999){
+			if(gp.keyH.eKeyPressed){
+				if(i == 2){
+					try{
+						gp.obj[2].image = ImageIO.read(getClass().getResourceAsStream("/objects/Bed_Sleeping1.png"));
+						((Object_Bed) gp.obj[2]).image_bottom = ImageIO.read(getClass().getResourceAsStream("/objects/Bed_Sleeping2.png"));
+					}catch (IOException e){
+						e.printStackTrace();
+					}
+					gp.gameState = gp.sleepState;
+					gp.keyH.eKeyPressed = false;
+				}
+
+			}
+		}
+	}
 	private void actionProjectiles(int i){
 		if(i != 9999){
 			System.out.println("Player Hit");

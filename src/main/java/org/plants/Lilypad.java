@@ -1,10 +1,6 @@
-package org.object;
+package org.plants;
 
 import org.game.GamePanel;
-import org.projectiles.Snowpea_Peas;
-
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 public class Lilypad extends Plants{
     public Lilypad(GamePanel gp, int healthPoint, int damage, int attack_speed){

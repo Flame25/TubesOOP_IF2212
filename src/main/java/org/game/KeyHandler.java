@@ -1,5 +1,7 @@
 package org.game;
 
+import org.object.Object_Bed;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.security.Key;
@@ -57,6 +59,8 @@ public class KeyHandler implements KeyListener{
 				gp.gameState = gp.playState;
 			}
 		}
+
+		// CHARACTER STATE
 		else if(gp.gameState == gp.characterState){
 			if(code  == KeyEvent.VK_C){
 				gp.gameState = gp.playState;
@@ -86,6 +90,35 @@ public class KeyHandler implements KeyListener{
 					gp.player.deck.add(gp.plants[gp.ui.getItemIndexOnSlot()]);
 				}
 
+			}
+		}
+		// SLEEP STATE
+		else if(gp.gameState == gp.sleepState){
+			if(code == KeyEvent.VK_W){
+				upPressed = true;
+				gp.gameState = gp.playState;
+				((Object_Bed)gp.obj[2]).imageToDef();
+            }
+			else if(code == KeyEvent.VK_S){
+				downPressed = true;
+				gp.gameState = gp.playState;
+				((Object_Bed)gp.obj[2]).imageToDef();
+			}
+			else if(code == KeyEvent.VK_A){
+				leftPressed = true;
+				gp.gameState = gp.playState;
+				((Object_Bed)gp.obj[2]).imageToDef();
+			}
+			else if(code == KeyEvent.VK_D){
+				rightPressed = true;
+				gp.gameState = gp.playState;
+				((Object_Bed)gp.obj[2]).imageToDef();
+			}
+			else if(code == KeyEvent.VK_ESCAPE){
+				gp.gameState = gp.pauseState;
+			}
+			else if(code == KeyEvent.VK_C){
+				gp.gameState = gp.characterState;
 			}
 		}
 	}
