@@ -26,5 +26,6 @@ Run ```./gradlew ``` within root project
 - [ ]  All Zombie
 - [ ]  Game Mode
 - [ ]  Shop
+- [ ]  Working Range
 
 

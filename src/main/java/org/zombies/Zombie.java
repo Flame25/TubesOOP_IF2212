@@ -44,23 +44,12 @@ public class Zombie extends Entity implements Cloneable{
            if(howManySecs >=3 ){
                statusEffect = "None";
                defaultSpeed = 3;
-                try{
-
-                    left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/npc/left1.png")));
-                    left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/npc/left2.png")));
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+               left1 = up1;
+               left2 = up2;
            }
            else{
-
-               try {
-                   left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/left1.png")));
-                   left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/left2.png")));
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-
+               left1 = down1;
+               left2 = down2;
                defaultSpeed = 1;
            }
         }
