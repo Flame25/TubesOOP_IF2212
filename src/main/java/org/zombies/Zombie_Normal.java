@@ -10,8 +10,8 @@ import java.util.Objects;
 public class Zombie_Normal extends Zombie {
     // DONE: CREATE BASE ZOMBIE CLASS
 
-    public Zombie_Normal(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed) {
-        super(gp, healthPoint, speed, damage, attack_speed);
+    public Zombie_Normal(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed,  boolean isAquatic) {
+        super(gp, healthPoint, speed, damage, attack_speed,isAquatic);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
@@ -32,9 +32,7 @@ public class Zombie_Normal extends Zombie {
         counter++;
     }
 
-    @Override
-    public void setAction() {
-    }
+    
 
 
     public void getPlayerImage() {

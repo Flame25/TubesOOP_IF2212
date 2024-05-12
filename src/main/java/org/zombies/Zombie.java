@@ -17,7 +17,7 @@ public class Zombie extends Entity implements Cloneable{
     int defaultSpeed;
     String statusEffect;
 
-    public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed){ // TODO : ADD MORE ATTRIBUTES
+    public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, boolean isAquatic){ // TODO : ADD MORE ATTRIBUTES
         super(gp);
         this.speed = speed;
         this.healthPoint = healthPoint;
@@ -25,15 +25,11 @@ public class Zombie extends Entity implements Cloneable{
         this.attack_speed = attack_speed;
         this.defaultSpeed = 3;
         this.statusEffect ="None";
+        this.isAquatic = isAquatic;
     }
-    @Override
-    public void setAction() {
+    
 
-    }
 
-    public void specialAction(){
-        // IF EXIST
-    }
 
     public void update() {
         super.update();
@@ -56,9 +52,13 @@ public class Zombie extends Entity implements Cloneable{
         gp.cChecker.checkEntity(this,gp.plants);
     }
 
+    @Override
+    public void setAction(){
+        
+    }
 
     public void actionAttack(){
-            if(gp.elapsedTime % attack_speed == 0){ // Is this good practice?
+            if(gp.elapsedTime % attack_speed == 0){ // Is this good practice? probably :)
                 int plantIndex  = gp.cChecker.checkEntity(this,gp.plants);
                 if(plantIndex != 9999){
                     gp.plants[plantIndex].healthPoint -= damage;

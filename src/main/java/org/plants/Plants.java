@@ -1,6 +1,7 @@
 package org.plants;
 
 import org.asset.Entity;
+import org.asset.Action;
 import org.game.GamePanel;
 
 public class Plants extends Entity {
@@ -24,11 +25,13 @@ public class Plants extends Entity {
     }
 
     @Override
-    public void setAction() {
+    public void setAction(){
 
     }
-
+   
     public void actionAttack(){
 
     }
+
+    
 }

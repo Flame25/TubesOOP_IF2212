@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public abstract class Entity implements ActionZombie{
+public abstract class Entity implements Action{
 	public GamePanel gp;
 	public int worldX, worldY;
 	public int speed;

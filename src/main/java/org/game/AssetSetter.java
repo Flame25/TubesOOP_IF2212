@@ -4,7 +4,16 @@ import org.asset.NPC;
 import org.plants.Lilypad;
 import org.plants.Peashooter;
 import org.plants.Snowpea;
+import org.zombies.Zombie_BucketHead;
+import org.zombies.Zombie_Catapult;
+import org.zombies.Zombie_Conehead;
+import org.zombies.Zombie_DolphinRider;
+import org.zombies.Zombie_DuckyTube;
+import org.zombies.Zombie_Football;
 import org.zombies.Zombie_Normal;
+import org.zombies.Zombie_PoleVaulting;
+import org.zombies.Zombie_ScreenDoor;
+import org.zombies.Zombie_Snorkle;
 import org.object.*;
 
 public class AssetSetter {
@@ -64,7 +73,16 @@ public class AssetSetter {
     }
 
     public void setZombie(){ // Initiation List of Zombie Available
-        gp.listOfZombie[0] = new Zombie_Normal(gp,125,3,50, 1); // Initialize Normal Zombie with HP = 125, Speed = 3, Damage = 100
+        gp.listOfZombie[0] = new Zombie_Normal(gp,125,3,50, 1, false); // Initialize Normal Zombie with HP = 125, Speed = 3, Damage = 100
+        gp.listOfZombie[1] = new Zombie_Conehead(gp, 250, 3, 100, 1, false);
+        gp.listOfZombie[2] = new Zombie_PoleVaulting(gp, 175, 3, 100, 1, false);
+        gp.listOfZombie[3] = new Zombie_BucketHead(gp, 300, 3, 100, 1, false);
+        gp.listOfZombie[4] = new Zombie_DuckyTube(gp, 100, 3, 100, 1, true);
+        gp.listOfZombie[5] = new Zombie_DolphinRider(gp, 175, 3, 100, 1, true);
+        gp.listOfZombie[6] = new Zombie_Football(gp, 300, 3, 200, 3, false);
+        gp.listOfZombie[7] = new Zombie_Snorkle(gp, 125, 3, 100, 1, true);
+        gp.listOfZombie[8] = new Zombie_Catapult(gp, 175, 3, 75, 4, false);
+        gp.listOfZombie[9] = new Zombie_ScreenDoor(gp, 200, 3, 100, 1, false);
         /*
         How to count speed
         60 Frame per second, zombie walks 1 tile every 5 second and we are using 16 x 16 pixel

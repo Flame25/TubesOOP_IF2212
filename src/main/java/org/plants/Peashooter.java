@@ -12,7 +12,7 @@ public class Peashooter extends Plants {
     }
 
     @Override
-    public void setAction() {
+    public void setAction(){
 
     }
     private void getImage(){
