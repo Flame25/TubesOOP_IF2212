@@ -16,11 +16,14 @@ public class Zombie extends Entity implements Cloneable {
   int damage = 0;
   int defaultSpeed;
   String statusEffect;
+  int attack_range;
 
-  public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, boolean isAquatic) { // TODO :
-                                                                                                             // ADD MORE
-                                                                                                             // ATTRIBUTES
+  public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
+      boolean isAquatic) { // TODO :
+    // ADD MORE
+    // ATTRIBUTES
     super(gp);
+    this.attack_range = attack_range;
     this.speed = speed;
     this.healthPoint = healthPoint;
     this.damage = damage;
@@ -28,6 +31,7 @@ public class Zombie extends Entity implements Cloneable {
     this.defaultSpeed = 3;
     this.statusEffect = "None";
     this.isAquatic = isAquatic;
+
   }
 
   public void update() {

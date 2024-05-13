@@ -13,8 +13,9 @@ public class Zombie_Template extends Zombie {
    * Special Skill in setAction
    * - Add zombie to zombie list (look at setZombie() at AssetSetter
    */
-  public Zombie_Template(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed) {
-    super(gp, healthPoint, speed, damage, attack_speed, false);
+  public Zombie_Template(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
+      boolean isAquatic) {
+    super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
     solidArea = new Rectangle(8, 16, 32, 32);
     solidAreaDefaultX = solidArea.x;
