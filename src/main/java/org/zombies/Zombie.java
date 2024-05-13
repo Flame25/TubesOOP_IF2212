@@ -19,9 +19,7 @@ public class Zombie extends Entity implements Cloneable {
   int attack_range;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
-      boolean isAquatic) { // TODO :
-    // ADD MORE
-    // ATTRIBUTES
+      boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
     super(gp);
     this.attack_range = attack_range;
     this.speed = speed;

@@ -99,7 +99,7 @@ public class Player extends Entity {
       interactNPC(npcIndex);
 
       // If Collision is False, player can move
-      if (!collisionOn) {
+      if (!collisionOn && gp.gameState == gp.playState) {
         switch (direction) {
           case "down":
             worldY += speed;
@@ -151,40 +151,42 @@ public class Player extends Entity {
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
 
-    switch (direction) {
-      case "up":
-        if (spriteNum == 1) {
-          image = up1;
-        }
-        if (spriteNum == 2) {
-          image = up2;
-        }
-        break;
-      case "down":
-        if (spriteNum == 1) {
-          image = down1;
-        }
-        if (spriteNum == 2) {
-          image = down2;
-        }
-        break;
-      case "left":
-        if (spriteNum == 1) {
-          image = left1;
-        }
-        if (spriteNum == 2) {
-          image = left2;
-        }
-        break;
+    if (gp.gameState == gp.playState) {
+      switch (direction) {
+        case "up":
+          if (spriteNum == 1) {
+            image = up1;
+          }
+          if (spriteNum == 2) {
+            image = up2;
+          }
+          break;
+        case "down":
+          if (spriteNum == 1) {
+            image = down1;
+          }
+          if (spriteNum == 2) {
+            image = down2;
+          }
+          break;
+        case "left":
+          if (spriteNum == 1) {
+            image = left1;
+          }
+          if (spriteNum == 2) {
+            image = left2;
+          }
+          break;
 
-      case "right":
-        if (spriteNum == 1) {
-          image = right1;
-        }
-        if (spriteNum == 2) {
-          image = right2;
-        }
-        break;
+        case "right":
+          if (spriteNum == 1) {
+            image = right1;
+          }
+          if (spriteNum == 2) {
+            image = right2;
+          }
+          break;
+      }
     }
     if (gp.gameState == gp.sleepState) {
       try {

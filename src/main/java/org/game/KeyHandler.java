@@ -97,27 +97,29 @@ public class KeyHandler implements KeyListener {
     // SLEEP STATE
     else if (gp.gameState == gp.sleepState) {
       if (code == KeyEvent.VK_W) {
-        upPressed = true;
-        gp.gameState = gp.playState;
-        ((Object_Bed) gp.obj[2]).imageToDef();
-        gp.player.backToPost();
+        if (gp.player.worldY != 8 * gp.tileSize) {
+          gp.player.worldY -= gp.tileSize;
+        }
       } else if (code == KeyEvent.VK_S) {
-        downPressed = true;
-        gp.gameState = gp.playState;
-        ((Object_Bed) gp.obj[2]).imageToDef();
-        gp.player.backToPost();
+        if (gp.player.worldY != 17 * gp.tileSize) {
+          gp.player.worldY += gp.tileSize;
+        }
       } else if (code == KeyEvent.VK_A) {
-        leftPressed = true;
-        gp.gameState = gp.playState;
-        ((Object_Bed) gp.obj[2]).imageToDef();
-        gp.player.backToPost();
+        if (gp.player.worldX != 21 * gp.tileSize) {
+          gp.player.worldX -= gp.tileSize;
+        }
       } else if (code == KeyEvent.VK_D) {
-        rightPressed = true;
-        gp.gameState = gp.playState;
-        ((Object_Bed) gp.obj[2]).imageToDef();
-        gp.player.backToPost();
+        if (gp.player.worldX != 29 * gp.tileSize) {
+          gp.player.worldX += gp.tileSize;
+        }
       } else if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.pauseState;
+      } else if (code == KeyEvent.VK_1) {
+        System.out.println("Plant 1 Selected");
+      } else if (code == KeyEvent.VK_E) {
+        gp.gameState = gp.playState;
+        gp.player.backToPost();
+        ((Object_Bed) gp.obj[2]).imageToDef();
       }
     }
   }
