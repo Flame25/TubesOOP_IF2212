@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
   public Entity npc[] = new Entity[10];
   public Zombie listOfZombie[] = new Zombie[10]; // List of Available Zombie
   public Zombie zombie[] = new Zombie[10];
-  public Plants plants[] = new Plants[10];
+  public Plants plants[] = new Plants[20];
   public Player player = new Player(this, keyH);
 
   // GAME STATE

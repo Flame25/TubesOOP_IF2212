@@ -116,6 +116,46 @@ public class KeyHandler implements KeyListener {
         gp.gameState = gp.pauseState;
       } else if (code == KeyEvent.VK_1) {
         System.out.println("Plant 1 Selected");
+        for (int i = 0; i < gp.plants.length; i++) {
+          if (gp.plants[i] == null) {
+            try {
+              gp.plants[i] = gp.player.deck.get(0).clone();
+            } catch (CloneNotSupportedException c) {
+              c.printStackTrace();
+            }
+            gp.plants[i].worldX = gp.player.worldX + 3;
+            gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+            break;
+          }
+        }
+      } else if (code == KeyEvent.VK_2) {
+        System.out.println("Plant 2 Selected");
+        for (int i = 0; i < gp.plants.length; i++) {
+          if (gp.plants[i] == null) {
+            try {
+              gp.plants[i] = gp.player.deck.get(1).clone();
+            } catch (CloneNotSupportedException c) {
+              c.printStackTrace();
+            }
+            gp.plants[i].worldX = gp.player.worldX + 3;
+            gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+            break;
+          }
+        }
+      } else if (code == KeyEvent.VK_3) {
+        System.out.println("Plant 3 Selected");
+        for (int i = 0; i < gp.plants.length; i++) {
+          if (gp.plants[i] == null) {
+            try {
+              gp.plants[i] = gp.player.deck.get(2).clone();
+            } catch (CloneNotSupportedException c) {
+              c.printStackTrace();
+            }
+            gp.plants[i].worldX = gp.player.worldX + 3;
+            gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+            break;
+          }
+        }
       } else if (code == KeyEvent.VK_E) {
         gp.gameState = gp.playState;
         gp.player.backToPost();

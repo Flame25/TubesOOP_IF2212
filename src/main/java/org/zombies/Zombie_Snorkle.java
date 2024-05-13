@@ -8,7 +8,7 @@ import java.awt.*;
 public class Zombie_Snorkle extends Zombie {
 
   /*
-   * TODO
+   * TODO :
    * - Copy this class
    * - Add attack (actionAttack) if there is any difference with normal attack and
    * Special Skill in setAction
