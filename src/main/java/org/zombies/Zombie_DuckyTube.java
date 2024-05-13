@@ -12,7 +12,7 @@ public class Zombie_DuckyTube extends Zombie{
     - Add zombie to zombie list (look at setZombie() at AssetSetter
      */
     public Zombie_DuckyTube(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed,  boolean isAquatic) {
-        super(gp, healthPoint, speed, damage, attack_speed, isAquatic);
+        super(gp, 100, speed, 100, 1, true);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;

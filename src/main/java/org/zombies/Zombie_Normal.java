@@ -11,7 +11,7 @@ public class Zombie_Normal extends Zombie {
     // DONE: CREATE BASE ZOMBIE CLASS
 
     public Zombie_Normal(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed,  boolean isAquatic) {
-        super(gp, healthPoint, speed, damage, attack_speed,isAquatic);
+        super(gp, 125, speed, 100, 1, false);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;

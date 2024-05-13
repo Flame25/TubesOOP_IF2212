@@ -13,7 +13,7 @@ public class Zombie_Football extends Zombie  {
     - Add zombie to zombie list (look at setZombie() at AssetSetter
      */
     public Zombie_Football(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed,  boolean isAquatic) {
-        super(gp, healthPoint, speed, damage, attack_speed, isAquatic);
+        super(gp, 300, speed, 200, 3, false);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;

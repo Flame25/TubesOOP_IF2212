@@ -5,7 +5,7 @@ import org.game.GamePanel;
 
 import java.awt.*;
 
-public class Zombie_Catapult extends Zombie {
+public class Zombie_Catapult extends Zombie{
 
     /* TODO
     - Copy this class
@@ -13,7 +13,7 @@ public class Zombie_Catapult extends Zombie {
     - Add zombie to zombie list (look at setZombie() at AssetSetter
      */
     public Zombie_Catapult(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed,  boolean isAquatic) {
-        super(gp, healthPoint, speed, damage, attack_speed, isAquatic);
+        super(gp, 175, speed, 75, 4, false);
         direction = "left";
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
