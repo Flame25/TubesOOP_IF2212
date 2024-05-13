@@ -3,8 +3,8 @@ package org.plants;
 import org.game.GamePanel;
 
 public class Lilypad extends Plants {
-  public Lilypad(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
-    super(gp, healthPoint, attack_speed, range, damage, is_aquatic);
+  public Lilypad(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, boolean is_aquatic) {
+    super(gp, healthPoint, attack_speed, range, damage, cost, is_aquatic);
     direction = "up";
     description = "[" + "Lilypad" + "]\nHello, I am Lilypad";
     getImage();

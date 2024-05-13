@@ -4,8 +4,8 @@ import org.game.GamePanel;
 
 public class Wallnut extends Plants {
 
-  public Wallnut(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
-    super(gp, healthPoint, attack_speed, range, damage, is_aquatic);
+  public Wallnut(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, boolean is_aquatic) {
+    super(gp, healthPoint, attack_speed, range, damage, cost, is_aquatic);
     collision = true;
 
     description = "[" + "Wallnut"

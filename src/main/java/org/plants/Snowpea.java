@@ -5,8 +5,8 @@ import org.projectiles.Snowpea_Peas;
 
 public class Snowpea extends Plants {
 
-  public Snowpea(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
-    super(gp, healthPoint, attack_speed, range, damage, is_aquatic);
+  public Snowpea(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, boolean is_aquatic) {
+    super(gp, healthPoint, attack_speed, range, damage, cost, is_aquatic);
     description = "[" + "Snowpea" + "]\nPeashooter with snow and slow";
     getImage();
   }

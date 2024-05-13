@@ -96,8 +96,6 @@ public class Zombie extends Entity implements Cloneable {
   @Override
   public Zombie clone() throws CloneNotSupportedException {
     try {
-      // TODO: copy mutable state here, so the clone can't change the internals of the
-      // original
       return (Zombie) super.clone();
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();

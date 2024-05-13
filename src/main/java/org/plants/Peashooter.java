@@ -4,9 +4,10 @@ import org.game.GamePanel;
 import org.projectiles.Peashooter_Peas;
 
 public class Peashooter extends Plants {
-  public Peashooter(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
+  public Peashooter(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost,
+      boolean is_aquatic) {
 
-    super(gp, healthPoint, attack_speed, range, damage, is_aquatic);
+    super(gp, healthPoint, attack_speed, range, damage, cost, is_aquatic);
     direction = "up";
     description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
     getImage();
@@ -37,14 +38,4 @@ public class Peashooter extends Plants {
     }
   }
 
-  // @Override
-  // public Zombie clone() throws CloneNotSupportedException{
-  // try {
-  // // TODO: copy mutable state here, so the clone can't change the internals of
-  // the original
-  // return (Zombie) super.clone();
-  // } catch (CloneNotSupportedException e) {
-  // throw new AssertionError();
-  // }
-  // }
 }

@@ -15,10 +15,11 @@ public class Plants extends Entity implements Cloneable {
   public String description;
 
   // TODO: Plants not counting time based on when the plants are placed
-  // TODO: Add Cost into Constructor
-  public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
+  // TODO: Add Cooldown
+  public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, boolean is_aquatic) {
     super(gp);
     this.range = range;
+    this.cost = cost;
     this.is_aquatic = is_aquatic;
     this.worldY = 49 * gp.tileSize;
     this.worldX = 49 * gp.tileSize;

@@ -1,10 +1,13 @@
 package org.game;
 
 import org.object.Object_Egg;
+import org.object.Object_Grass;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+
+import javax.imageio.ImageIO;
 
 public class UI {
   GamePanel gp;
@@ -79,7 +82,15 @@ public class UI {
     else if (gp.gameState == gp.sleepState) {
       drawTilesCursor();
       drawCardSelector();
+      drawGrassCount();
     }
+  }
+
+  public void drawGrassCount() {
+    Object_Grass grass = new Object_Grass();
+    g2.drawImage(grass.image, gp.tileSize * 12 + 15, 8, gp.tileSize, gp.tileSize, null);
+    g2.setFont(g2.getFont().deriveFont(40F));
+    g2.drawString(String.valueOf(gp.player.getTotalSun()), gp.tileSize * 13 + 25, 44);
   }
 
   public void drawTilesCursor() {
@@ -94,10 +105,10 @@ public class UI {
 
   public void drawCardSelector() {
     // WINDOW
-    int x = gp.tileSize;
+    int x = 8;
     int y = 8;
     g2.setColor(Color.white);
-    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 2, gp.tileSize * 2);
+    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 4, gp.tileSize * 2);
     int tempSlotX = x + 20;
     int tempslotY = y + 20;
     for (int i = 0; i < gp.player.deck.size(); i++) {
@@ -170,7 +181,7 @@ public class UI {
       slotX += gp.tileSize;
       if (i == 4 || i == 9 || i == 14) {
         slotX = slotXStart;
-        slotY += gp.tileSize;
+        slotY += gp.tileSize + 5;
       }
     }
     // DRAW CURSOR

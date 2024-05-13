@@ -24,6 +24,11 @@ public class Player extends Entity {
   public final int inventorySize = 20;
   private int beforeSleepX;
   private int beforeSleepY;
+  private int totalSun = 0;
+
+  public int getTotalSun() {
+    return totalSun;
+  }
 
   public Player(GamePanel gp, KeyHandler keyH) {
     super(gp);
@@ -31,6 +36,7 @@ public class Player extends Entity {
     this.keyH = keyH;
     this.screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
     this.screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+    totalSun = 0;
     solidArea = new Rectangle(8, 16, 32, 32);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
