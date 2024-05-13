@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
   public Entity npc[] = new Entity[10];
   public Zombie listOfZombie[] = new Zombie[10]; // List of Available Zombie
   public Zombie zombie[] = new Zombie[10];
+  public Plants listOfPlants[] = new Plants[10];
   public Plants plants[] = new Plants[20];
   public Player player = new Player(this, keyH);
 
@@ -69,6 +70,8 @@ public class GamePanel extends JPanel implements Runnable {
     aSetter.setNPC();
     aSetter.setZombie();
     aSetter.setPlants();
+    aSetter.setPlantsList();
+
     try {
       aSetter.spawnZombie();
     } catch (CloneNotSupportedException e) {
@@ -197,6 +200,13 @@ public class GamePanel extends JPanel implements Runnable {
     for (int i = 0; i < plants.length; i++) {
       if (plants[i] != null) {
         plants[i].draw(g2);
+      }
+    }
+
+    // PLANT LIST
+    for (int i = 0; i < listOfPlants.length; i++) {
+      if (listOfPlants[i] != null) {
+        listOfPlants[i].draw(g2);
       }
     }
 

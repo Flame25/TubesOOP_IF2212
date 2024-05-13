@@ -141,9 +141,9 @@ public class Player extends Entity {
   }
 
   public void setItems() {
-    for (int i = 0; i < gp.plants.length; i++) {
-      if (gp.plants[i] != null) {
-        inventory.add(gp.plants[i]);
+    for (int i = 0; i < gp.listOfPlants.length; i++) {
+      if (gp.listOfPlants[i] != null) {
+        inventory.add(gp.listOfPlants[i]);
       }
     }
   }

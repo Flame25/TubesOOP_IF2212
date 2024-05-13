@@ -8,14 +8,20 @@ public class Plants extends Entity implements Cloneable {
   public int healthPoint;
   public int attack_speed;
   int damage;
-  boolean is_aquatic;
+  public boolean is_aquatic;
   int range;
   int cooldown;
   int cost;
   public String description;
 
-  public Plants(GamePanel gp, int healthPoint, int attack_speed, int damage) {
+  // TODO: Plants not counting time based on when the plants are placed
+  // TODO: Add Cost into Constructor
+  public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, boolean is_aquatic) {
     super(gp);
+    this.range = range;
+    this.is_aquatic = is_aquatic;
+    this.worldY = 49 * gp.tileSize;
+    this.worldX = 49 * gp.tileSize;
     this.healthPoint = healthPoint;
     this.attack_speed = attack_speed;
     this.speed = 0;
@@ -36,8 +42,6 @@ public class Plants extends Entity implements Cloneable {
   @Override
   public Plants clone() throws CloneNotSupportedException {
     try {
-      // TODO: copy mutable state here, so the clone can't change the internals of the
-      // original
       return (Plants) super.clone();
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();

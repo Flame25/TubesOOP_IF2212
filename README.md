@@ -19,13 +19,20 @@ Run ```./gradlew ``` within root project
 - [x]  Zombie Base
 - [x]  Plant Base
 - [x]  Game Time 
-- [ ]  Game Start and Stop
+- [x]  Game Start
+- [ ]  Game Stop
 - [x]  Inventory
 - [x]  Deck
 - [ ]  All Zombie
 - [ ]  All Zombie
 - [x]  Game Mode
+- [x]  Plant Placement
+- [x]  Tile Based Placement
 - [ ]  Shop
 - [ ]  Working Range
+- [ ]  Cost 
+- [ ]  Sun
+- [ ]  Zombie Time (Not Necessary) (Don't Use Thread)
+- [ ]  Plant Time (Not Necessary) (Don't Use Thread)
 
 

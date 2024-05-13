@@ -4,6 +4,7 @@ import org.asset.NPC;
 import org.plants.Lilypad;
 import org.plants.Peashooter;
 import org.plants.Snowpea;
+import org.plants.Squash;
 import org.zombies.Zombie_BucketHead;
 import org.zombies.Zombie_Catapult;
 import org.zombies.Zombie_Conehead;
@@ -24,17 +25,28 @@ public class AssetSetter {
   }
 
   public void setPlants() {
-    gp.plants[0] = new Peashooter(gp, 125, 25, 10);
-    gp.plants[0].worldX = 23 * gp.tileSize + 3;
-    gp.plants[0].worldY = 7 * gp.tileSize - 16;
+    // gp.plants[0] = new Peashooter(gp, 125, 10, -1, 25, false);
+    // gp.plants[0].worldX = 23 * gp.tileSize + 3;
+    // gp.plants[0].worldY = 7 * gp.tileSize - 16;
 
-    gp.plants[1] = new Snowpea(gp, 125, 25, 10);
-    gp.plants[1].worldX = 22 * gp.tileSize + 3;
-    gp.plants[1].worldY = 7 * gp.tileSize - 16;
+    // gp.plants[1] = new Snowpea(gp, 125, 10, -1, 25, false);
+    // gp.plants[1].worldX = 22 * gp.tileSize + 3;
+    // gp.plants[1].worldY = 7 * gp.tileSize - 16;
 
-    gp.plants[2] = new Lilypad(gp, 100, 0, 0);
-    gp.plants[2].worldX = 21 * gp.tileSize + 3;
-    gp.plants[2].worldY = 12 * gp.tileSize - 16;
+    // gp.plants[2] = new Lilypad(gp, 100, 0, 0, 0, true);
+    // gp.plants[2].worldX = 21 * gp.tileSize + 3;
+    // gp.plants[2].worldY = 12 * gp.tileSize - 16;
+
+  }
+
+  public void setPlantsList() {
+    gp.listOfPlants[0] = new Peashooter(gp, 125, 10, -1, 25, false);
+
+    gp.listOfPlants[1] = new Snowpea(gp, 125, 10, -1, 25, false);
+
+    gp.listOfPlants[2] = new Lilypad(gp, 100, 0, 0, 0, true);
+
+    gp.listOfPlants[3] = new Squash(gp, 100, 0, 1, 5000, false);
 
   }
 

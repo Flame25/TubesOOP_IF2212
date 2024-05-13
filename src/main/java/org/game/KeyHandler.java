@@ -87,10 +87,12 @@ public class KeyHandler implements KeyListener {
         }
       }
       if (code == KeyEvent.VK_E) {
-        if (!gp.player.deck.contains(gp.plants[gp.ui.getItemIndexOnSlot()])) {
-          gp.player.deck.add(gp.plants[gp.ui.getItemIndexOnSlot()]);
-        } else {
-          gp.player.deck.remove(gp.plants[gp.ui.getItemIndexOnSlot()]);
+        if (gp.listOfPlants[gp.ui.getItemIndexOnSlot()] != null) {
+          if (!gp.player.deck.contains(gp.listOfPlants[gp.ui.getItemIndexOnSlot()])) {
+            gp.player.deck.add(gp.listOfPlants[gp.ui.getItemIndexOnSlot()]);
+          } else {
+            gp.player.deck.remove(gp.listOfPlants[gp.ui.getItemIndexOnSlot()]);
+          }
         }
       }
     }
@@ -114,42 +116,37 @@ public class KeyHandler implements KeyListener {
         }
       } else if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.pauseState;
+
+        // TODO: Refactor Code Below !!
       } else if (gp.player.worldY != 10 * gp.tileSize && gp.player.worldY != 11 * gp.tileSize
           && gp.player.worldY != 14 * gp.tileSize && gp.player.worldY != 15 * gp.tileSize) {
-        if (code == KeyEvent.VK_1) {
-          System.out.println("Plant 1 Selected");
-          for (int i = 0; i < gp.plants.length; i++) {
-            if (gp.plants[i] == null) {
-              try {
-                gp.plants[i] = gp.player.deck.get(0).clone();
-              } catch (CloneNotSupportedException c) {
-                c.printStackTrace();
+        if (code >= 49 && code <= 57) {
+          if (((gp.player.worldY == 12 * gp.tileSize || gp.player.worldY == 13 * gp.tileSize)
+              && gp.player.deck.get(code - 49).is_aquatic)
+              || (gp.player.worldY != 12 * gp.tileSize && gp.player.worldY != 13 * gp.tileSize)
+                  && checkPlantLocation(gp.player.worldX + 3, gp.player.worldY - 16 - gp.tileSize)) {
+
+            System.out.println("Plant " + (code - 48) + " Selected");
+            System.out.println(gp.player.deck.get(code - 49).is_aquatic);
+            for (int i = 0; i < gp.plants.length; i++) {
+              if (gp.plants[i] == null) {
+                try {
+                  gp.plants[i] = gp.player.deck.get(code - 49).clone();
+                } catch (CloneNotSupportedException c) {
+                  c.printStackTrace();
+                }
+                gp.plants[i].worldX = gp.player.worldX + 3;
+                gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+                break;
               }
-              gp.plants[i].worldX = gp.player.worldX + 3;
-              gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
-              break;
             }
           }
-        } else if (code == KeyEvent.VK_2) {
-          System.out.println("Plant 2 Selected");
+        } else if (code == KeyEvent.VK_0) {
+          System.out.println("Plant 10 Selected");
           for (int i = 0; i < gp.plants.length; i++) {
             if (gp.plants[i] == null) {
               try {
-                gp.plants[i] = gp.player.deck.get(1).clone();
-              } catch (CloneNotSupportedException c) {
-                c.printStackTrace();
-              }
-              gp.plants[i].worldX = gp.player.worldX + 3;
-              gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
-              break;
-            }
-          }
-        } else if (code == KeyEvent.VK_3) {
-          System.out.println("Plant 3 Selected");
-          for (int i = 0; i < gp.plants.length; i++) {
-            if (gp.plants[i] == null) {
-              try {
-                gp.plants[i] = gp.player.deck.get(2).clone();
+                gp.plants[i] = gp.player.deck.get(9).clone();
               } catch (CloneNotSupportedException c) {
                 c.printStackTrace();
               }
@@ -184,6 +181,17 @@ public class KeyHandler implements KeyListener {
     if (code == KeyEvent.VK_D) {
       rightPressed = false;
     }
+  }
+
+  public boolean checkPlantLocation(int x, int y) {
+    for (int i = 0; i < gp.plants.length; i++) {
+      if (gp.plants[i] != null) {
+        if (gp.plants[i].worldX == x && gp.plants[i].worldY == y) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
 }
