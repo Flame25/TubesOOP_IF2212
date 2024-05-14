@@ -32,7 +32,7 @@ Run ```./gradlew ``` within root project
 - [ ]  Working Range
 - [ ]  Cost 
 - [ ]  Sun
-- [ ]  Cooldown
+- [x]  Cooldown
 - [ ]  Zombie Time (Not Necessary) (Don't Use Thread)
 - [x]  Plant Time (Not Necessary) (Don't Use Thread)
 
