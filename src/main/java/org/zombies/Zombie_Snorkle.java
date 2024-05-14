@@ -5,7 +5,7 @@ import org.game.GamePanel;
 
 import java.awt.*;
 
-public class Zombie_Snorkle extends Zombie {
+public class Zombie_Snorkle extends Zombie implements Action{
 
     /* TODO
     - Copy this class
