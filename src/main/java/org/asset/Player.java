@@ -133,6 +133,19 @@ public class Player extends Entity {
         spriteCounter = 0;
       }
     }
+    if (gp.gameState == gp.sleepState) {
+      for (int i = 0; i < deck.size(); i++) {
+        if (deck.get(i) != null && gp.elapsedTime != deck.get(i).timeSpawn) {
+          if (((gp.elapsedTime - deck.get(i).timeSpawn) % 10) == 0) {
+            deck.get(i).up1 = deck.get(i).up2;
+            deck.get(i).statusOn = true;
+            // System.out.println("Info");
+          } else if (!deck.get(i).statusOn) {
+            deck.get(i).up1 = deck.get(i).down1;
+          }
+        }
+      }
+    }
   }
 
   public void pickUpItem(int index) {

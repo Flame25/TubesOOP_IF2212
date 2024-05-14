@@ -1,7 +1,6 @@
 package org.plants;
 
 import org.asset.Entity;
-import org.asset.Action;
 import org.game.GamePanel;
 
 public class Plants extends Entity implements Cloneable {
@@ -10,15 +9,20 @@ public class Plants extends Entity implements Cloneable {
   int damage;
   public boolean is_aquatic;
   int range;
-  int cooldown;
+  public int cooldown;
   int cost;
+  public boolean statusOn = true;
   public String description;
+  public long timeSpawn = 9999;
+  protected boolean isClone = false;
 
   // TODO: Plants not counting time based on when the plants are placed
   // TODO: Add Cooldown
-  public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, boolean is_aquatic) {
+  public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
+      boolean is_aquatic) {
     super(gp);
     this.range = range;
+    statusOn = true;
     this.cost = cost;
     this.is_aquatic = is_aquatic;
     this.worldY = 49 * gp.tileSize;
@@ -27,8 +31,8 @@ public class Plants extends Entity implements Cloneable {
     this.attack_speed = attack_speed;
     this.speed = 0;
     this.damage = damage;
+    this.cooldown = cooldown;
     direction = "up";
-
   }
 
   @Override
@@ -41,8 +45,14 @@ public class Plants extends Entity implements Cloneable {
   }
 
   @Override
+  public void update() {
+
+  }
+
+  @Override
   public Plants clone() throws CloneNotSupportedException {
     try {
+      isClone = true;
       return (Plants) super.clone();
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();

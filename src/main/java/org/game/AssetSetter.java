@@ -42,17 +42,17 @@ public class AssetSetter {
   }
 
   public void setPlantsList() {
-    gp.listOfPlants[0] = new Peashooter(gp, 125, 10, -1, 25, 100, false);
+    gp.listOfPlants[0] = new Peashooter(gp, 125, 10, -1, 25, 100, 10, false);
 
-    gp.listOfPlants[1] = new Snowpea(gp, 125, 10, -1, 25, 175, false);
+    gp.listOfPlants[1] = new Snowpea(gp, 125, 10, -1, 25, 175, 10, false);
 
-    gp.listOfPlants[2] = new Lilypad(gp, 100, 0, 0, 0, 25, true);
+    gp.listOfPlants[2] = new Lilypad(gp, 100, 0, 0, 0, 25, 10, true);
 
-    gp.listOfPlants[3] = new Squash(gp, 100, 0, 1, 5000, 50, false);
+    gp.listOfPlants[3] = new Squash(gp, 100, 0, 1, 5000, 50, 20, false);
 
-    gp.listOfPlants[4] = new Wallnut(gp, 1000, 0, 0, 0, 50, false);
+    gp.listOfPlants[4] = new Wallnut(gp, 1000, 0, 0, 0, 50, 20, false);
 
-    gp.listOfPlants[5] = new Sunflower(gp, 100, 0, 0, 0, 50, false);
+    gp.listOfPlants[5] = new Sunflower(gp, 100, 0, 0, 0, 50, 10, false);
 
   }
 

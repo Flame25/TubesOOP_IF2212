@@ -4,12 +4,13 @@ import org.game.GamePanel;
 import org.projectiles.Peashooter_Peas;
 
 public class Peashooter extends Plants {
-  public Peashooter(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost,
+  public Peashooter(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
       boolean is_aquatic) {
 
-    super(gp, healthPoint, attack_speed, range, damage, cost, is_aquatic);
+    super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     direction = "up";
     description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
+    statusOn = true;
     getImage();
   }
 
@@ -21,6 +22,7 @@ public class Peashooter extends Plants {
   private void getImage() {
     up1 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
+    down1 = setup("/plants/Peashooter_Off", gp.tileSize, gp.tileSize);
   }
 
   public void update() {
