@@ -37,8 +37,22 @@ public class Zombie_Catapult extends Zombie {
   }
 
   @Override
+  // Special Action: Extra Attack Range - Catapult Zombie get boost in its attack range for about triple of its default value for 1 second
   public void setAction() {
-
+    long sleeptime = 1000;
+    Thread thread = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          setAttackRange(3 * getAttackRange());
+          Thread.sleep(sleeptime);
+          setAttackRange(Math.floorMod(getAttackRange(), 3));
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    thread.start();
   }
 
   public void getPlayerImage() {

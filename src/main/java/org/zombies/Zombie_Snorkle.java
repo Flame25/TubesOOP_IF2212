@@ -37,8 +37,22 @@ public class Zombie_Snorkle extends Zombie {
   }
 
   @Override
+  // Special Action: Diving Immunity - Catapult Zombie can dive for 1 second and be immune of any attack while diving
   public void setAction() {
-
+    long sleeptime = 1000;
+    Thread thread = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          int tempHealth = getHealthPoint();
+          Thread.sleep(sleeptime);
+          setHealthPoint(tempHealth);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    thread.start();
   }
 
   public void getPlayerImage() {

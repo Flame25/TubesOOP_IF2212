@@ -32,6 +32,54 @@ public class Zombie extends Entity implements Cloneable {
 
   }
 
+  public int getHealthPoint() {
+    return healthPoint;
+  }
+
+  public int getDamage() {
+    return damage;
+  }
+
+  public int getSpeed() {
+    return defaultSpeed;
+  }
+
+  public int getAttackRange() {
+    return attack_range;
+  }
+
+  public boolean getIsAquatic() {
+    return isAquatic;
+  }
+
+  public int getAttackSpeed() {
+    return attack_speed;
+  }
+
+  public void setHealthPoint(int healthPoint) {
+    this.healthPoint = healthPoint;
+  }
+
+  public void setDamage(int damage) {
+    this.damage = damage;
+  }
+
+  public void setSpeed(int defaultSpeed) {
+    this.defaultSpeed = defaultSpeed;
+  }
+
+  public void setAttackRange(int attack_range) {
+    this.attack_range = attack_range;
+  }
+
+  public void setIsAquatic(boolean isAquatic) {
+    this.isAquatic = isAquatic;
+  }
+
+  public void setAttackSpeed(int attack_speed) {
+    this.attack_speed = attack_speed;
+  }
+
   public void update() {
     super.update();
     gp.cChecker.checkObject(this, true);

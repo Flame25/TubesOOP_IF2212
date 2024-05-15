@@ -37,8 +37,22 @@ public class Zombie_Football extends Zombie {
   }
 
   @Override
+  // Special Action: Extra Attack Range - Football Zombie get boost in its move speed for about double of its default value for 1 second
   public void setAction() {
-
+    long sleeptime = 1000;
+    Thread thread = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          setSpeed(2 * getSpeed());
+          Thread.sleep(sleeptime);
+          setSpeed(Math.floorMod(getSpeed(), 2));
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    thread.start();
   }
 
   public void getPlayerImage() {
