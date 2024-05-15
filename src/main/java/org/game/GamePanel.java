@@ -7,6 +7,7 @@ import org.map.TileManager;
 import org.plants.Plants;
 import org.object.SuperObject;
 import org.projectiles.SuperProjectiles;
+import org.spawner.Spawner;
 import org.zombies.Zombie;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -46,6 +47,9 @@ public class GamePanel extends JPanel implements Runnable {
   public Plants plants[] = new Plants[20];
   public Player player = new Player(this, keyH);
 
+  // ZOMBIE SPAWNER
+  private Spawner spawner = new Spawner(this);
+
   // GAME STATE
   public int gameState;
   public final int playState = 1;
@@ -53,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
   public final int dialogState = 2;
   public final int characterState = 3;
   public final int sleepState = 4;
+
   // ELAPSED TIME
   public long elapsedTime = 0;
 
@@ -162,6 +167,8 @@ public class GamePanel extends JPanel implements Runnable {
           plants[i].update();
         }
       }
+
+      spawner.update();
     } else if (gameState == pauseState) {
     }
   }

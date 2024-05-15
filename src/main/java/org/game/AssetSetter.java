@@ -93,7 +93,6 @@ public class AssetSetter {
 
   public void setZombie() { // Initiation List of Zombie Available
     gp.listOfZombie[0] = new Zombie_Normal(gp, 125, 3, 50, 1, 1, false); // Initialize Normal Zombie with HP = 125,
-                                                                         // Speed = 3, Damage = 100
     gp.listOfZombie[1] = new Zombie_Conehead(gp, 250, 3, 100, 1, 1, false);
     gp.listOfZombie[2] = new Zombie_PoleVaulting(gp, 175, 3, 100, 1, 1, false);
     gp.listOfZombie[3] = new Zombie_BucketHead(gp, 300, 3, 100, 1, 1, false);
