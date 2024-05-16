@@ -17,6 +17,7 @@ public class Zombie extends Entity implements Cloneable {
   int defaultSpeed;
   String statusEffect;
   int attack_range;
+  int cost;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
