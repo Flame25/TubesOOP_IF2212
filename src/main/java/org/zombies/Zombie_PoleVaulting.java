@@ -53,7 +53,11 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
         if (gp.plants[plantIndex].healthPoint <= 0) {
           gp.plants[plantIndex] = null;
         }
+
+        this.worldX -= gp.tileSize ;
       }
+
+      
     }
   }
 
@@ -64,9 +68,9 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
     try {
       
       
-      left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/zombie_racoon_left.png")));
+      left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/plant_vs_zombie_pixel_image//zomble//struts5.png")));
+      left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/plant_vs_zombie_pixel_image//zomble//struts5.png")));
       
-      right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/zombie_racoon_right.png")));
       
       
     } catch (IOException e) {
