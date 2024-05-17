@@ -27,10 +27,13 @@ public class AssetSetter {
   }
 
   public void setPlants() {
-    // gp.plants[0] = new Peashooter(gp, 125, 10, -1, 25, false);
-    // gp.plants[0].worldX = 23 * gp.tileSize + 3;
-    // gp.plants[0].worldY = 7 * gp.tileSize - 16;
+    gp.plants[0] = new Peashooter(gp, 125, 10, -1, 25, 100, 10, false);
+    gp.plants[0].worldX = 29 * gp.tileSize + 3;
+    gp.plants[0].worldY = 7 * gp.tileSize - 16;
 
+    gp.plants[1] = new Peashooter(gp, 125, 10, -1, 25, 100, 10, false);
+    gp.plants[1].worldX = 28 * gp.tileSize + 3;
+    gp.plants[1].worldY = 7 * gp.tileSize - 16;
     // gp.plants[1] = new Snowpea(gp, 125, 10, -1, 25, false);
     // gp.plants[1].worldX = 22 * gp.tileSize + 3;
     // gp.plants[1].worldY = 7 * gp.tileSize - 16;
@@ -94,7 +97,7 @@ public class AssetSetter {
   public void setZombie() { // Initiation List of Zombie Available
     gp.listOfZombie[0] = new Zombie_Normal(gp, 125, 3, 50, 1, 1, false); // Initialize Normal Zombie with HP = 125,
     gp.listOfZombie[1] = new Zombie_Conehead(gp, 250, 3, 100, 1, 1, false);
-    gp.listOfZombie[2] = new Zombie_PoleVaulting(gp, 175, 3, 100, 1, 1, false);
+    gp.listOfZombie[2] = new Zombie_PoleVaulting(gp, 10000, 3, 100, 1, 1, false);
     gp.listOfZombie[3] = new Zombie_BucketHead(gp, 300, 3, 100, 1, 1, false);
     gp.listOfZombie[4] = new Zombie_DuckyTube(gp, 100, 3, 100, 1, 1, true);
     gp.listOfZombie[5] = new Zombie_DolphinRider(gp, 175, 3, 100, 1, 1, true);
@@ -112,7 +115,7 @@ public class AssetSetter {
   }
 
   public void spawnZombie() throws CloneNotSupportedException { // Need to implement Zombie Spawner as Class
-    gp.zombie[0] = gp.listOfZombie[0].clone();
+    gp.zombie[0] = gp.listOfZombie[2].clone();
     gp.zombie[0].worldX = gp.tileSize * 31;
     gp.zombie[0].worldY = 7 * gp.tileSize - 16;
   }
