@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
-import javax.imageio.ImageIO;
-
 public class UI {
   GamePanel gp;
   Graphics2D g2;
@@ -46,12 +44,13 @@ public class UI {
 
     // PLAY STATE
     if (gp.gameState == gp.playState) {
-      g2.drawImage(eggImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
-      g2.drawString("x " + gp.player.EggTotal, 74, 65);
+      // g2.drawImage(eggImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize,
+      // gp.tileSize, null);
+      // g2.drawString("x " + gp.player.EggTotal, 74, 65);
 
-      // Time
-      playTime += (double) 1 / 60;
-      g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
+      // // Time
+      // playTime += (double) 1 / 60;
+      // g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
       // Message
       if (messageOn) {
         g2.setFont(g2.getFont().deriveFont(30F));
@@ -80,6 +79,9 @@ public class UI {
 
     // SLEEP STATE
     else if (gp.gameState == gp.sleepState) {
+
+      playTime += (double) 1 / 60;
+      g2.drawString("Time: " + gp.elapsedTime, gp.tileSize * 14, 80);
       drawTilesCursor();
       drawCardSelector();
       drawGrassCount();
@@ -88,9 +90,9 @@ public class UI {
 
   public void drawGrassCount() {
     Object_Grass grass = new Object_Grass();
-    g2.drawImage(grass.image, gp.tileSize * 12 + 15, 8, gp.tileSize, gp.tileSize, null);
+    g2.drawImage(grass.image, gp.tileSize * 15 + 15, 8, gp.tileSize, gp.tileSize, null);
     g2.setFont(g2.getFont().deriveFont(40F));
-    g2.drawString(String.valueOf(gp.player.getSun()), gp.tileSize * 13 + 25, 44);
+    g2.drawString(String.valueOf(gp.player.getSun()), gp.tileSize * 16 + 25, 44);
   }
 
   public void drawTilesCursor() {

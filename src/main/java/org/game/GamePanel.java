@@ -2,6 +2,8 @@ package org.game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
+
 import org.asset.*;
 import org.map.TileManager;
 import org.plants.Plants;
@@ -93,9 +95,12 @@ public class GamePanel extends JPanel implements Runnable {
 
   @Override
   public void run() {
+    Random random = new Random();
+    int randomInt = random.nextInt(5, 11);
     double drawInterval = 1000000000 / FPS; // 0.01666 seconds
     double delta = 0;
     long currentTime;
+    long lastAddedTime = 0;
     long lastTime = System.nanoTime();
     int drawCount = 0;
     long timer = 0;
@@ -112,7 +117,15 @@ public class GamePanel extends JPanel implements Runnable {
       }
 
       if (timer >= 1000000000) {
-        elapsedTime++;
+        if (gameState == sleepState) {
+          elapsedTime++;
+          if (elapsedTime == lastAddedTime + randomInt) {
+            player.setSun(player.getSun() + 25);
+            System.err.println("Sun added : " + randomInt);
+            lastAddedTime = elapsedTime;
+            randomInt = random.nextInt(5, 11);
+          }
+        }
         aSetter.setProjectiles(elapsedTime);
         for (int i = 0; i < zombie.length; i++) {
           if (zombie[i] != null) {
