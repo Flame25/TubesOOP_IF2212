@@ -3,13 +3,13 @@ package org.asset;
 class Sun {
   private static Sun newSun = null;
 
-  private int totalSun;
+  private int totalSun = 100;
 
-  public static void setTotalSun(int sunNumber) {
+  public void setTotalSun(int sunNumber) {
     newSun.totalSun = sunNumber;
   }
 
-  public static int getTotalSun() {
+  public int getTotalSun() {
     return newSun.totalSun;
   }
 

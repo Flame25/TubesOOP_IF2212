@@ -30,8 +30,8 @@ Run ```./gradlew ``` within root project
 - [x]  Tile Based Placement
 - [ ]  Shop
 - [ ]  Working Range
-- [ ]  Cost 
-- [ ]  Sun
+- [x]  Cost 
+- [x]  Sun
 - [x]  Cooldown
 - [x]  Zombie Spawn
 - [ ]  Zombie Time (Not Necessary) (Don't Use Thread)

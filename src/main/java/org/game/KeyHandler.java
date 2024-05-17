@@ -128,34 +128,24 @@ public class KeyHandler implements KeyListener {
 
             System.out.println("Plant " + (code - 48) + " Selected");
             System.out.println(gp.player.deck.get(code - 49).is_aquatic);
-            for (int i = 0; i < gp.plants.length; i++) {
-              if (gp.plants[i] == null && gp.player.deck.get(code - 49).statusOn) {
-                try {
-                  gp.plants[i] = gp.player.deck.get(code - 49).clone();
-                } catch (CloneNotSupportedException c) {
-                  c.printStackTrace();
+            if (gp.player.getSun() >= gp.player.deck.get(code - 49).getCost()) {
+
+              for (int i = 0; i < gp.plants.length; i++) {
+                if (gp.plants[i] == null && gp.player.deck.get(code - 49).statusOn) {
+                  try {
+                    gp.plants[i] = gp.player.deck.get(code - 49).clone();
+                  } catch (CloneNotSupportedException c) {
+                    c.printStackTrace();
+                  }
+                  gp.plants[i].worldX = gp.player.worldX + 3;
+                  gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+                  gp.player.deck.get(code - 49).statusOn = false;
+                  gp.player.deck.get(code - 49).timeSpawn = gp.elapsedTime;
+                  System.out.println(gp.player.deck.get(code - 49).timeSpawn);
+                  gp.player.setSun(gp.player.getSun() - gp.player.deck.get(code - 49).getCost());
+                  break;
                 }
-                gp.plants[i].worldX = gp.player.worldX + 3;
-                gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
-                gp.player.deck.get(code - 49).statusOn = false;
-                gp.player.deck.get(code - 49).timeSpawn = gp.elapsedTime;
-                System.out.println(gp.player.deck.get(code - 49).timeSpawn);
-                break;
               }
-            }
-          }
-        } else if (code == KeyEvent.VK_0) {
-          System.out.println("Plant 10 Selected");
-          for (int i = 0; i < gp.plants.length; i++) {
-            if (gp.plants[i] == null) {
-              try {
-                gp.plants[i] = gp.player.deck.get(9).clone();
-              } catch (CloneNotSupportedException c) {
-                c.printStackTrace();
-              }
-              gp.plants[i].worldX = gp.player.worldX + 3;
-              gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
-              break;
             }
           }
         }

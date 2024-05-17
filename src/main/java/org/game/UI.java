@@ -90,12 +90,12 @@ public class UI {
     Object_Grass grass = new Object_Grass();
     g2.drawImage(grass.image, gp.tileSize * 12 + 15, 8, gp.tileSize, gp.tileSize, null);
     g2.setFont(g2.getFont().deriveFont(40F));
-    g2.drawString(String.valueOf(gp.player.getTotalSun()), gp.tileSize * 13 + 25, 44);
+    g2.drawString(String.valueOf(gp.player.getSun()), gp.tileSize * 13 + 25, 44);
   }
 
   public void drawTilesCursor() {
-    final int startX = 8 * gp.tileSize - 25;
-    final int startY = 4 * gp.tileSize + 15;
+    final int startX = 10 * gp.tileSize - 25;
+    final int startY = 6 * gp.tileSize + 15;
 
     int cursorX = startX + (gp.tileSize * gameCol);
     int cursorY = startY + (gp.tileSize * gameRow);
@@ -108,11 +108,30 @@ public class UI {
     int x = 8;
     int y = 8;
     g2.setColor(Color.white);
-    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 4, gp.tileSize * 2);
+    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 9, gp.tileSize * 2 + 5);
     int tempSlotX = x + 20;
     int tempslotY = y + 20;
+
+    // PLANTS IMAGE
     for (int i = 0; i < gp.player.deck.size(); i++) {
       g2.drawImage(gp.player.deck.get(i).up1, tempSlotX, tempslotY, null);
+      tempSlotX += gp.tileSize;
+    }
+    // SUN COST
+    tempSlotX = x + 30;
+    tempslotY += gp.tileSize + 20;
+    boolean addMore = false;
+    for (int i = 0; i < gp.player.deck.size(); i++) {
+      g2.setFont(g2.getFont().deriveFont(15F));
+      String str = "" + gp.player.deck.get(i).getCost();
+      if (str.length() == 2 && !addMore) {
+        tempSlotX += 5;
+        addMore = true;
+      } else if (str.length() == 3 && addMore) {
+        tempSlotX -= 5;
+        addMore = false;
+      }
+      g2.drawString(str, tempSlotX, tempslotY);
       tempSlotX += gp.tileSize;
     }
   }

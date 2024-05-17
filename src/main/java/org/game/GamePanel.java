@@ -15,8 +15,8 @@ public class GamePanel extends JPanel implements Runnable {
   final int scale = 3;
 
   public final int tileSize = originalTileSize * scale; // 48 x 48 tile
-  public final int maxScreenCol = 16;
-  public final int maxScreenRow = 12;
+  public final int maxScreenCol = 20;
+  public final int maxScreenRow = 15;
   public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
   public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
@@ -121,6 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
           }
         }
+
         for (int i = 0; i < plants.length; i++) {
           if (plants[i] != null) {
             if (plants[i].attack_speed != 0) {
@@ -185,6 +186,7 @@ public class GamePanel extends JPanel implements Runnable {
         superObject.draw(g2, this);
       }
     }
+
     // Projectiles
     for (int i = 0; i < proj.length; i++) {
       if (proj[i] != null)

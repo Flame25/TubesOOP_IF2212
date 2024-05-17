@@ -35,6 +35,13 @@ public class Plants extends Entity implements Cloneable {
     direction = "up";
   }
 
+  // SETTER
+  // GETTER
+  public int getCost() {
+    return cost;
+  }
+
+  // METHODS
   @Override
   public void setAction() {
 

@@ -24,11 +24,7 @@ public class Player extends Entity {
   public final int inventorySize = 20;
   private int beforeSleepX;
   private int beforeSleepY;
-  private int totalSun = 0;
-
-  public int getTotalSun() {
-    return totalSun;
-  }
+  private Sun totalSun;
 
   public Player(GamePanel gp, KeyHandler keyH) {
     super(gp);
@@ -36,7 +32,7 @@ public class Player extends Entity {
     this.keyH = keyH;
     this.screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
     this.screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
-    totalSun = 0;
+    totalSun = Sun.getInstance();
     solidArea = new Rectangle(8, 16, 32, 32);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
@@ -66,6 +62,14 @@ public class Player extends Entity {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public int getSun() {
+    return totalSun.getTotalSun();
+  }
+
+  public void setSun(int num) {
+    totalSun.setTotalSun(num);
   }
 
   @Override
