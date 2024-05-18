@@ -1,6 +1,7 @@
 package org.game;
 
 import org.asset.Entity;
+import org.plants.Plants;
 import org.object.SuperObject;
 import org.projectiles.SuperProjectiles;
 
@@ -204,9 +205,16 @@ public class CollisionChecker {
         entity.solidArea.x = entity.worldX + entity.solidArea.x;
         entity.solidArea.y = entity.worldY + entity.solidArea.y;
 
-        if (entity.solidArea.intersects(gp.proj[i].solidArea)) {
-          index = i;
+        if(entity instanceof Plants){
+          if (entity.solidArea.intersects(gp.proj[i].solidArea) && gp.proj[i].name == "Football Hat") {
+            index = i;
+          }
+        }else {
+          if (entity.solidArea.intersects(gp.proj[i].solidArea)) {
+            index = i;
+          }
         }
+        
         gp.proj[i].solidArea.x = gp.proj[i].solidAreaDefaultX;
         gp.proj[i].solidArea.y = gp.proj[i].solidAreaDefaultY;
 

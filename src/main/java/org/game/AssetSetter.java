@@ -28,12 +28,12 @@ public class AssetSetter {
 
   public void setPlants() {
     gp.plants[0] = new Peashooter(gp, 125, 10, -1, 25, 100, 10, false);
-    gp.plants[0].worldX = 29 * gp.tileSize + 3;
+    gp.plants[0].worldX = 24 * gp.tileSize + 3;
     gp.plants[0].worldY = 7 * gp.tileSize - 16;
 
     gp.plants[1] = new Peashooter(gp, 125, 10, -1, 25, 100, 10, false);
-    gp.plants[1].worldX = 28 * gp.tileSize + 3;
-    gp.plants[1].worldY = 7 * gp.tileSize - 16;
+    gp.plants[1].worldX = 24 * gp.tileSize + 3;
+    gp.plants[1].worldY = 8 * gp.tileSize - 16;
     // gp.plants[1] = new Snowpea(gp, 125, 10, -1, 25, false);
     // gp.plants[1].worldX = 22 * gp.tileSize + 3;
     // gp.plants[1].worldY = 7 * gp.tileSize - 16;
@@ -101,7 +101,7 @@ public class AssetSetter {
     gp.listOfZombie[3] = new Zombie_BucketHead(gp, 300, 3, 100, 1, 1, false);
     gp.listOfZombie[4] = new Zombie_DuckyTube(gp, 100, 3, 100, 1, 1, true);
     gp.listOfZombie[5] = new Zombie_DolphinRider(gp, 175, 3, 100, 1, 1, true);
-    gp.listOfZombie[6] = new Zombie_Football(gp, 300, 3, 200, 3, 1, false);
+    gp.listOfZombie[6] = new Zombie_Football(gp, 10000, 3, 200, 3, 1, false);
     gp.listOfZombie[7] = new Zombie_Snorkle(gp, 125, 3, 100, 1, 1, true);
     gp.listOfZombie[8] = new Zombie_Catapult(gp, 175, 3, 75, 4, 1, false);
     gp.listOfZombie[9] = new Zombie_ScreenDoor(gp, 200, 3, 100, 1, 1, false);
@@ -118,5 +118,9 @@ public class AssetSetter {
     gp.zombie[0] = gp.listOfZombie[2].clone();
     gp.zombie[0].worldX = gp.tileSize * 31;
     gp.zombie[0].worldY = 7 * gp.tileSize - 16;
+
+    gp.zombie[1] = gp.listOfZombie[6].clone();
+    gp.zombie[1].worldX = gp.tileSize * 31;
+    gp.zombie[1].worldY = 9 * gp.tileSize - 16;
   }
 }
