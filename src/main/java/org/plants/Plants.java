@@ -70,4 +70,23 @@ public class Plants extends Entity implements Cloneable {
       throw new AssertionError();
     }
   }
+
+  private void actionProjectiles(int i) {
+    if (i != 9999) {
+      healthPoint -= 200;
+      System.out.println(this.getClass().getSimpleName() + " Hat Balled!");
+      
+      gp.proj[i] = null;
+      if (healthPoint <= 0) {
+        
+        for (int j = 0; j < gp.plants.length; j++) {
+          if (gp.plants[j] != null) {
+            if (gp.plants[j].equals(this)) {
+              gp.plants[j] = null;
+            }
+          }
+        }
+      }
+    }
+  }
 }

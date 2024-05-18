@@ -49,4 +49,15 @@ public class Peashooter extends Plants {
     }
   }
 
+  public boolean checkRange() {
+    for (int i = 0; i < gp.zombie.length; i++) {
+      if (gp.zombie[i] != null) {
+        if (gp.zombie[i].worldY == this.worldY) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
+
