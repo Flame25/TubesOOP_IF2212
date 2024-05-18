@@ -17,7 +17,6 @@ public class Plants extends Entity implements Cloneable {
   protected boolean isClone = false;
 
   // TODO: Plants not counting time based on when the plants are placed
-  // TODO: Add Cooldown
   public Plants(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
       boolean is_aquatic) {
     super(gp);
@@ -64,5 +63,16 @@ public class Plants extends Entity implements Cloneable {
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();
     }
+  }
+
+  public boolean checkRange() {
+    for (int i = 0; i < gp.zombie.length; i++) {
+      if (gp.zombie[i] != null) {
+        if (gp.zombie[i].worldY == this.worldY) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

@@ -63,6 +63,9 @@ public class GamePanel extends JPanel implements Runnable {
   // ELAPSED TIME
   public long elapsedTime = 0;
 
+  // ANIMATION
+  private int aniTick, aniIndex, aniSpeed = 50;
+
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(new Color(155, 212, 195));
@@ -186,6 +189,15 @@ public class GamePanel extends JPanel implements Runnable {
     } else if (gameState == pauseState) {
     }
   }
+
+  // private void updateAnimationTick() {
+  // aniTick++;
+  // if(aniTick >= aniSpeed){
+  // aniTick = 0;
+  // aniIndex++;
+  // if(aniIndex >= )
+  // }
+  // }
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);

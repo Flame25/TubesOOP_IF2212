@@ -28,6 +28,9 @@ public abstract class Entity implements Action {
   public boolean collision = false;
   String dialogues[] = new String[20];
   int indexDialogue = 0;
+  protected int state;
+
+  protected int aniTick, aniIndex;
 
   public void speak() {
 
@@ -154,8 +157,13 @@ public abstract class Entity implements Action {
           }
           break;
       }
-
-      g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
+    g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+  }
+
+  protected void newState(int state) {
+    this.state = state;
+    aniTick = 0;
+    aniIndex = 0;
   }
 }

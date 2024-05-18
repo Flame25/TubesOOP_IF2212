@@ -36,7 +36,7 @@ public class Zombie_ScreenDoor extends Zombie {
   }
 
   public void getPlayerImage() {
-    left1 = setup("/zombies/Zombie_Type1", gp.tileSize, gp.tileSize);
-    left2 = setup("/zombies/Zombie_Type2", gp.tileSize, gp.tileSize);
+    left1 = setup("/zombies/Zombie3", gp.tileSize, gp.tileSize);
+    left2 = setup("/zombies/Zombie3", gp.tileSize, gp.tileSize);
   }
 }

@@ -47,34 +47,21 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
     if (gp.elapsedTime % attack_speed == 0 && specialSkillUsage > 0) { // Is this good practice? probably :)
       int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
       if (plantIndex != 9999) {
-        gp.plants[plantIndex].healthPoint = 0; //insta kill pole vaulted plants, kinda busted 
+        gp.plants[plantIndex].healthPoint = 0; // insta kill pole vaulted plants, kinda busted
         specialSkillUsage -= 1;
         System.out.println(gp.plants[plantIndex].getClass().getSimpleName() + " Pole Vaulted!");
         if (gp.plants[plantIndex].healthPoint <= 0) {
           gp.plants[plantIndex] = null;
         }
 
-        this.worldX -= gp.tileSize ;
+        this.worldX -= gp.tileSize;
       }
 
-      
     }
   }
 
-  
-
-
   public void getPlayerImage() {
-    try {
-      
-      
-      left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/plant_vs_zombie_pixel_image//zomble//struts5.png")));
-      left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/plant_vs_zombie_pixel_image//zomble//struts5.png")));
-      
-      
-      
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    left1 = setup("/plant_vs_zombie_pixel_image/zomble/struts5", gp.tileSize * 3, gp.tileSize * 3);
+    left2 = left1;
   }
 }
