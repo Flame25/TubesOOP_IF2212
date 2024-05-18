@@ -61,7 +61,7 @@ public class Plants extends Entity implements Cloneable {
     
   }
 
-  
+  @Override
   public Plants clone() throws CloneNotSupportedException {
     try {
       isClone = true;
@@ -88,5 +88,16 @@ public class Plants extends Entity implements Cloneable {
         }
       }
     }
+  }
+
+  public boolean checkRange() {
+    for (int i = 0; i < gp.zombie.length; i++) {
+      if (gp.zombie[i] != null) {
+        if (gp.zombie[i].worldY == this.worldY) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
