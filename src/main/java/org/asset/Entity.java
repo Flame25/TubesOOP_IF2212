@@ -27,6 +27,9 @@ public abstract class Entity implements Action {
   public int actionLockCounter;
   public boolean collision = false;
   String dialogues[] = new String[20];
+
+  protected BufferedImage[][] animations;
+  protected boolean moving = false, attacking = false;
   int indexDialogue = 0;
   protected int state;
 
