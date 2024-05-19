@@ -120,7 +120,8 @@ public class GamePanel extends JPanel implements Runnable {
       }
 
       if (timer >= 1000000000) {
-        if (gameState == sleepState) {
+        if (gameState == sleepState
+            || gameState == playState) {
           elapsedTime++;
           if (elapsedTime == lastAddedTime + randomInt) {
             player.setSun(player.getSun() + 25);

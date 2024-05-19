@@ -48,9 +48,8 @@ public class UI {
       // gp.tileSize, null);
       // g2.drawString("x " + gp.player.EggTotal, 74, 65);
 
-      // // Time
-      // playTime += (double) 1 / 60;
-      // g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
+      // Time
+      g2.drawString("Time: " + gp.elapsedTime, gp.tileSize * 11, 65);
       // Message
       if (messageOn) {
         g2.setFont(g2.getFont().deriveFont(30F));

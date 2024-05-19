@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 import static org.game.Constants.PlayerConstants.*;
 import static org.game.Constants.*;
 import static org.game.Constants.Directions.*;
@@ -28,9 +27,6 @@ public class Player extends Entity {
   private int beforeSleepX;
   private int beforeSleepY;
   private Sun totalSun;
-  private BufferedImage[][] animations;
-  private boolean moving = false, attacking = false;
-  private boolean left, right, jump;
 
   public Player(GamePanel gp, KeyHandler keyH) {
     super(gp);
@@ -104,17 +100,6 @@ public class Player extends Entity {
       int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
       interactNPC(npcIndex);
 
-      if (gp.gameState == gp.playState) {
-        spriteCounter++;
-        if (spriteCounter > 10) {
-          if (spriteNum == 1) {
-            spriteNum = 2;
-          } else if (spriteNum == 2) {
-            spriteNum = 1;
-          }
-          spriteCounter = 0;
-        }
-      }
       if (gp.gameState == gp.sleepState) {
         for (int i = 0; i < deck.size(); i++) {
           if (deck.get(i) != null && gp.elapsedTime != deck.get(i).timeSpawn) {
