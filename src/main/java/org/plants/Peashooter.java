@@ -25,7 +25,14 @@ public class Peashooter extends Plants {
     down1 = setup("/plants/Peashooter_Off", gp.tileSize, gp.tileSize);
   }
 
+  @Override
   public void update() {
+    
+    
+   super.update();
+    
+    
+    
   }
 
   @Override
@@ -42,4 +49,6 @@ public class Peashooter extends Plants {
     }
   }
 
+  
 }
+

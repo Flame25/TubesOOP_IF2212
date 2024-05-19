@@ -2,6 +2,7 @@ package org.plants;
 
 import org.asset.Entity;
 import org.game.GamePanel;
+import org.zombies.Zombie;
 
 public class Plants extends Entity implements Cloneable {
   public int healthPoint;
@@ -50,9 +51,14 @@ public class Plants extends Entity implements Cloneable {
 
   }
 
-  @Override
+  
   public void update() {
-
+    super.update();
+    gp.cChecker.checkObject(this, true);
+    
+    int projIndex = gp.cChecker.checkProjectile(this);
+    actionProjectiles(projIndex);
+    
   }
 
   @Override
@@ -62,6 +68,25 @@ public class Plants extends Entity implements Cloneable {
       return (Plants) super.clone();
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();
+    }
+  }
+
+  private void actionProjectiles(int i) {
+    if (i != 9999) {
+      healthPoint -= 200;
+      System.out.println(this.getClass().getSimpleName() + " Hat Balled!");
+      
+      gp.proj[i] = null;
+      if (healthPoint <= 0) {
+        
+        for (int j = 0; j < gp.plants.length; j++) {
+          if (gp.plants[j] != null) {
+            if (gp.plants[j].equals(this)) {
+              gp.plants[j] = null;
+            }
+          }
+        }
+      }
     }
   }
 

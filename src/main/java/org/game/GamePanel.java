@@ -133,12 +133,13 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setProjectiles(elapsedTime);
         for (int i = 0; i < zombie.length; i++) {
           if (zombie[i] != null) {
+            
             if (elapsedTime % zombie[i].attack_speed == 0) {
               zombie[i].actionAttack();
             }
           }
         }
-
+       
         for (int i = 0; i < plants.length; i++) {
           if (plants[i] != null) {
             if (plants[i].attack_speed != 0) {
@@ -176,7 +177,10 @@ public class GamePanel extends JPanel implements Runnable {
 
       for (int i = 0; i < zombie.length; i++) {
         if (zombie[i] != null) {
+          
           zombie[i].update();
+          
+          
         }
       }
 
