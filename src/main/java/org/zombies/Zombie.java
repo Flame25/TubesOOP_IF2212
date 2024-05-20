@@ -151,7 +151,7 @@ public class Zombie extends Entity implements Cloneable {
   }
 
   protected void setAnimation() {
-    if (!collisionOn && gp.gameState == gp.playState) {
+    if (!collisionOn && (gp.gameState == gp.playState || gp.gameState == gp.sleepState)) {
       if (!moving) {
         image = animations[0][aniIndex % 4];
       } else {

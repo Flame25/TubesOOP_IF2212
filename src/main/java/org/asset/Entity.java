@@ -35,6 +35,10 @@ public abstract class Entity implements Action {
 
   protected int aniTick, aniIndex;
 
+  public BufferedImage getImage() {
+    return image;
+  }
+
   public void speak() {
 
     if (dialogues[indexDialogue] == null) {
@@ -103,16 +107,6 @@ public abstract class Entity implements Action {
           break;
       }
     }
-    spriteCounter++;
-    if (spriteCounter > 10) {
-      if (spriteNum == 1) {
-        spriteNum = 2;
-      } else if (spriteNum == 2) {
-        spriteNum = 1;
-      }
-      spriteCounter = 0;
-    }
-
   }
 
   public void draw(Graphics2D g2) {

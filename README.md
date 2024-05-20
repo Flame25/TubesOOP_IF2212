@@ -41,7 +41,7 @@ Run ```./gradlew ``` within root project
 - [x] Zombie Normal
 - [x] Zombie Toast
 - [x] Zombie Giant
-- [ ] Conehead Zombie
+- [x] Conehead Zombie
 - [ ] Pole Vaulting Zombie
 - [ ] Buckethead Zombie
 - [ ] Dolphinrider Zombie

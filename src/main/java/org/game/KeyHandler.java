@@ -128,6 +128,7 @@ public class KeyHandler implements KeyListener {
 
             System.out.println("Plant " + (code - 48) + " Selected");
             System.out.println(gp.player.deck.get(code - 49).is_aquatic);
+
             if (gp.player.getSun() >= gp.player.deck.get(code - 49).getCost()) {
 
               for (int i = 0; i < gp.plants.length; i++) {
