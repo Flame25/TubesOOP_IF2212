@@ -28,6 +28,8 @@ public class Zombie extends Entity implements Cloneable {
   String statusEffect;
   int attack_range;
   int cost;
+  int numOfIdle = 9999;
+  int numOfRunning = 9999;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
@@ -153,10 +155,10 @@ public class Zombie extends Entity implements Cloneable {
   protected void setAnimation() {
     if (!collisionOn && (gp.gameState == gp.playState || gp.gameState == gp.sleepState)) {
       if (!moving) {
-        image = animations[0][aniIndex % 4];
+        image = animations[0][aniIndex % numOfIdle];
       } else {
 
-        image = animations[1][aniIndex];
+        image = animations[1][aniIndex % numOfRunning];
       }
     }
   }
