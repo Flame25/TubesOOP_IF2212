@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
-import javax.imageio.ImageIO;
-
 public class UI {
   GamePanel gp;
   Graphics2D g2;
@@ -46,12 +44,12 @@ public class UI {
 
     // PLAY STATE
     if (gp.gameState == gp.playState) {
-      g2.drawImage(eggImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
-      g2.drawString("x " + gp.player.EggTotal, 74, 65);
+      // g2.drawImage(eggImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize,
+      // gp.tileSize, null);
+      // g2.drawString("x " + gp.player.EggTotal, 74, 65);
 
       // Time
-      playTime += (double) 1 / 60;
-      g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
+      g2.drawString("Time: " + gp.elapsedTime, gp.tileSize * 11, 65);
       // Message
       if (messageOn) {
         g2.setFont(g2.getFont().deriveFont(30F));
@@ -80,6 +78,9 @@ public class UI {
 
     // SLEEP STATE
     else if (gp.gameState == gp.sleepState) {
+
+      playTime += (double) 1 / 60;
+      g2.drawString("Time: " + gp.elapsedTime, gp.tileSize * 14, 80);
       drawTilesCursor();
       drawCardSelector();
       drawGrassCount();
@@ -88,14 +89,14 @@ public class UI {
 
   public void drawGrassCount() {
     Object_Grass grass = new Object_Grass();
-    g2.drawImage(grass.image, gp.tileSize * 12 + 15, 8, gp.tileSize, gp.tileSize, null);
+    g2.drawImage(grass.image, gp.tileSize * 15 + 15, 8, gp.tileSize, gp.tileSize, null);
     g2.setFont(g2.getFont().deriveFont(40F));
-    g2.drawString(String.valueOf(gp.player.getTotalSun()), gp.tileSize * 13 + 25, 44);
+    g2.drawString(String.valueOf(gp.player.getSun()), gp.tileSize * 16 + 25, 44);
   }
 
   public void drawTilesCursor() {
-    final int startX = 8 * gp.tileSize - 25;
-    final int startY = 4 * gp.tileSize + 15;
+    final int startX = 10 * gp.tileSize - 25;
+    final int startY = 6 * gp.tileSize + 15;
 
     int cursorX = startX + (gp.tileSize * gameCol);
     int cursorY = startY + (gp.tileSize * gameRow);
@@ -108,11 +109,30 @@ public class UI {
     int x = 8;
     int y = 8;
     g2.setColor(Color.white);
-    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 4, gp.tileSize * 2);
+    drawSubWindow(x, y, gp.screenWidth - gp.tileSize * 9, gp.tileSize * 2 + 5);
     int tempSlotX = x + 20;
     int tempslotY = y + 20;
+
+    // PLANTS IMAGE
     for (int i = 0; i < gp.player.deck.size(); i++) {
-      g2.drawImage(gp.player.deck.get(i).up1, tempSlotX, tempslotY, null);
+      g2.drawImage(gp.player.deck.get(i).getImage(), tempSlotX, tempslotY, null);
+      tempSlotX += gp.tileSize;
+    }
+    // SUN COST
+    tempSlotX = x + 30;
+    tempslotY += gp.tileSize + 20;
+    boolean addMore = false;
+    for (int i = 0; i < gp.player.deck.size(); i++) {
+      g2.setFont(g2.getFont().deriveFont(15F));
+      String str = "" + gp.player.deck.get(i).getCost();
+      if (str.length() == 2 && !addMore) {
+        tempSlotX += 5;
+        addMore = true;
+      } else if (str.length() == 3 && addMore) {
+        tempSlotX -= 5;
+        addMore = false;
+      }
+      g2.drawString(str, tempSlotX, tempslotY);
       tempSlotX += gp.tileSize;
     }
   }

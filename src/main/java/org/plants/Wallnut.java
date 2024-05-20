@@ -11,7 +11,7 @@ public class Wallnut extends Plants {
 
     description = "[" + "Wallnut"
         + "\nThey're defensive plants that can't attack \nback, but instead block off \nzombies with their huge \namounts of health.";
-    getImage();
+    loadImage();
   }
 
   @Override
@@ -19,7 +19,7 @@ public class Wallnut extends Plants {
 
   }
 
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/Better_Wallnut", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Better_Wallnut", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Wallnut_Off", gp.tileSize, gp.tileSize);

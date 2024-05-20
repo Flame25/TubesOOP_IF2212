@@ -1,8 +1,10 @@
 package org.zombies;
 
 import org.game.GamePanel;
+import org.game.LoadImage;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Zombie_Conehead extends Zombie {
 
@@ -21,7 +23,8 @@ public class Zombie_Conehead extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    getPlayerImage();
+    numOfIdle = 7;
+    numOfRunning = 7;
   }
 
   @Override
@@ -35,6 +38,12 @@ public class Zombie_Conehead extends Zombie {
     counter++;
   }
 
-  public void getPlayerImage() {
+  @Override
+  protected void loadAnimations() {
+    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Conehead.png");
+    animations = new BufferedImage[2][7];
+    for (int j = 0; j < animations.length; j++)
+      for (int i = 0; i < animations[j].length; i++)
+        animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
   }
 }

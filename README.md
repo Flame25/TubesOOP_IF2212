@@ -30,10 +30,21 @@ Run ```./gradlew ``` within root project
 - [x]  Tile Based Placement
 - [ ]  Shop
 - [ ]  Working Range
-- [ ]  Cost 
-- [ ]  Sun
+- [x]  Cost 
+- [x]  Sun
 - [x]  Cooldown
+- [x]  Zombie Spawn
 - [ ]  Zombie Time (Not Necessary) (Don't Use Thread)
 - [x]  Plant Time (Not Necessary) (Don't Use Thread)
+
+## List Of Completed Zombie (Animation and Code): 
+- [x] Zombie Normal
+- [x] Zombie Toast
+- [x] Zombie Giant
+- [x] Conehead Zombie
+- [ ] Pole Vaulting Zombie
+- [ ] Buckethead Zombie
+- [ ] Dolphinrider Zombie
+- [ ] Duckytube Zombie
 
 

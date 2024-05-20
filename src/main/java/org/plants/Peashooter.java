@@ -11,31 +11,25 @@ public class Peashooter extends Plants {
     direction = "up";
     description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
     statusOn = true;
-    getImage();
+    loadImage();
   }
 
-  @Override
-  public void setAction() {
-
-  }
-
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Peashooter_Off", gp.tileSize, gp.tileSize);
   }
 
-  public void update() {
-  }
-
   @Override
   public void actionAttack() {
-    for (int i = 0; i < gp.proj.length; i++) {
-      if (gp.proj[i] == null) {
-        gp.proj[i] = new Peashooter_Peas();
-        gp.proj[i].worldX = this.worldX + gp.tileSize;
-        gp.proj[i].worldY = this.worldY - 16;
-        break;
+    if (checkRange()) {
+      for (int i = 0; i < gp.proj.length; i++) {
+        if (gp.proj[i] == null) {
+          gp.proj[i] = new Peashooter_Peas();
+          gp.proj[i].worldX = this.worldX + gp.tileSize;
+          gp.proj[i].worldY = this.worldY - 16;
+          break;
+        }
       }
     }
   }

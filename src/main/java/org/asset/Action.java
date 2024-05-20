@@ -1,5 +1,5 @@
 package org.asset;
 
-public interface Action{
-    public void setAction();
+public interface Action {
+  public void setAction();
 }

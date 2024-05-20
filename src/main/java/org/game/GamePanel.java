@@ -2,11 +2,14 @@ package org.game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
+
 import org.asset.*;
 import org.map.TileManager;
 import org.plants.Plants;
 import org.object.SuperObject;
 import org.projectiles.SuperProjectiles;
+import org.spawner.Spawner;
 import org.zombies.Zombie;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -14,8 +17,8 @@ public class GamePanel extends JPanel implements Runnable {
   final int scale = 3;
 
   public final int tileSize = originalTileSize * scale; // 48 x 48 tile
-  public final int maxScreenCol = 16;
-  public final int maxScreenRow = 12;
+  public final int maxScreenCol = 20;
+  public final int maxScreenRow = 15;
   public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
   public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
@@ -46,6 +49,9 @@ public class GamePanel extends JPanel implements Runnable {
   public Plants plants[] = new Plants[20];
   public Player player = new Player(this, keyH);
 
+  // ZOMBIE SPAWNER
+  private Spawner spawner = new Spawner(this);
+
   // GAME STATE
   public int gameState;
   public final int playState = 1;
@@ -53,8 +59,12 @@ public class GamePanel extends JPanel implements Runnable {
   public final int dialogState = 2;
   public final int characterState = 3;
   public final int sleepState = 4;
+
   // ELAPSED TIME
   public long elapsedTime = 0;
+
+  // ANIMATION
+  private int aniTick, aniIndex, aniSpeed = 50;
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -88,9 +98,12 @@ public class GamePanel extends JPanel implements Runnable {
 
   @Override
   public void run() {
+    Random random = new Random();
+    int randomInt = random.nextInt(5, 11);
     double drawInterval = 1000000000 / FPS; // 0.01666 seconds
     double delta = 0;
     long currentTime;
+    long lastAddedTime = 0;
     long lastTime = System.nanoTime();
     int drawCount = 0;
     long timer = 0;
@@ -107,7 +120,16 @@ public class GamePanel extends JPanel implements Runnable {
       }
 
       if (timer >= 1000000000) {
-        elapsedTime++;
+        if (gameState == sleepState
+            || gameState == playState) {
+          elapsedTime++;
+          if (elapsedTime == lastAddedTime + randomInt) {
+            player.setSun(player.getSun() + 25);
+            System.err.println("Sun added : " + randomInt);
+            lastAddedTime = elapsedTime;
+            randomInt = random.nextInt(5, 11);
+          }
+        }
         aSetter.setProjectiles(elapsedTime);
         for (int i = 0; i < zombie.length; i++) {
           if (zombie[i] != null) {
@@ -116,6 +138,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
           }
         }
+
         for (int i = 0; i < plants.length; i++) {
           if (plants[i] != null) {
             if (plants[i].attack_speed != 0) {
@@ -162,9 +185,26 @@ public class GamePanel extends JPanel implements Runnable {
           plants[i].update();
         }
       }
+
+      for (int i = 0; i < player.deck.size(); i++) {
+        if (player.deck.get(i) != null) {
+          player.deck.get(i).update();
+        }
+      }
+
+      spawner.update();
     } else if (gameState == pauseState) {
     }
   }
+
+  // private void updateAnimationTick() {
+  // aniTick++;
+  // if(aniTick >= aniSpeed){
+  // aniTick = 0;
+  // aniIndex++;
+  // if(aniIndex >= )
+  // }
+  // }
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -178,6 +218,7 @@ public class GamePanel extends JPanel implements Runnable {
         superObject.draw(g2, this);
       }
     }
+
     // Projectiles
     for (int i = 0; i < proj.length; i++) {
       if (proj[i] != null)
@@ -210,10 +251,11 @@ public class GamePanel extends JPanel implements Runnable {
       }
     }
 
-    // UI
-    ui.draw(g2);
     // Player
     player.draw(g2);
+
+    // UI
+    ui.draw(g2);
 
     g2.dispose();
 
