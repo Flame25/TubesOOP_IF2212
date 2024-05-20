@@ -1,6 +1,8 @@
-package org.game;
+package org.asset;
 
 import java.util.Random;
+
+import org.game.GamePanel;
 
 public class Sun {
     private static int totalSun; 
