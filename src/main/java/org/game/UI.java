@@ -115,7 +115,7 @@ public class UI {
 
     // PLANTS IMAGE
     for (int i = 0; i < gp.player.deck.size(); i++) {
-      g2.drawImage(gp.player.deck.get(i).up1, tempSlotX, tempslotY, null);
+      g2.drawImage(gp.player.deck.get(i).getImage(), tempSlotX, tempslotY, null);
       tempSlotX += gp.tileSize;
     }
     // SUN COST

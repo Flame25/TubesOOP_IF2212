@@ -9,7 +9,8 @@ public class Snowpea extends Plants {
       boolean is_aquatic) {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     description = "[" + "Snowpea" + "]\nPeashooter with snow and slow";
-    getImage();
+    statusOn = true;
+    loadImage();
   }
 
   @Override
@@ -17,25 +18,23 @@ public class Snowpea extends Plants {
 
   }
 
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/SnowPea", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/SnowPea", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Snowpea_Off", gp.tileSize, gp.tileSize);
 
   }
 
-  public void update() {
-
-  }
-
   @Override
   public void actionAttack() {
-    for (int i = 0; i < gp.proj.length; i++) {
-      if (gp.proj[i] == null) {
-        gp.proj[i] = new Snowpea_Peas();
-        gp.proj[i].worldX = this.worldX + gp.tileSize;
-        gp.proj[i].worldY = this.worldY - 16;
-        break;
+    if (checkRange()) {
+      for (int i = 0; i < gp.proj.length; i++) {
+        if (gp.proj[i] == null) {
+          gp.proj[i] = new Snowpea_Peas();
+          gp.proj[i].worldX = this.worldX + gp.tileSize;
+          gp.proj[i].worldY = this.worldY - 16;
+          break;
+        }
       }
     }
   }

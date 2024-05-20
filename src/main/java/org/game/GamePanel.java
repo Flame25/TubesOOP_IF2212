@@ -186,6 +186,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
       }
 
+      for (int i = 0; i < player.deck.size(); i++) {
+        if (player.deck.get(i) != null) {
+          player.deck.get(i).update();
+        }
+      }
+
       spawner.update();
     } else if (gameState == pauseState) {
     }
@@ -245,10 +251,11 @@ public class GamePanel extends JPanel implements Runnable {
       }
     }
 
-    // UI
-    ui.draw(g2);
     // Player
     player.draw(g2);
+
+    // UI
+    ui.draw(g2);
 
     g2.dispose();
 

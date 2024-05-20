@@ -1,9 +1,11 @@
 package org.zombies;
 
 import org.game.GamePanel;
+import org.game.LoadImage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -18,7 +20,7 @@ public class Zombie_Normal extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    getPlayerImage();
+    loadAnimations();
   }
 
   @Override
@@ -33,21 +35,21 @@ public class Zombie_Normal extends Zombie {
     counter++;
   }
 
-  public void getPlayerImage() {
-    try {
-      up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormal_Left1.png")));
-      up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormal_Left2.png")));
-      down1 = ImageIO
-          .read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormalFreezed_Left1.png")));
-      down2 = ImageIO
-          .read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormalFreezed_Left2.png")));
-      left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormal_Left1.png")));
-      left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombies/ZombieNormal_Left2.png")));
-      right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/npc/right1.png")));
-      right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/npc/right2.png")));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  @Override
+  protected void loadAnimations() {
+    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Normal_F.png");
+    animations = new BufferedImage[2][8];
+    for (int j = 0; j < animations.length; j++)
+      for (int i = 0; i < animations[j].length; i++)
+        animations[j][i] = img.getSubimage(i * 18, j * 18, 18, 18);
   }
 
+  @Override
+  public void draw(Graphics2D g2) {
+
+    int screenX = worldX - gp.player.worldX + gp.player.screenX;
+    int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+    g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+  }
 }

@@ -1,5 +1,7 @@
 package org.plants;
 
+import java.awt.Graphics2D;
+
 import org.asset.Entity;
 import org.game.GamePanel;
 
@@ -52,7 +54,14 @@ public class Plants extends Entity implements Cloneable {
 
   @Override
   public void update() {
-
+    if (gp.elapsedTime == timeSpawn + cooldown) {
+      statusOn = true;
+    }
+    if (!statusOn) {
+      image = down1;
+    } else {
+      image = up1;
+    }
   }
 
   @Override
@@ -69,10 +78,21 @@ public class Plants extends Entity implements Cloneable {
     for (int i = 0; i < gp.zombie.length; i++) {
       if (gp.zombie[i] != null) {
         if (gp.zombie[i].worldY == this.worldY) {
-          return true;
+          if (gp.zombie[i].worldX - this.worldX <= range * gp.tileSize) {
+            return true;
+          } else if (range == -1) {
+            return true;
+          }
         }
       }
     }
     return false;
+  }
+
+  @Override
+  public void draw(Graphics2D g2) {
+    int screenX = worldX - gp.player.worldX + gp.player.screenX;
+    int screenY = worldY - gp.player.worldY + gp.player.screenY;
+    g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
   }
 }

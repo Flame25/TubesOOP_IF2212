@@ -100,26 +100,27 @@ public class Player extends Entity {
       int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
       interactNPC(npcIndex);
 
-      if (gp.gameState == gp.sleepState) {
-        for (int i = 0; i < deck.size(); i++) {
-          if (deck.get(i) != null && gp.elapsedTime != deck.get(i).timeSpawn) {
-            if (((gp.elapsedTime - deck.get(i).timeSpawn) % 10) == 0) {
-              deck.get(i).up1 = deck.get(i).up2;
-              deck.get(i).statusOn = true;
-              // System.out.println("Info");
-            } else if (!deck.get(i).statusOn) {
-              deck.get(i).up1 = deck.get(i).down1;
-            }
-          }
-        }
-      }
+      // if (gp.gameState == gp.sleepState) {
+      // for (int i = 0; i < deck.size(); i++) {
+      // if (deck.get(i) != null && gp.elapsedTime != deck.get(i).timeSpawn) {
+      // if (((gp.elapsedTime - deck.get(i).timeSpawn) % 10) == 0) {
+      // deck.get(i).statusOn = true;
+      // // System.out.println("Info");
+      // } else if (!deck.get(i).statusOn) {
+      // deck.get(i).up1 = deck.get(i).down1;
+      // }
+      // }
+      // }
+      // }
       updatePost();
     } else {
       moving = false;
     }
 
-    updateAnimationTick();
-    setAnimation();
+    if (gp.gameState != gp.characterState) {
+      updateAnimationTick();
+      setAnimation();
+    }
   }
 
   public void pickUpItem(int index) {
@@ -208,7 +209,7 @@ public class Player extends Entity {
   }
 
   private void setAnimation() {
-    if (!collisionOn && gp.gameState == gp.playState) {
+    if (!collisionOn && (gp.gameState == gp.playState || gp.gameState == gp.sleepState)) {
 
       switch (direction) {
         case "up":

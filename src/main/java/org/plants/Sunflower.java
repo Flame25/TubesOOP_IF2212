@@ -9,7 +9,7 @@ public class Sunflower extends Plants {
     this.attack_speed = 3; // Used as delay for generating sun
     description = "[" + "Sunflower"
         + "]\nShe plays a crucial part of the \nplayer's defense, producing extra \nSun to plant more plants.";
-    getImage();
+    loadImage();
   }
 
   @Override
@@ -17,7 +17,7 @@ public class Sunflower extends Plants {
 
   }
 
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/Sunflower_Better", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Sunflower_Better", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Sunflower_OFF", gp.tileSize, gp.tileSize);

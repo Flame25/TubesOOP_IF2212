@@ -8,7 +8,7 @@ public class Squash extends Plants {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     description = "[" + "Squash"
         + "]\nWhen Squash spots a zombie in an \narea near him, he will stomp it for 1800 \narea damage";
-    getImage();
+    loadImage();
   }
 
   @Override
@@ -16,7 +16,7 @@ public class Squash extends Plants {
 
   }
 
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/Squash_2", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Squash_2", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Squash_Off", gp.tileSize, gp.tileSize);

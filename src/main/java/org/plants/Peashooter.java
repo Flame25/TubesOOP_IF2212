@@ -11,21 +11,13 @@ public class Peashooter extends Plants {
     direction = "up";
     description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
     statusOn = true;
-    getImage();
+    loadImage();
   }
 
-  @Override
-  public void setAction() {
-
-  }
-
-  private void getImage() {
+  private void loadImage() {
     up1 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Peashooter_Off", gp.tileSize, gp.tileSize);
-  }
-
-  public void update() {
   }
 
   @Override

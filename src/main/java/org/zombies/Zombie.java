@@ -28,6 +28,8 @@ public class Zombie extends Entity implements Cloneable {
   String statusEffect;
   int attack_range;
   int cost;
+  int numOfIdle = 9999;
+  int numOfRunning = 9999;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
@@ -65,15 +67,14 @@ public class Zombie extends Entity implements Cloneable {
       }
     }
     gp.cChecker.checkEntity(this, gp.plants);
-    if (gp.elapsedTime == countTime + 5 && counter <= 8) {
-      worldX -= 2;
+    if (gp.elapsedTime == countTime + 5 && counter <= 48) {
+      worldX -= 1;
       moving = true;
       timeNotes = gp.elapsedTime;
-      System.out.println("Gerak");
     } else {
       countTime = timeNotes + 10;
       moving = false;
-      if (counter <= 60) {
+      if (counter >= 60) {
         counter = 0;
       }
     }
@@ -152,12 +153,12 @@ public class Zombie extends Entity implements Cloneable {
   }
 
   protected void setAnimation() {
-    if (!collisionOn && gp.gameState == gp.playState) {
+    if (!collisionOn && (gp.gameState == gp.playState || gp.gameState == gp.sleepState)) {
       if (!moving) {
-        image = animations[1][aniIndex % 2];
+        image = animations[0][aniIndex % numOfIdle];
       } else {
 
-        image = animations[0][aniIndex];
+        image = animations[1][aniIndex % numOfRunning];
       }
     }
   }
@@ -185,9 +186,9 @@ public class Zombie extends Entity implements Cloneable {
     }
   }
 
-  protected void loadAnimations(int row, int col, String path) {
-    BufferedImage img = LoadImage.GetSpriteAtlas(path);
-    animations = new BufferedImage[row][col];
+  protected void loadAnimations() {
+    BufferedImage img = LoadImage.GetSpriteAtlas("PathToFile");
+    animations = new BufferedImage[0][0];
     for (int j = 0; j < animations.length; j++)
       for (int i = 0; i < animations[j].length; i++)
         animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
