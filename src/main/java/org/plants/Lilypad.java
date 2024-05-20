@@ -8,10 +8,10 @@ public class Lilypad extends Plants {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     direction = "up";
     description = "[" + "Lilypad" + "]\nHello, I am Lilypad";
-    getImage();
+    loadImage();
   }
 
-  public void getImage() {
+  public void loadImage() {
     up1 = setup("/plants/Lilypad", gp.tileSize, gp.tileSize);
     up2 = setup("/plants/Lilypad", gp.tileSize, gp.tileSize);
     down1 = setup("/plants/Lilypad_Off", gp.tileSize, gp.tileSize);

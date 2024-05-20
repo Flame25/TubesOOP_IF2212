@@ -27,10 +27,17 @@ public abstract class Entity implements Action {
   public int actionLockCounter;
   public boolean collision = false;
   String dialogues[] = new String[20];
+
+  protected BufferedImage[][] animations;
+  protected boolean moving = false, attacking = false;
   int indexDialogue = 0;
   protected int state;
 
   protected int aniTick, aniIndex;
+
+  public BufferedImage getImage() {
+    return image;
+  }
 
   public void speak() {
 
@@ -100,16 +107,6 @@ public abstract class Entity implements Action {
           break;
       }
     }
-    spriteCounter++;
-    if (spriteCounter > 10) {
-      if (spriteNum == 1) {
-        spriteNum = 2;
-      } else if (spriteNum == 2) {
-        spriteNum = 1;
-      }
-      spriteCounter = 0;
-    }
-
   }
 
   public void draw(Graphics2D g2) {

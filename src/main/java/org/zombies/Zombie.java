@@ -2,27 +2,40 @@ package org.zombies;
 
 import org.asset.Entity;
 import org.game.GamePanel;
+import org.game.LoadImage;
 
 import javax.imageio.ImageIO;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+
+import static org.game.Constants.PlayerConstants.*;
+import static org.game.Constants.*;
+import static org.game.Constants.Directions.*;
 
 public class Zombie extends Entity implements Cloneable {
   int healthPoint;
   boolean isAquatic;
   public int attack_speed;
-  int counter = 0; // 60 fps, 1 time walk for each repetition
+  long countTime = 0; // 60 fps, 1 time walk for each repetition
+  int counter = 0;
+  long timeNotes = 0;
   int howManySecs = 0;
   int damage = 0;
   int defaultSpeed;
   String statusEffect;
   int attack_range;
   int cost;
+  int numOfIdle = 9999;
+  int numOfRunning = 9999;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
     super(gp);
     this.attack_range = attack_range;
+    this.direction = "left";
     this.speed = speed;
     this.healthPoint = healthPoint;
     this.damage = damage;
@@ -30,27 +43,44 @@ public class Zombie extends Entity implements Cloneable {
     this.defaultSpeed = 3;
     this.statusEffect = "None";
     this.isAquatic = isAquatic;
-
+    this.counter = 0;
   }
 
   public void update() {
-    super.update();
+    collisionOn = false;
+    gp.cChecker.checkTile(this);
+    gp.cChecker.checkPlayer(this);
     gp.cChecker.checkObject(this, true);
+
     int projIndex = gp.cChecker.checkProjectile(this);
     actionProjectiles(projIndex);
     if (statusEffect.equals("Slowed")) {
       if (howManySecs >= 3) {
         statusEffect = "None";
         defaultSpeed = 3;
-        left1 = up1;
-        left2 = up2;
+        // left1 = up1;
+        // left2 = up2;
       } else {
-        left1 = down1;
-        left2 = down2;
+        // left1 = down1;
+        // left2 = down2;
         defaultSpeed = 1;
       }
     }
     gp.cChecker.checkEntity(this, gp.plants);
+    if (gp.elapsedTime == countTime + 5 && counter <= 48) {
+      worldX -= 1;
+      moving = true;
+      timeNotes = gp.elapsedTime;
+    } else {
+      countTime = timeNotes + 10;
+      moving = false;
+      if (counter >= 60) {
+        counter = 0;
+      }
+    }
+    counter++;
+    setAnimation();
+    updateAnimationTick();
   }
 
   @Override
@@ -101,5 +131,66 @@ public class Zombie extends Entity implements Cloneable {
     } catch (CloneNotSupportedException e) {
       throw new AssertionError();
     }
+  }
+
+  public void draw(Graphics2D g2) {
+
+    int screenX = worldX - gp.player.worldX + gp.player.screenX;
+    int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+    g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+  }
+
+  protected void updateAnimationTick() {
+    aniTick++;
+    if (aniTick >= ANI_SPEED) {
+      aniTick = 0;
+      aniIndex++;
+      if (aniIndex >= GetSpriteAmount(RUNNING)) {
+        aniIndex = 0;
+      }
+    }
+  }
+
+  protected void setAnimation() {
+    if (!collisionOn && (gp.gameState == gp.playState || gp.gameState == gp.sleepState)) {
+      if (!moving) {
+        image = animations[0][aniIndex % numOfIdle];
+      } else {
+
+        image = animations[1][aniIndex % numOfRunning];
+      }
+    }
+  }
+
+  protected void updatePost() {
+
+    // If Collision is False, player can move
+    if (!collisionOn && gp.gameState == gp.playState) {
+      switch (direction) {
+        case "down":
+          worldY += speed;
+          break;
+        case "up":
+          worldY -= speed;
+          break;
+        case "left":
+          worldX -= speed;
+          break;
+        case "right":
+          worldX += speed;
+          break;
+      }
+    } else if (collisionOn) {
+      moving = false;
+    }
+  }
+
+  protected void loadAnimations() {
+    BufferedImage img = LoadImage.GetSpriteAtlas("PathToFile");
+    animations = new BufferedImage[0][0];
+    for (int j = 0; j < animations.length; j++)
+      for (int i = 0; i < animations[j].length; i++)
+        animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
   }
 }

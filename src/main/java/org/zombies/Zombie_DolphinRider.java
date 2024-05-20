@@ -14,8 +14,6 @@ public class Zombie_DolphinRider extends Zombie  {
    * Special Skill in setAction
    * - Add zombie to zombie list (look at setZombie() at AssetSetter
    */
-  private int specialSkillUsage = 1;
-
   public Zombie_DolphinRider(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
@@ -40,22 +38,7 @@ public class Zombie_DolphinRider extends Zombie  {
 
   @Override
   public void setAction() {
-    //TODO how to make sure this zombie only walks on water surface tiled
-    if (gp.elapsedTime % attack_speed == 0 && specialSkillUsage > 0) { // Is this good practice? probably :)
-      int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
-      if (plantIndex != 9999) {
-        gp.plants[plantIndex].healthPoint = 0; //insta kill dolphin jumped plants
-        specialSkillUsage -= 1;
-        System.out.println(gp.plants[plantIndex].getClass().getSimpleName() + " Dolphin jumped!");
-        if (gp.plants[plantIndex].healthPoint <= 0) {
-          gp.plants[plantIndex] = null;
-        }
 
-        this.worldX -= gp.tileSize ;
-      }
-
-      
-    }
   }
 
   public void getPlayerImage() {
