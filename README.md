@@ -56,6 +56,8 @@ Run ```./gradlew ``` within root project
 - [x] Sunflower
 - [x] Walnut
 - [x] Yellow Mushroom
-- [x] Chopper
+- [x] Potato Mine
+- [x] Purple Mushroom
+- [x] Cactus
 
 

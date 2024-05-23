@@ -2,6 +2,8 @@ package org.game;
 
 import org.asset.NPC;
 import org.plants.PotatoMine;
+import org.plants.PurpleMushroom;
+import org.plants.Cactus;
 import org.plants.Lilypad;
 import org.plants.Peashooter;
 import org.plants.PotatoMine;
@@ -58,6 +60,10 @@ public class AssetSetter {
     gp.listOfPlants[6] = new YellowMushroom(gp, 50, 0, 0, 0, 25, 10, false);
 
     gp.listOfPlants[7] = new PotatoMine(gp, 50, 1, 1, 9999, 25, 10, false);
+
+    gp.listOfPlants[8] = new PurpleMushroom(gp, 50, 10, -1, 15, 0, 10, false);
+
+    gp.listOfPlants[9] = new Cactus(gp, 125, 5, -1, 25, 125, 10, false);
 
   }
 

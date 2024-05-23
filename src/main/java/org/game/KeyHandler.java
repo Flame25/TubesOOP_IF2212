@@ -89,7 +89,8 @@ public class KeyHandler implements KeyListener {
       if (code == KeyEvent.VK_E) {
         if (gp.listOfPlants[gp.ui.getItemIndexOnSlot()] != null) {
           if (!gp.player.deck.contains(gp.listOfPlants[gp.ui.getItemIndexOnSlot()])) {
-            gp.player.deck.add(gp.listOfPlants[gp.ui.getItemIndexOnSlot()]);
+            if (gp.player.deck.size() < 6)
+              gp.player.deck.add(gp.listOfPlants[gp.ui.getItemIndexOnSlot()]);
           } else {
             gp.player.deck.remove(gp.listOfPlants[gp.ui.getItemIndexOnSlot()]);
           }

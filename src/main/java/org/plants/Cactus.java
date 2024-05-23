@@ -1,10 +1,11 @@
 package org.plants;
 
 import org.game.GamePanel;
-import org.projectiles.Peashooter_Peas;
+import org.projectiles.Cactus_Proj;
 
-public class Peashooter extends Plants {
-  public Peashooter(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
+public class Cactus extends Plants {
+
+  public Cactus(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
       boolean is_aquatic) {
 
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
@@ -16,9 +17,9 @@ public class Peashooter extends Plants {
   }
 
   private void loadImage() {
-    up1 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
-    up2 = setup("/plants/Peashooter", gp.tileSize, gp.tileSize);
-    down1 = setup("/plants/Peashooter_Off", gp.tileSize, gp.tileSize);
+    up1 = setup("/plants/Cactus", gp.tileSize, gp.tileSize);
+    up2 = setup("/plants/Cactus", gp.tileSize, gp.tileSize);
+    down1 = setup("/plants/Cactus_Off", gp.tileSize, gp.tileSize);
   }
 
   @Override
@@ -26,7 +27,7 @@ public class Peashooter extends Plants {
     if (checkRange()) {
       for (int i = 0; i < gp.proj.length; i++) {
         if (gp.proj[i] == null) {
-          gp.proj[i] = new Peashooter_Peas();
+          gp.proj[i] = new Cactus_Proj();
           gp.proj[i].worldX = this.worldX + gp.tileSize;
           gp.proj[i].worldY = this.worldY - 16;
           break;
@@ -34,5 +35,4 @@ public class Peashooter extends Plants {
       }
     }
   }
-
 }
