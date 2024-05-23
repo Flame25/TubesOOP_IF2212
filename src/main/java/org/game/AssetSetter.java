@@ -1,9 +1,10 @@
 package org.game;
 
 import org.asset.NPC;
-import org.plants.Chopper;
+import org.plants.PotatoMine;
 import org.plants.Lilypad;
 import org.plants.Peashooter;
+import org.plants.PotatoMine;
 import org.plants.Snowpea;
 import org.plants.Squash;
 import org.plants.Sunflower;
@@ -56,7 +57,7 @@ public class AssetSetter {
 
     gp.listOfPlants[6] = new YellowMushroom(gp, 50, 0, 0, 0, 25, 10, false);
 
-    gp.listOfPlants[7] = new Chopper(gp, 50, 1, 1, 9999, 25, 10, false);
+    gp.listOfPlants[7] = new PotatoMine(gp, 50, 1, 1, 9999, 25, 10, false);
 
   }
 

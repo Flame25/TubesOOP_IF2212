@@ -2,11 +2,11 @@ package org.plants;
 
 import org.game.GamePanel;
 
-public class Chopper extends Plants {
+public class PotatoMine extends Plants {
 
   public boolean isActive = false;
 
-  public Chopper(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
+  public PotatoMine(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
       boolean is_aquatic) {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     description = "[" + "Squash"

@@ -3,7 +3,7 @@ package org.zombies;
 import org.asset.Entity;
 import org.game.GamePanel;
 import org.game.LoadImage;
-import org.plants.Chopper;
+import org.plants.PotatoMine;
 
 import javax.imageio.ImageIO;
 
@@ -92,7 +92,7 @@ public class Zombie extends Entity implements Cloneable {
     if (gp.elapsedTime % attack_speed == 0) { // Is this good practice? probably :)
       int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
       if (plantIndex != 9999) {
-        if (!(gp.plants[plantIndex] instanceof Chopper)) {
+        if (!(gp.plants[plantIndex] instanceof PotatoMine)) {
           gp.plants[plantIndex].healthPoint -= damage;
           System.out.println("Zombie Attack");
           if (gp.plants[plantIndex].healthPoint <= 0) {
@@ -101,8 +101,8 @@ public class Zombie extends Entity implements Cloneable {
         } else {
 
           System.out.println(plantIndex);
-          if (((Chopper) gp.plants[plantIndex]).isActive) {
-            ((Chopper) gp.plants[plantIndex]).explode();
+          if (((PotatoMine) gp.plants[plantIndex]).isActive) {
+            ((PotatoMine) gp.plants[plantIndex]).explode();
             gp.plants[plantIndex] = null;
             System.out.println("Hello");
           } else {
