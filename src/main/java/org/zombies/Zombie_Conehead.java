@@ -19,7 +19,7 @@ public class Zombie_Conehead extends Zombie {
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
-    solidArea = new Rectangle(8, 16, 32, 32);
+    solidArea = new Rectangle(8, 2, 32, 12);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
@@ -30,12 +30,6 @@ public class Zombie_Conehead extends Zombie {
 
   @Override
   public void update() {
-    if (counter >= 60) {
-      speed = 3;
-      counter = 0;
-    }
     super.update();
-    this.speed = 0;
-    counter++;
   }
 }

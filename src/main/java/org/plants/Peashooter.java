@@ -12,6 +12,7 @@ public class Peashooter extends Plants {
     description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
     statusOn = true;
     loadImage();
+
   }
 
   private void loadImage() {
@@ -22,6 +23,7 @@ public class Peashooter extends Plants {
 
   @Override
   public void actionAttack() {
+    System.out.println(gp.zombie[0].solidArea.y - this.worldY);
     if (checkRange()) {
       for (int i = 0; i < gp.proj.length; i++) {
         if (gp.proj[i] == null) {

@@ -43,9 +43,10 @@ Run ```./gradlew ``` within root project
 - [x] Zombie Giant
 - [x] Conehead Zombie
 - [x] Pole Vaulting Zombie
-- [ ] Buckethead Zombie
+- [x] Buckethead Zombie
 - [ ] Dolphinrider Zombie
 - [ ] Duckytube Zombie
+- [ ] Football
 
 ## List Of Completed Plants : 
 - [x] Lilypad
@@ -54,5 +55,7 @@ Run ```./gradlew ``` within root project
 - [x] Snowpea 
 - [x] Sunflower
 - [x] Walnut
+- [x] Yellow Mushroom
+- [x] Chopper
 
 

@@ -15,7 +15,7 @@ public class Zombie_Giant extends Zombie {
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
-    solidArea = new Rectangle(1, 8, 32, 32);
+    solidArea = new Rectangle(4, 50, 64, 14);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
@@ -29,5 +29,17 @@ public class Zombie_Giant extends Zombie {
     int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
     g2.drawImage(image, screenX, screenY, 32 * 3, 41 * 3, null);
+  }
+
+  @Override
+  public void update() {
+    if (counter >= 60) {
+      speed = defaultSpeed;
+      counter = 0;
+      howManySecs++;
+    }
+    super.update();
+    this.speed = 0;
+    counter++;
   }
 }

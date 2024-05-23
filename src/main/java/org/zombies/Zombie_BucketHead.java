@@ -17,11 +17,13 @@ public class Zombie_BucketHead extends Zombie {
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
-    solidArea = new Rectangle(8, 16, 32, 32);
+    solidArea = new Rectangle(8, 2, 32, 12);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    getPlayerImage();
+    numOfIdle = 7;
+    numOfRunning = 7;
+    loadAnimations(2, 7, "zombies/Zombie_Buckethead.png", 16, 16);
   }
 
   @Override
@@ -33,8 +35,5 @@ public class Zombie_BucketHead extends Zombie {
     super.update();
     this.speed = 0;
     counter++;
-  }
-
-  public void getPlayerImage() {
   }
 }

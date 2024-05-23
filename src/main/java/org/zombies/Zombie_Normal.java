@@ -16,7 +16,7 @@ public class Zombie_Normal extends Zombie {
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
-    solidArea = new Rectangle(8, 16, 32, 32);
+    solidArea = new Rectangle(8, 2, 32, 12);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
@@ -34,4 +34,5 @@ public class Zombie_Normal extends Zombie {
     this.speed = 0;
     counter++;
   }
+
 }

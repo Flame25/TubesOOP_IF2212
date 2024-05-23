@@ -25,10 +25,6 @@ public class Sunflower extends Plants {
     down1 = setup("/plants/Sunflower_OFF", gp.tileSize, gp.tileSize);
   }
 
-  public void update() {
-
-  }
-
   @Override
   public void actionAttack() {
     gp.player.setSun(gp.player.getSun() + 25);

@@ -31,7 +31,7 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
       boolean isAquatic) {
     super(gp, healthPoint, speed, damage, attack_speed, attack_range, isAquatic);
     direction = "left";
-    solidArea = new Rectangle(8, 16, 32, 32);
+    solidArea = new Rectangle(8, 2, 32, 12);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;

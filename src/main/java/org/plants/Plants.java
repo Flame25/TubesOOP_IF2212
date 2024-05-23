@@ -34,6 +34,7 @@ public class Plants extends Entity implements Cloneable {
     this.damage = damage;
     this.cooldown = cooldown;
     direction = "up";
+    this.collision = true;
   }
 
   // SETTER
@@ -77,8 +78,12 @@ public class Plants extends Entity implements Cloneable {
   public boolean checkRange() {
     for (int i = 0; i < gp.zombie.length; i++) {
       if (gp.zombie[i] != null) {
-        if (gp.zombie[i].worldY == this.worldY) {
-          if (gp.zombie[i].worldX - this.worldX <= range * gp.tileSize) {
+        System.out.println("Zombies : " + (gp.zombie[i].solidArea.y + gp.zombie[i].worldY) + ", "
+            + (gp.zombie[i].worldY + gp.zombie[i].solidArea.y + gp.zombie[i].solidArea.height));
+        System.out.println("Plants : " + gp.plants[i].worldY);
+        if (this.worldY + 16 >= gp.zombie[i].worldY + gp.zombie[i].solidArea.y + gp.zombie[i].solidArea.height
+            && this.worldY - 32 <= gp.zombie[i].worldY + gp.zombie[i].solidArea.y) {
+          if (gp.zombie[i].worldX - (this.worldX + gp.zombie[i].solidArea.x) <= range * gp.tileSize) {
             return true;
           } else if (range == -1) {
             return true;

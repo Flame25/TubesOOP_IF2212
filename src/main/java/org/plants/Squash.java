@@ -24,10 +24,6 @@ public class Squash extends Plants {
     down1 = setup("/plants/Squash_Off", gp.tileSize, gp.tileSize);
   }
 
-  public void update() {
-
-  }
-
   @Override
   public void actionAttack() {
   }

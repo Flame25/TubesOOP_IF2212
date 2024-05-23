@@ -3,6 +3,7 @@ package org.zombies;
 import org.asset.Entity;
 import org.game.GamePanel;
 import org.game.LoadImage;
+import org.plants.Chopper;
 
 import javax.imageio.ImageIO;
 
@@ -67,35 +68,50 @@ public class Zombie extends Entity implements Cloneable {
       }
     }
     gp.cChecker.checkEntity(this, gp.plants);
-    if (gp.elapsedTime == countTime + 5 && counter <= 48) {
+    if (!collisionOn && gp.elapsedTime >= countTime + 10 && counter <= 48) {
       worldX -= 1;
       moving = true;
       timeNotes = gp.elapsedTime;
-    } else {
-      countTime = timeNotes + 10;
-      moving = false;
-      if (counter >= 60) {
-        counter = 0;
-      }
+      counter++;
     }
-    counter++;
+    if (counter >= 48) {
+      countTime = timeNotes;
+      moving = false;
+      counter = 0;
+    }
     setAnimation();
     updateAnimationTick();
   }
 
   @Override
   public void setAction() {
-
+    actionAttack();
   }
 
   public void actionAttack() {
     if (gp.elapsedTime % attack_speed == 0) { // Is this good practice? probably :)
       int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
       if (plantIndex != 9999) {
-        gp.plants[plantIndex].healthPoint -= damage;
-        System.out.println("Zombie Attack");
-        if (gp.plants[plantIndex].healthPoint <= 0) {
-          gp.plants[plantIndex] = null;
+        if (!(gp.plants[plantIndex] instanceof Chopper)) {
+          gp.plants[plantIndex].healthPoint -= damage;
+          System.out.println("Zombie Attack");
+          if (gp.plants[plantIndex].healthPoint <= 0) {
+            gp.plants[plantIndex] = null;
+          }
+        } else {
+
+          System.out.println(plantIndex);
+          if (((Chopper) gp.plants[plantIndex]).isActive) {
+            ((Chopper) gp.plants[plantIndex]).explode();
+            gp.plants[plantIndex] = null;
+            System.out.println("Hello");
+          } else {
+            gp.plants[plantIndex].healthPoint -= damage;
+            System.out.println("Zombie Attack");
+            if (gp.plants[plantIndex].healthPoint <= 0) {
+              gp.plants[plantIndex] = null;
+            }
+          }
         }
       }
     }

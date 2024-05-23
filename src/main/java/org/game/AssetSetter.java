@@ -1,12 +1,14 @@
 package org.game;
 
 import org.asset.NPC;
+import org.plants.Chopper;
 import org.plants.Lilypad;
 import org.plants.Peashooter;
 import org.plants.Snowpea;
 import org.plants.Squash;
 import org.plants.Sunflower;
 import org.plants.Wallnut;
+import org.plants.YellowMushroom;
 import org.zombies.Zombie_Bread;
 import org.zombies.Zombie_BucketHead;
 import org.zombies.Zombie_Catapult;
@@ -52,6 +54,10 @@ public class AssetSetter {
 
     gp.listOfPlants[5] = new Sunflower(gp, 100, 0, 0, 0, 50, 10, false);
 
+    gp.listOfPlants[6] = new YellowMushroom(gp, 50, 0, 0, 0, 25, 10, false);
+
+    gp.listOfPlants[7] = new Chopper(gp, 50, 1, 1, 9999, 25, 10, false);
+
   }
 
   public void setObject() {
@@ -91,7 +97,7 @@ public class AssetSetter {
 
   public void setZombie() { // Initiation List of Zombie Available
     gp.listOfZombie[0] = new Zombie_Normal(gp, 125, 3, 50, 1, 1, false); // Initialize Normal Zombie with HP = 125,
-    gp.listOfZombie[1] = new Zombie_Giant(gp, 500, 3, 200, 1, 1, false);
+    gp.listOfZombie[1] = new Zombie_Giant(gp, 500, 3, 200, 1, 1, false); // worldY -32
     gp.listOfZombie[2] = new Zombie_Conehead(gp, 250, 3, 100, 1, 1, false);
     gp.listOfZombie[3] = new Zombie_Bread(gp, 100, 3, 100, 1, 1, false);
     gp.listOfZombie[4] = new Zombie_DuckyTube(gp, 100, 3, 100, 1, 1, true);
@@ -99,7 +105,7 @@ public class AssetSetter {
     gp.listOfZombie[6] = new Zombie_Football(gp, 300, 3, 200, 3, 1, false);
     gp.listOfZombie[7] = new Zombie_Snorkle(gp, 125, 3, 100, 1, 1, true);
     gp.listOfZombie[8] = new Zombie_PoleVaulting(gp, 175, 3, 75, 4, 1, false);
-    gp.listOfZombie[9] = new Zombie_Bread(gp, 100, 3, 100, 1, 1, false);
+    gp.listOfZombie[9] = new Zombie_BucketHead(gp, 100, 3, 100, 1, 1, false);
     /*
      * How to count speed
      * 60 Frame per second, zombie walks 1 tile every 5 second and we are using 16 x
@@ -110,7 +116,7 @@ public class AssetSetter {
   }
 
   public void spawnZombie() throws CloneNotSupportedException { // Need to implement Zombie Spawner as Class
-    gp.zombie[0] = gp.listOfZombie[8].clone();
+    gp.zombie[0] = gp.listOfZombie[2].clone();
     gp.zombie[0].worldX = gp.tileSize * 31;
     gp.zombie[0].worldY = 7 * gp.tileSize - 16;
   }

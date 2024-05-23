@@ -116,6 +116,8 @@ public class KeyHandler implements KeyListener {
         }
       } else if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.pauseState;
+      } else if (code == KeyEvent.VK_G) {
+        gp.player.setSun(9999);
 
         // TODO: Refactor Code Below !!
       } else if (gp.player.worldY != 10 * gp.tileSize && gp.player.worldY != 11 * gp.tileSize
@@ -141,6 +143,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.plants[i] == null && gp.player.deck.get(code - 49).statusOn) {
                   try {
                     gp.plants[i] = gp.player.deck.get(code - 49).clone();
+                    gp.plants[i].timeSpawn = gp.elapsedTime;
                   } catch (CloneNotSupportedException c) {
                     c.printStackTrace();
                   }

@@ -27,10 +27,6 @@ public class Wallnut extends Plants {
     down1 = setup("/plants/Wallnut_Off", gp.tileSize, gp.tileSize);
   }
 
-  public void update() {
-
-  }
-
   @Override
   public void actionAttack() {
   }
