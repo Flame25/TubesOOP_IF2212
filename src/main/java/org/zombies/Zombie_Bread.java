@@ -16,15 +16,7 @@ public class Zombie_Bread extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    loadAnimations();
+    loadAnimations(2, 4, "zombies/Zombie_Toast.png", 16, 16);
   }
 
-  @Override
-  protected void loadAnimations() {
-    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Toast.png");
-    animations = new BufferedImage[2][4];
-    for (int j = 0; j < animations.length; j++)
-      for (int i = 0; i < animations[j].length; i++)
-        animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
-  }
 }

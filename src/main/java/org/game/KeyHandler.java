@@ -132,6 +132,12 @@ public class KeyHandler implements KeyListener {
             if (gp.player.getSun() >= gp.player.deck.get(code - 49).getCost()) {
 
               for (int i = 0; i < gp.plants.length; i++) {
+
+                if (((gp.player.worldY == 9 * gp.tileSize || gp.player.worldY == 8 * gp.tileSize)
+                    || (gp.player.worldY == 16 * gp.tileSize && gp.player.worldY == 17 * gp.tileSize))
+                    && gp.player.deck.get(code - 49).is_aquatic) {
+                  break;
+                }
                 if (gp.plants[i] == null && gp.player.deck.get(code - 49).statusOn) {
                   try {
                     gp.plants[i] = gp.player.deck.get(code - 49).clone();

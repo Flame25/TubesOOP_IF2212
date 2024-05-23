@@ -11,7 +11,9 @@ public class Wallnut extends Plants {
 
     description = "[" + "Wallnut"
         + "\nThey're defensive plants that can't attack \nback, but instead block off \nzombies with their huge \namounts of health.";
+    statusOn = true;
     loadImage();
+    image = up1;
   }
 
   @Override

@@ -8,7 +8,9 @@ public class Lilypad extends Plants {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     direction = "up";
     description = "[" + "Lilypad" + "]\nHello, I am Lilypad";
+    statusOn = true;
     loadImage();
+    image = up1;
   }
 
   public void loadImage() {

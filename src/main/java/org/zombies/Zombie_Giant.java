@@ -19,16 +19,7 @@ public class Zombie_Giant extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    loadAnimations();
-  }
-
-  @Override
-  protected void loadAnimations() {
-    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Giant.png");
-    animations = new BufferedImage[3][12];
-    for (int j = 0; j < animations.length; j++)
-      for (int i = 0; i < animations[j].length; i++)
-        animations[j][i] = img.getSubimage(i * 32, j * 41, 32, 41);
+    loadAnimations(3, 12, "zombies/Zombie_Giant.png", 32, 41);
   }
 
   @Override

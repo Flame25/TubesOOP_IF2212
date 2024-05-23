@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   // ELAPSED TIME
   public long elapsedTime = 0;
+  public long timer = 0;
 
   // ANIMATION
   private int aniTick, aniIndex, aniSpeed = 50;
@@ -106,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
     long lastAddedTime = 0;
     long lastTime = System.nanoTime();
     int drawCount = 0;
-    long timer = 0;
+    timer = 0;
     while (gameThread != null) {
       currentTime = System.nanoTime();
       delta += (currentTime - lastTime) / drawInterval;
@@ -133,9 +134,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setProjectiles(elapsedTime);
         for (int i = 0; i < zombie.length; i++) {
           if (zombie[i] != null) {
-            if (elapsedTime % zombie[i].attack_speed == 0) {
-              zombie[i].actionAttack();
-            }
+            zombie[i].setAction();
           }
         }
 
@@ -192,7 +191,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
       }
 
-      spawner.update();
     } else if (gameState == pauseState) {
     }
   }

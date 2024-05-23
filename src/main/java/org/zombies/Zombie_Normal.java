@@ -20,7 +20,7 @@ public class Zombie_Normal extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
-    loadAnimations();
+    loadAnimations(2, 8, "zombies/Zombie_Normal_F.png", 18, 18);
   }
 
   @Override
@@ -33,23 +33,5 @@ public class Zombie_Normal extends Zombie {
     super.update();
     this.speed = 0;
     counter++;
-  }
-
-  @Override
-  protected void loadAnimations() {
-    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Normal_F.png");
-    animations = new BufferedImage[2][8];
-    for (int j = 0; j < animations.length; j++)
-      for (int i = 0; i < animations[j].length; i++)
-        animations[j][i] = img.getSubimage(i * 18, j * 18, 18, 18);
-  }
-
-  @Override
-  public void draw(Graphics2D g2) {
-
-    int screenX = worldX - gp.player.worldX + gp.player.screenX;
-    int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-    g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
   }
 }

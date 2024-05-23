@@ -42,9 +42,17 @@ Run ```./gradlew ``` within root project
 - [x] Zombie Toast
 - [x] Zombie Giant
 - [x] Conehead Zombie
-- [ ] Pole Vaulting Zombie
+- [x] Pole Vaulting Zombie
 - [ ] Buckethead Zombie
 - [ ] Dolphinrider Zombie
 - [ ] Duckytube Zombie
+
+## List Of Completed Plants : 
+- [x] Lilypad
+- [x] Peashooter
+- [ ] Squash
+- [x] Snowpea 
+- [x] Sunflower
+- [x] Walnut
 
 

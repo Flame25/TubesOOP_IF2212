@@ -43,7 +43,7 @@ public class Spawner {
     Random random = new Random();
     Zombie newZombie = null;
     try {
-      newZombie = gp.listOfZombie[1].clone();
+      newZombie = gp.listOfZombie[random.nextInt(0, 4)].clone();
     } catch (CloneNotSupportedException e) {
       e.printStackTrace();
     }

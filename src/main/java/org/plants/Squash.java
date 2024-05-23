@@ -8,7 +8,9 @@ public class Squash extends Plants {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     description = "[" + "Squash"
         + "]\nWhen Squash spots a zombie in an \narea near him, he will stomp it for 1800 \narea damage";
+    statusOn = true;
     loadImage();
+    image = up1;
   }
 
   @Override

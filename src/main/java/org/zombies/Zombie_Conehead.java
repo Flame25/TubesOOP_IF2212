@@ -25,6 +25,7 @@ public class Zombie_Conehead extends Zombie {
     counter = 0;
     numOfIdle = 7;
     numOfRunning = 7;
+    loadAnimations(2, 7, "zombies/Zombie_Conehead.png", 16, 16);
   }
 
   @Override
@@ -36,14 +37,5 @@ public class Zombie_Conehead extends Zombie {
     super.update();
     this.speed = 0;
     counter++;
-  }
-
-  @Override
-  protected void loadAnimations() {
-    BufferedImage img = LoadImage.GetSpriteAtlas("zombies/Zombie_Conehead.png");
-    animations = new BufferedImage[2][7];
-    for (int j = 0; j < animations.length; j++)
-      for (int i = 0; i < animations[j].length; i++)
-        animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
   }
 }

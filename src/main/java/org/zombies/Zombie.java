@@ -186,11 +186,11 @@ public class Zombie extends Entity implements Cloneable {
     }
   }
 
-  protected void loadAnimations() {
-    BufferedImage img = LoadImage.GetSpriteAtlas("PathToFile");
-    animations = new BufferedImage[0][0];
+  protected void loadAnimations(int rowAnimations, int colAnimations, String path, int width, int height) {
+    BufferedImage img = LoadImage.GetSpriteAtlas(path);
+    animations = new BufferedImage[rowAnimations][colAnimations];
     for (int j = 0; j < animations.length; j++)
       for (int i = 0; i < animations[j].length; i++)
-        animations[j][i] = img.getSubimage(i * 16, j * 16, 16, 16);
+        animations[j][i] = img.getSubimage(i * width, j * height, width, height);
   }
 }
