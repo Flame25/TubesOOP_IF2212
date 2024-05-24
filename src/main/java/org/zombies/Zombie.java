@@ -5,6 +5,7 @@ import org.game.GamePanel;
 import org.game.LoadImage;
 import org.plants.PotatoMine;
 import org.plants.Squash;
+import org.spawner.Spawner;
 
 import javax.imageio.ImageIO;
 
@@ -148,6 +149,7 @@ public class Zombie extends Entity implements Cloneable {
           if (gp.zombie[j] != null) {
             if (gp.zombie[j].equals(this)) {
               gp.zombie[j] = null;
+              Spawner.nowZombie -= 1;
             }
           }
         }

@@ -12,12 +12,14 @@ public class Spawner {
   private long lastSec = 99999;
   private int numberOfZombie = 20;
   private int spawnedZombie = 0;
+  public int maxZombie = 10; // Default before flag
+  public static int nowZombie = 0;
 
   public Spawner(GamePanel gp) {
     this.gp = gp;
-    lastSec = gp.elapsedTime;
+    lastSec = 20;
     Random random = new Random();
-    numberOfZombie = random.nextInt(0, 41);
+    numberOfZombie = random.nextInt(20, 61);
     spawnedZombie = 0;
   }
 
@@ -38,9 +40,9 @@ public class Spawner {
       }
       zomb.timeSpawn = gp.elapsedTime;
       for (int i = 0; i < gp.zombie.length; i++) {
-        if (gp.zombie[i] == null) {
+        if (gp.zombie[i] == null && nowZombie < maxZombie) {
           gp.zombie[i] = zomb;
-
+          nowZombie++;
           spawnedZombie++;
           System.out.println(spawnedZombie + ", " + numberOfZombie);
           break;

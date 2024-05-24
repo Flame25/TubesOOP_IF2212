@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
   public SuperProjectiles proj[] = new SuperProjectiles[10];
   public Entity npc[] = new Entity[10];
   public Zombie listOfZombie[] = new Zombie[10]; // List of Available Zombie
-  public Zombie zombie[] = new Zombie[10];
+  public Zombie zombie[] = new Zombie[20];
   public Plants listOfPlants[] = new Plants[10];
   public Plants plants[] = new Plants[20];
   public Player player = new Player(this, keyH);
@@ -192,7 +192,15 @@ public class GamePanel extends JPanel implements Runnable {
           player.deck.get(i).update();
         }
       }
-      spawner.update();
+      if (elapsedTime >= 20) {
+        spawner.update();
+        if (elapsedTime >= 80 && elapsedTime <= 100) {
+          spawner.maxZombie = 20;
+        } else {
+          spawner.maxZombie = 10;
+        }
+      }
+
     } else if (gameState == pauseState) {
     } else if (gameState == endState) {
     } else if (gameState == playState)
