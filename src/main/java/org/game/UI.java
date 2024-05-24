@@ -86,6 +86,10 @@ public class UI {
       drawGrassCount();
     } else if (gp.gameState == gp.endState) {
       drawEndScreen();
+    } else if (gp.gameState == gp.zombieAlmnc) {
+      drawAlmanac();
+    } else if (gp.gameState == gp.helpState) {
+      drawHelp();
     }
   }
 
@@ -196,6 +200,82 @@ public class UI {
     int x2 = getXforCenteredText(newText);
     g2.drawString(newText, x2, y2);
 
+  }
+
+  public void drawAlmanac() {
+
+    // FRAME
+    int frameX = gp.tileSize * 5;
+    int frameY = gp.tileSize;
+    int frameWidth = gp.tileSize * 11;
+    int frameHeight = gp.tileSize * 5;
+    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+    // SLOT
+    final int slotXStart = frameX + 20;
+    final int slotYStart = frameY + 20;
+    int slotX = slotXStart;
+    int slotY = slotYStart;
+
+    // CURSOR
+    int cursorX = slotXStart + (64 * slotCol);
+    int cursorY = slotYStart + (64 * slotRow);
+    int cursorWidth = 64;
+    int cursorHeight = 64;
+
+    // DRAW PLAYER'S ITEMS
+    for (int i = 0; i < gp.listOfZombie.length; i++) {
+      g2.drawImage(gp.listOfZombie[i].up1, slotX, slotY, 64, 64, null);
+      slotX += 64;
+      if (i == 4 || i == 9 || i == 14) {
+        slotX = slotXStart;
+        slotY += 64 + 5;
+      }
+    }
+    // DRAW CURSOR
+    g2.setColor(Color.white);
+    g2.drawRoundRect(cursorX, cursorY, 64, 64, 10, 10);
+
+    // DESCRIPTION FRAME
+    int dFrameX = frameX;
+    int dFrameY = frameY + frameHeight;
+    int dFrameWidth = frameWidth;
+    int dFrameHeight = gp.tileSize * 3;
+    drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+
+    // DRAW DESCRIPTION TEXT
+    int textX = dFrameX + 20;
+    int textY = dFrameY + gp.tileSize / 2 + 5;
+    g2.setFont(g2.getFont().deriveFont(14F));
+
+    int itemIndex = getItemIndexOnSlot();
+    if (itemIndex < gp.listOfZombie.length) {
+      for (String line : gp.listOfZombie[itemIndex].description.split("\n")) {
+        g2.drawString(line, textX, textY);
+        textY += 16;
+      }
+    }
+  }
+
+  public void drawHelp() {
+
+    // FRAME
+    int frameX = gp.tileSize * 5;
+    int frameY = gp.tileSize;
+    int frameWidth = gp.tileSize * 11;
+    int frameHeight = gp.tileSize * 5;
+    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+    int dFrameX = frameX;
+    int dFrameY = frameY + frameHeight;
+    int textX = dFrameX + 25;
+    int textY = frameY + 35;
+    g2.setFont(g2.getFont().deriveFont(14F));
+    String text = "Selamat Datang, pada permainan ini semua pergerakan dilakukan\ndengan 'AWSD'.Permainan bisa dimulai dengan membuka terlebih dahulu\ninventory dengan key 'C' dan memilih tanaman yang ada.\nKemudian, game bisa dimulai dengan berjalan ke bed dan memencet 'E'\nSelanjutnya, game dimulai dan tanaman bisa ditanamn dengan key '1-6' dan \n'Q' untuk menghilangkan tanaman dari ground.\n\n Selamat Bermain :)";
+    for (String line : text.split("\n")) {
+      g2.drawString(line, textX, textY);
+      textY += 16;
+    }
   }
 
   public void drawInventory() {

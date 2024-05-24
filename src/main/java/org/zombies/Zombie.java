@@ -33,6 +33,7 @@ public class Zombie extends Entity implements Cloneable {
   int numOfIdle = 9999;
   int numOfRunning = 9999;
   int state = 0;
+  public String description;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES

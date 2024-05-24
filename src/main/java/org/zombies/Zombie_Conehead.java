@@ -26,7 +26,10 @@ public class Zombie_Conehead extends Zombie {
     numOfIdle = 7;
     numOfRunning = 7;
     state = numOfIdle;
+    description = "[" + "Cone Head"
+        + "]\nI'm using cone as a hat";
     loadAnimations(2, 7, "zombies/Zombie_Conehead.png", 16, 16);
+    up1 = animations[0][0];
   }
 
   @Override

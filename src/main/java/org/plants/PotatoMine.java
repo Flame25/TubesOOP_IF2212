@@ -9,8 +9,8 @@ public class PotatoMine extends Plants {
   public PotatoMine(GamePanel gp, int healthPoint, int attack_speed, int range, int damage, int cost, int cooldown,
       boolean is_aquatic) {
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
-    description = "[" + "Squash"
-        + "]\nWhen Squash spots a zombie in an \narea near him, he will stomp it for 1800 \narea damage";
+    description = "[" + "Potato Mine"
+        + "]\nWhen Potato Mine spots a zombie in an \narea near him, he will stomp it for 1800 \narea damage";
     statusOn = true;
     loadImage();
     image = up1;

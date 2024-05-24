@@ -60,6 +60,8 @@ public class GamePanel extends JPanel implements Runnable {
   public final int characterState = 3;
   public final int sleepState = 4;
   public final int endState = 5;
+  public final int zombieAlmnc = 6;
+  public final int helpState = 7;
 
   // ELAPSED TIME
   public long elapsedTime = 0;

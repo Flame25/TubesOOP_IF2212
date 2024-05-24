@@ -1,6 +1,7 @@
 package org.game;
 
 import org.object.Object_Bed;
+import org.plants.Lilypad;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -43,6 +44,16 @@ public class KeyHandler implements KeyListener {
       }
       if (code == KeyEvent.VK_C) {
         gp.gameState = gp.characterState;
+      }
+      if (code == KeyEvent.VK_V) {
+        gp.gameState = gp.zombieAlmnc;
+      }
+      if (code == KeyEvent.VK_H) {
+        gp.gameState = gp.helpState;
+      }
+    } else if (gp.gameState == gp.helpState) {
+      if (code == KeyEvent.VK_H) {
+        gp.gameState = gp.playState;
       }
     }
 
@@ -96,6 +107,34 @@ public class KeyHandler implements KeyListener {
           }
         }
       }
+    } else if (gp.gameState == gp.zombieAlmnc) {
+      if (code == KeyEvent.VK_V) {
+        gp.gameState = gp.playState;
+      }
+
+      if (code == KeyEvent.VK_C) {
+        gp.gameState = gp.playState;
+      }
+      if (code == KeyEvent.VK_W) {
+        if (gp.ui.slotRow != 0) {
+          gp.ui.slotRow--;
+        }
+      }
+      if (code == KeyEvent.VK_A) {
+        if (gp.ui.slotCol != 0) {
+          gp.ui.slotCol--;
+        }
+      }
+      if (code == KeyEvent.VK_D) {
+        if (gp.ui.slotCol != 4) {
+          gp.ui.slotCol++;
+        }
+      }
+      if (code == KeyEvent.VK_S) {
+        if (gp.ui.slotRow != 3) {
+          gp.ui.slotRow++;
+        }
+      }
     }
     // SLEEP STATE
     else if (gp.gameState == gp.sleepState) {
@@ -135,10 +174,33 @@ public class KeyHandler implements KeyListener {
       } else if (gp.player.worldY != 10 * gp.tileSize && gp.player.worldY != 11 * gp.tileSize
           && gp.player.worldY != 14 * gp.tileSize && gp.player.worldY != 15 * gp.tileSize) {
         if (code >= 49 && code <= 57) {
-          if (((gp.player.worldY == 12 * gp.tileSize || gp.player.worldY == 13 * gp.tileSize)
-              && gp.player.deck.get(code - 49).is_aquatic)
-              || (gp.player.worldY != 12 * gp.tileSize && gp.player.worldY != 13 * gp.tileSize)
-                  && checkPlantLocation(gp.player.worldX + 3, gp.player.worldY - 16 - gp.tileSize)) {
+
+          boolean isAvailable = checkPlantLocation(gp.player.worldX + 3, gp.player.worldY - 16 - gp.tileSize);
+          boolean letsPlant = false;
+          // Water? and not aquatic plants
+          if ((gp.player.worldY == 12 * gp.tileSize || gp.player.worldY == 13 * gp.tileSize)
+              && !(gp.player.deck.get(code - 49).is_aquatic) && isAvailable) {
+            // IF empty check for lilypad
+            for (int i = 0; i < gp.plants.length; i++) {
+              if (gp.plants[i] != null) {
+                if (gp.plants[i] instanceof Lilypad) {
+
+                  // Check Post )
+                  if (gp.plants[i].worldX == gp.player.worldX + 3
+                      && gp.player.worldY - 16 - gp.tileSize == gp.plants[i].worldY) {
+                    letsPlant = true;
+                  }
+                }
+              }
+            }
+          } else if (gp.player.deck.get(code - 49).is_aquatic
+              && checkLilypadLocation(gp.player.worldX + 3, gp.player.worldY - 16 - gp.tileSize)) {
+            letsPlant = true;
+          } else if (!gp.player.deck.get(code - 49).is_aquatic && isAvailable) {
+            letsPlant = true;
+          }
+
+          if (letsPlant) {
 
             System.out.println("Plant " + (code - 48) + " Selected");
             System.out.println(gp.player.deck.get(code - 49).is_aquatic);
@@ -161,18 +223,22 @@ public class KeyHandler implements KeyListener {
                   }
                   gp.plants[i].worldX = gp.player.worldX + 3;
                   gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+
+                  System.out.println("Created here : " + gp.plants[i].worldX + ", " + gp.plants[i].worldY);
                   gp.player.deck.get(code - 49).statusOn = false;
                   gp.player.deck.get(code - 49).timeSpawn = gp.elapsedTime;
-                  System.out.println(gp.player.deck.get(code - 49).timeSpawn);
                   gp.player.setSun(gp.player.getSun() - gp.player.deck.get(code - 49).getCost());
                   break;
                 }
               }
             }
           }
+
         }
       }
-    } else if (gp.gameState == gp.endState) {
+    } else if (gp.gameState == gp.endState)
+
+    {
       if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.playState;
         gp.player.backToPost();
@@ -214,7 +280,19 @@ public class KeyHandler implements KeyListener {
   public boolean checkPlantLocation(int x, int y) {
     for (int i = 0; i < gp.plants.length; i++) {
       if (gp.plants[i] != null) {
-        if (gp.plants[i].worldX == x && gp.plants[i].worldY == y) {
+        if (gp.plants[i].worldX == x && gp.plants[i].worldY == y && !(gp.plants[i] instanceof Lilypad)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean checkLilypadLocation(int x, int y) {
+
+    for (int i = 0; i < gp.plants.length; i++) {
+      if (gp.plants[i] != null) {
+        if (gp.plants[i].worldX == x && gp.plants[i].worldY == y && (gp.plants[i] instanceof Lilypad)) {
           return false;
         }
       }

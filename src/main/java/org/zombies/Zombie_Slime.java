@@ -19,9 +19,12 @@ public class Zombie_Slime extends Zombie {
     numOfIdle = 7;
     numOfRunning = 4;
     moving = false;
+    description = "[" + "Slime"
+        + "]\nHello I'm slime";
     state = numOfIdle;
 
     loadAnimations(2, 7, "zombies/Robot.png", 16, 16);
+    up1 = animations[0][0];
   }
 
   @Override

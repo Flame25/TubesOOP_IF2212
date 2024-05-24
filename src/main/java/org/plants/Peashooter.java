@@ -23,16 +23,14 @@ public class Peashooter extends Plants {
 
   @Override
   public void actionAttack() {
-    if (this.image != null) {
 
-      if (checkRange()) {
-        for (int i = 0; i < gp.proj.length; i++) {
-          if (gp.proj[i] == null) {
-            gp.proj[i] = new Peashooter_Peas();
-            gp.proj[i].worldX = this.worldX + gp.tileSize;
-            gp.proj[i].worldY = this.worldY - 16;
-            break;
-          }
+    if (checkRange()) {
+      for (int i = 0; i < gp.proj.length; i++) {
+        if (gp.proj[i] == null) {
+          gp.proj[i] = new Peashooter_Peas();
+          gp.proj[i].worldX = this.worldX + gp.tileSize;
+          gp.proj[i].worldY = this.worldY - 16;
+          break;
         }
       }
     }

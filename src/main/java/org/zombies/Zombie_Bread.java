@@ -19,8 +19,11 @@ public class Zombie_Bread extends Zombie {
     numOfIdle = 2;
     numOfRunning = 4;
 
+    description = "[" + "Bread"
+        + "]\nI'm bread";
     state = numOfIdle;
     loadAnimations(2, 4, "zombies/Zombie_Toast.png", 16, 16);
+    up1 = animations[0][0];
   }
 
 }

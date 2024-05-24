@@ -23,8 +23,11 @@ public class Zombie_BucketHead extends Zombie {
     counter = 0;
     numOfIdle = 7;
     numOfRunning = 7;
+    description = "[" + "Bucket Head"
+        + "]\nBucket on my head";
     state = numOfIdle;
     loadAnimations(2, 7, "zombies/Zombie_Buckethead.png", 16, 16);
+    up1 = animations[0][0];
   }
 
 }

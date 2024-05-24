@@ -10,7 +10,7 @@ public class Cactus extends Plants {
 
     super(gp, healthPoint, attack_speed, range, damage, cost, cooldown, is_aquatic);
     direction = "up";
-    description = "[" + "Peashooter" + "]\nNormal and basic peas shooter";
+    description = "[" + "Cactus" + "]\nShoot Cactus";
     statusOn = true;
     loadImage();
 

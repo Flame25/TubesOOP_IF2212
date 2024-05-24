@@ -34,7 +34,10 @@ public class Zombie_DolphinRider extends Zombie implements Action {
     numOfIdle = 4;
     numOfRunning = 4;
     state = numOfIdle;
+    description = "[" + "Dolphin Rider"
+        + "]\nI can jump heheheh";
     loadAnimations(6, 4, "zombies/Zombie_Jump_Water.png", 20, 20);
+    up1 = animations[3][0];
   }
 
   @Override

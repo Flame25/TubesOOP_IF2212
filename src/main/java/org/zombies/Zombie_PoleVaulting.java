@@ -39,7 +39,10 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
     numOfRunning = 4;
     specialSkillUsage = 1;
     state = numOfIdle;
+    description = "[" + "Pole Vault"
+        + "]\nI can jump ";
     loadAnimations(3, 4, "zombies/Zombie_Jump.png", 20, 20);
+    up1 = animations[0][0];
   }
 
   @Override

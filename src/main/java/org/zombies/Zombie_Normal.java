@@ -23,6 +23,9 @@ public class Zombie_Normal extends Zombie {
     numOfRunning = 8;
     numOfIdle = 4;
     state = numOfIdle;
+    description = "[" + "Normal"
+        + "]\nNothing Here....";
     loadAnimations(2, 8, "zombies/Zombie_Normal_F.png", 18, 18);
+    up1 = animations[0][0];
   }
 }

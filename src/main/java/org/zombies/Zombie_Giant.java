@@ -21,8 +21,11 @@ public class Zombie_Giant extends Zombie {
     counter = 0;
     numOfIdle = 12;
     numOfRunning = 7;
+    description = "[" + "Giant"
+        + "]\nHeyho";
     state = numOfIdle;
     loadAnimations(3, 12, "zombies/Zombie_Giant.png", 32, 41);
+    up1 = animations[0][0];
   }
 
   @Override

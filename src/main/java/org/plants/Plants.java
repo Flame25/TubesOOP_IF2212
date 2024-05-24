@@ -80,7 +80,6 @@ public class Plants extends Entity implements Cloneable {
       if (gp.zombie[i] != null) {
         System.out.println("Zombies : " + (gp.zombie[i].solidArea.y + gp.zombie[i].worldY) + ", "
             + (gp.zombie[i].worldY + gp.zombie[i].solidArea.y + gp.zombie[i].solidArea.height));
-        System.out.println("Plants : " + gp.plants[i].worldY);
         if (this.worldY + 16 >= gp.zombie[i].worldY + gp.zombie[i].solidArea.y + gp.zombie[i].solidArea.height
             && this.worldY - 32 <= gp.zombie[i].worldY + gp.zombie[i].solidArea.y) {
           if (gp.zombie[i].worldX - (this.worldX + gp.zombie[i].solidArea.x) <= range * gp.tileSize) {

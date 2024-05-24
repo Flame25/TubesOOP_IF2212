@@ -20,7 +20,11 @@ public class Zombie_Brawler extends Zombie {
     counter = 0;
     numOfIdle = 4;
     numOfRunning = 4;
+
+    description = "[" + "Brawler"
+        + "]\nLike to punch enemies";
     loadAnimations(3, 4, "zombies/Zombie_Brawler.png", 20, 20);
+    up1 = animations[0][0];
   }
 
   @Override

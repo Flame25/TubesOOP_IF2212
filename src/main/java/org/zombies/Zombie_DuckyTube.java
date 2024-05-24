@@ -27,7 +27,10 @@ public class Zombie_DuckyTube extends Zombie {
     numOfIdle = 4;
     numOfRunning = 4;
     state = numOfIdle;
+    description = "[" + "Ducky Tube"
+        + "]\nI can swim";
     loadAnimations(4, 4, "zombies/Zombie_Swim.png", 16, 16);
+    up1 = animations[0][0];
   }
 
   @Override
