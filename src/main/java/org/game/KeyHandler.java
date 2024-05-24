@@ -177,6 +177,10 @@ public class KeyHandler implements KeyListener {
 
           boolean isAvailable = checkPlantLocation(gp.player.worldX + 3, gp.player.worldY - 16 - gp.tileSize);
           boolean letsPlant = false;
+          boolean posisionOnWater = false;
+          if (gp.player.worldY == 12 * gp.tileSize || gp.player.worldY == 13 * gp.tileSize) {
+            posisionOnWater = true;
+          }
           // Water? and not aquatic plants
           if ((gp.player.worldY == 12 * gp.tileSize || gp.player.worldY == 13 * gp.tileSize)
               && !(gp.player.deck.get(code - 49).is_aquatic) && isAvailable) {
@@ -221,8 +225,14 @@ public class KeyHandler implements KeyListener {
                   } catch (CloneNotSupportedException c) {
                     c.printStackTrace();
                   }
-                  gp.plants[i].worldX = gp.player.worldX + 3;
-                  gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+                  if (!posisionOnWater) {
+
+                    gp.plants[i].worldX = gp.player.worldX + 3;
+                    gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+                  } else {
+                    gp.plants[i].worldX = gp.player.worldX + 3;
+                    gp.plants[i].worldY = gp.player.worldY - 16 - gp.tileSize;
+                  }
 
                   System.out.println("Created here : " + gp.plants[i].worldX + ", " + gp.plants[i].worldY);
                   gp.player.deck.get(code - 49).statusOn = false;

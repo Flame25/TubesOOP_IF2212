@@ -1,0 +1,525 @@
+@startuml
+class org.game.UI {
+~ GamePanel gp
+~ Graphics2D g2
+~ Font arial_40
+~ BufferedImage eggImage
++ boolean messageOn
++ String message
+~ int messageCounter
++ String currentDialogue
+~ double playTime
+~ DecimalFormat dFormat
++ int slotCol
++ int slotRow
++ int gameCol
++ int gameRow
++ void showMessage(String)
++ void draw(Graphics2D)
++ void drawGrassCount()
++ void drawTilesCursor()
++ void drawCardSelector()
++ void drawDialogueScreen()
++ void drawSubWindow(int,int,int,int)
++ void drawPauseScreen()
++ void drawEndScreen()
++ void drawAlmanac()
++ void drawHelp()
++ void drawInventory()
++ int getItemIndexOnSlot()
++ void drawDeckScreen()
+- int getXforCenteredText(String)
+}
+
+
+class org.game.GamePanel {
+~ int originalTileSize
+~ int scale
++ int tileSize
++ int maxScreenCol
++ int maxScreenRow
++ int screenWidth
++ int screenHeight
+~ int FPS
++ int maxWorldCol
++ int maxWorldRow
++ int worldWidth
++ int worldHeight
+~ TileManager tileManager
++ KeyHandler keyH
+~ Thread gameThread
++ CollisionChecker cChecker
++ AssetSetter aSetter
++ UI ui
++ SuperObject[] obj
++ SuperProjectiles[] proj
++ Entity[] npc
++ Zombie[] listOfZombie
++ Zombie[] zombie
++ Plants[] listOfPlants
++ Plants[] plants
++ Player player
+- Spawner spawner
++ int gameState
++ int playState
++ int pauseState
++ int dialogState
++ int characterState
++ int sleepState
++ int endState
++ int zombieAlmnc
++ int helpState
++ long elapsedTime
++ long timer
++ boolean isGameOver
++ void setupGame()
++ void startGameThread()
++ void run()
++ void update()
++ void paintComponent(Graphics)
+}
+
+
+class org.asset.Player {
+~ GamePanel gp
+~ KeyHandler keyH
++ int screenX
++ int screenY
++ int EggTotal
++ ArrayList<Plants> inventory
++ ArrayList<Plants> deck
++ int inventorySize
+- int beforeSleepX
+- int beforeSleepY
+- Sun totalSun
++ void setDefaultValues()
+- void loadAnimations()
++ int getSun()
++ void setSun(int)
++ void setAction()
++ void update()
++ void pickUpItem(int)
++ void setItems()
++ void draw(Graphics2D)
++ void interactNPC(int)
++ void interactObject(int)
++ void backToPost()
+- void updateAnimationTick()
+- void setAnimation()
+- void resetAniTick()
+- void updatePost()
+}
+
+
+class org.zombies.Zombie_Bread {
+}
+class org.zombies.Zombie_Conehead {
++ void update()
+}
+
+class org.zombies.Zombie_Normal {
+}
+class org.plants.Peashooter {
+- void loadImage()
++ void actionAttack()
+}
+
+abstract class org.asset.Entity {
++ GamePanel gp
++ int worldX
++ int speed
+# BufferedImage image
++ BufferedImage up1
++ String direction
++ int spriteCounter
++ int spriteNum
++ Rectangle solidArea
++ int solidAreaDefaultX
++ int solidAreaDefaultY
++ boolean collisionOn
++ int actionLockCounter
++ boolean collision
+~ String[] dialogues
+# BufferedImage[][] animations
+# boolean moving
+~ int indexDialogue
+# int state
+# int aniTick
++ BufferedImage getImage()
++ void speak()
++ BufferedImage setup(String,int,int)
++ void update()
++ void draw(Graphics2D)
+# void newState(int)
+}
+
+
+class org.plants.Lilypad {
++ void loadImage()
++ void actionAttack()
+}
+
+class org.spawner.Spawner {
+- GamePanel gp
+- long lastSec
+- int numberOfZombie
+- int spawnedZombie
++ void spawnZombies(int)
+- boolean isSpawn()
+- Zombie whichZombie(boolean)
++ void update()
++ int getSpawnedZombie()
++ int getNumberOfZombie()
+}
+
+
+class org.game.LoadImage {
++ {static} BufferedImage GetSpriteAtlas(String)
+}
+
+interface org.asset.Action {
++ void setAction()
+}
+
+class org.zombies.Zombie_PoleVaulting {
+- int specialSkillUsage
+- int jumpState
+- long lastJump
+- int beforeJumpY
+- int beforeJumpX
+- boolean stopJump
+- int tempIndex
++ void update()
++ void setAction()
+}
+
+
+class org.game.Constants {
++ {static} int ANI_SPEED
+}
+
+class org.game.Constants$Directions {
++ {static} int LEFT
++ {static} int UP
++ {static} int RIGHT
++ {static} int DOWN
+}
+
+class org.game.Constants$PlayerConstants {
++ {static} int IDLE
++ {static} int RUNNING
++ {static} int GetSpriteAmount(int)
+}
+
+
+class org.zombies.Zombie_DolphinRider {
+- boolean isSwimming
+- int specialSkillUsage
+- int jumpState
+- long lastJump
+- int beforeJumpY
+- int beforeJumpX
+- int tempIndex
++ void update()
++ void setAction()
+# void setAnimation()
+}
+
+
+class org.projectiles.Snowpea_Peas {
+}
+class org.projectiles.Peashooter_Peas {
+}
+class org.zombies.Zombie_Brawler {
+~ boolean isAttacking
++ void update()
++ void actionAttack()
+# void setAnimation()
+}
+
+
+class org.zombies.Zombie_DuckyTube {
+~ boolean isSwimming
++ void update()
+# void setAnimation()
+}
+
+
+class org.map.Tile {
++ BufferedImage image
++ boolean collision
+}
+
+class org.zombies.Zombie_Giant {
++ void draw(Graphics2D)
+}
+
+class org.plants.PurpleMushroom {
+- void loadImage()
++ void actionAttack()
+}
+
+class org.plants.YellowMushroom {
++ void setAction()
+- void loadImage()
++ void actionAttack()
+}
+
+class org.game.Main {
++ {static} void main(String[])
+}
+
+class org.plants.Cactus {
+- void loadImage()
++ void actionAttack()
+}
+
+class org.object.Object_Egg {
+}
+class org.plants.Squash {
++ void setAction()
+- void loadImage()
++ void actionAttack()
+}
+
+class org.game.CollisionChecker {
+~ GamePanel gp
++ void checkTile(Entity)
++ int checkObject(Entity,boolean)
++ int checkEntity(Entity,Entity[])
++ int checkProjectile(Entity)
++ void checkPlayer(Entity)
+}
+
+
+class org.object.SuperObject {
++ BufferedImage image
++ String name
++ boolean collision
++ int worldX
++ Rectangle solidArea
++ int solidAreaDefaultX
++ int solidAreaDefaultY
++ int healthPoint
++ void draw(Graphics2D,GamePanel)
+}
+
+
+class org.plants.Sunflower {
++ void setAction()
+- void loadImage()
++ void actionAttack()
+}
+
+class org.zombies.Zombie_BucketHead {
+}
+class org.map.TileManager {
+~ GamePanel gp
++ Tile[] tile
++ int[][] mapTileNum
++ void getTileImage()
++ void loadMap(String)
++ void draw(Graphics2D)
+}
+
+
+class org.object.Object_Bed {
++ BufferedImage image_bottom
++ void imageToDef()
++ void draw(Graphics2D,GamePanel)
+}
+
+
+class org.game.AssetSetter {
+~ GamePanel gp
++ void setPlants()
++ void setPlantsList()
++ void setObject()
++ void setProjectiles(long)
++ void setNPC()
++ void setZombie()
++ void spawnZombie()
+}
+
+
+class org.projectiles.Cactus_Proj {
++ void draw(Graphics2D,GamePanel)
+}
+
+class org.plants.Snowpea {
++ void setAction()
+- void loadImage()
++ void actionAttack()
+}
+
+class org.game.KeyHandler {
+~ GamePanel gp
++ boolean upPressed
++ void keyTyped(KeyEvent)
++ void keyPressed(KeyEvent)
++ void keyReleased(KeyEvent)
++ boolean checkPlantLocation(int,int)
+- boolean checkLilypadLocation(int,int)
+}
+
+
+class org.projectiles.Purple_Projectiles {
+}
+class org.plants.PotatoMine {
++ boolean isActive
++ void setAction()
++ void update()
+- void loadImage()
++ void actionAttack()
++ void explode()
+}
+
+
+class org.projectiles.SuperProjectiles {
+~ int speed
++ BufferedImage image
++ String name
++ boolean collision
++ boolean collisionOn
++ int worldX
++ Rectangle solidArea
++ int solidAreaDefaultX
++ int solidAreaDefaultY
++ int damage
++ String statusEffect
++ void draw(Graphics2D,GamePanel)
++ void update()
+}
+
+
+class org.object.Object_Grass {
+}
+class org.asset.NPC {
++ void setDialogue()
++ void getPlayerImage()
++ void setAction()
++ void speak()
+}
+
+class org.asset.Sun {
+- {static} Sun newSun
+- int totalSun
++ void setTotalSun(int)
++ int getTotalSun()
++ {static} Sun getInstance()
+}
+
+
+class org.zombies.Zombie_Slime {
+~ boolean isFull
+# void setAnimation()
+}
+
+
+class org.zombies.Zombie {
+~ int healthPoint
+~ boolean isAquatic
++ int attack_speed
+~ long countTime
+~ int counter
+~ long timeNotes
+~ int howManySecs
+~ int damage
+~ int defaultSpeed
+~ String statusEffect
+~ int attack_range
+~ int cost
+~ int numOfIdle
+~ int numOfRunning
+~ int state
++ String description
++ long timeSpawn
++ void update()
++ void setAction()
++ void actionAttack()
+- void actionProjectiles(int)
++ Zombie clone()
++ void draw(Graphics2D)
+# void updateAnimationTick()
+# void setAnimation()
+# void updatePost()
+# void loadAnimations(int,int,String,int,int)
+}
+
+
+class org.plants.Wallnut {
++ void setAction()
+- void loadImage()
++ void actionAttack()
+}
+
+class org.plants.Plants {
++ int healthPoint
++ int attack_speed
+~ int damage
++ boolean is_aquatic
+~ int range
++ int cooldown
+~ int cost
++ boolean statusOn
++ String description
++ long timeSpawn
+# boolean isClone
++ int getCost()
++ void setAction()
++ void actionAttack()
++ void update()
++ Plants clone()
++ boolean checkRange()
++ void draw(Graphics2D)
+}
+
+
+class org.game.UtilityTool {
++ BufferedImage scaleImage(BufferedImage,int,int)
+}
+
+
+
+org.game.Runnable <|.. org.game.GamePanel
+org.game.JPanel <|-- org.game.GamePanel
+org.asset.Entity <|-- org.asset.Player
+org.zombies.Zombie <|-- org.zombies.Zombie_Bread
+org.zombies.Zombie <|-- org.zombies.Zombie_Conehead
+org.zombies.Zombie <|-- org.zombies.Zombie_Normal
+org.plants.Plants <|-- org.plants.Peashooter
+org.asset.Action <|.. org.asset.Entity
+org.plants.Plants <|-- org.plants.Lilypad
+org.asset.Action <|.. org.zombies.Zombie_PoleVaulting
+org.zombies.Zombie <|-- org.zombies.Zombie_PoleVaulting
+org.game.Constants +.. org.game.Constants$Directions
+org.game.Constants +.. org.game.Constants$PlayerConstants
+org.asset.Action <|.. org.zombies.Zombie_DolphinRider
+org.zombies.Zombie <|-- org.zombies.Zombie_DolphinRider
+org.projectiles.SuperProjectiles <|-- org.projectiles.Snowpea_Peas
+org.projectiles.SuperProjectiles <|-- org.projectiles.Peashooter_Peas
+org.zombies.Zombie <|-- org.zombies.Zombie_Brawler
+org.zombies.Zombie <|-- org.zombies.Zombie_DuckyTube
+org.zombies.Zombie <|-- org.zombies.Zombie_Giant
+org.plants.Plants <|-- org.plants.PurpleMushroom
+org.plants.Plants <|-- org.plants.YellowMushroom
+org.plants.Plants <|-- org.plants.Cactus
+org.object.SuperObject <|-- org.object.Object_Egg
+org.plants.Plants <|-- org.plants.Squash
+org.plants.Plants <|-- org.plants.Sunflower
+org.zombies.Zombie <|-- org.zombies.Zombie_BucketHead
+org.object.SuperObject <|-- org.object.Object_Bed
+org.projectiles.SuperProjectiles <|-- org.projectiles.Cactus_Proj
+org.plants.Plants <|-- org.plants.Snowpea
+java.awt.event.KeyListener <|.. org.game.KeyHandler
+org.projectiles.SuperProjectiles <|-- org.projectiles.Purple_Projectiles
+org.plants.Plants <|-- org.plants.PotatoMine
+org.object.SuperObject <|-- org.object.Object_Grass
+org.asset.Entity <|-- org.asset.NPC
+org.zombies.Zombie <|-- org.zombies.Zombie_Slime
+org.zombies.Cloneable <|.. org.zombies.Zombie
+org.asset.Entity <|-- org.zombies.Zombie
+org.plants.Plants <|-- org.plants.Wallnut
+org.plants.Cloneable <|.. org.plants.Plants
+org.asset.Entity <|-- org.plants.Plants
+@enduml
