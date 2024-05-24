@@ -25,6 +25,7 @@ public class Zombie_Conehead extends Zombie {
     counter = 0;
     numOfIdle = 7;
     numOfRunning = 7;
+    state = numOfIdle;
     loadAnimations(2, 7, "zombies/Zombie_Conehead.png", 16, 16);
   }
 

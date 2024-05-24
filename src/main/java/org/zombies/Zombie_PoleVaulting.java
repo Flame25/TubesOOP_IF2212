@@ -38,6 +38,7 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
     numOfIdle = 4;
     numOfRunning = 4;
     specialSkillUsage = 1;
+    state = numOfIdle;
     loadAnimations(3, 4, "zombies/Zombie_Jump.png", 20, 20);
   }
 
@@ -59,13 +60,7 @@ public class Zombie_PoleVaulting extends Zombie implements Action {
         jumpState++;
       }
     } else {
-      if (counter >= 55) {
-        speed = 20;
-        counter = 0;
-      }
       super.update();
-      this.speed = 0;
-      counter++;
     }
   }
 

@@ -41,7 +41,7 @@ public class PotatoMine extends Plants {
     System.out.println(timeSpawn);
     if (timeSpawn + 5 == gp.elapsedTime && !isActive) {
       isActive = true;
-      System.out.println("Mengumpat");
+      System.out.println("Hide");
     }
 
   }

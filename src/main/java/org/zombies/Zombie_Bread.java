@@ -16,6 +16,10 @@ public class Zombie_Bread extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
+    numOfIdle = 2;
+    numOfRunning = 4;
+
+    state = numOfIdle;
     loadAnimations(2, 4, "zombies/Zombie_Toast.png", 16, 16);
   }
 

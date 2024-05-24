@@ -19,6 +19,9 @@ public class Zombie_Giant extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
+    numOfIdle = 12;
+    numOfRunning = 7;
+    state = numOfIdle;
     loadAnimations(3, 12, "zombies/Zombie_Giant.png", 32, 41);
   }
 
@@ -31,15 +34,4 @@ public class Zombie_Giant extends Zombie {
     g2.drawImage(image, screenX, screenY, 32 * 3, 41 * 3, null);
   }
 
-  @Override
-  public void update() {
-    if (counter >= 60) {
-      speed = defaultSpeed;
-      counter = 0;
-      howManySecs++;
-    }
-    super.update();
-    this.speed = 0;
-    counter++;
-  }
 }

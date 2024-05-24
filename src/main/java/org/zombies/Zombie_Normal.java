@@ -20,19 +20,9 @@ public class Zombie_Normal extends Zombie {
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
     counter = 0;
+    numOfRunning = 8;
+    numOfIdle = 4;
+    state = numOfIdle;
     loadAnimations(2, 8, "zombies/Zombie_Normal_F.png", 18, 18);
   }
-
-  @Override
-  public void update() {
-    if (counter >= 60) {
-      speed = defaultSpeed;
-      counter = 0;
-      howManySecs++;
-    }
-    super.update();
-    this.speed = 0;
-    counter++;
-  }
-
 }

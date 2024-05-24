@@ -23,17 +23,8 @@ public class Zombie_BucketHead extends Zombie {
     counter = 0;
     numOfIdle = 7;
     numOfRunning = 7;
+    state = numOfIdle;
     loadAnimations(2, 7, "zombies/Zombie_Buckethead.png", 16, 16);
   }
 
-  @Override
-  public void update() {
-    if (counter >= 60) {
-      speed = 3;
-      counter = 0;
-    }
-    super.update();
-    this.speed = 0;
-    counter++;
-  }
 }

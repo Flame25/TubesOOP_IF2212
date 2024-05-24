@@ -4,6 +4,7 @@ import org.asset.Entity;
 import org.game.GamePanel;
 import org.game.LoadImage;
 import org.plants.PotatoMine;
+import org.plants.Squash;
 
 import javax.imageio.ImageIO;
 
@@ -31,6 +32,7 @@ public class Zombie extends Entity implements Cloneable {
   int cost;
   int numOfIdle = 9999;
   int numOfRunning = 9999;
+  int state = 0;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
@@ -49,7 +51,6 @@ public class Zombie extends Entity implements Cloneable {
 
   public void update() {
     collisionOn = false;
-    gp.cChecker.checkTile(this);
     gp.cChecker.checkPlayer(this);
     gp.cChecker.checkObject(this, true);
 
@@ -71,16 +72,19 @@ public class Zombie extends Entity implements Cloneable {
     if (!collisionOn && gp.elapsedTime >= countTime + 10 && counter <= 48) {
       worldX -= 1;
       moving = true;
+      state = numOfRunning;
       timeNotes = gp.elapsedTime;
       counter++;
     }
     if (counter >= 48) {
       countTime = timeNotes;
       moving = false;
+      state = numOfIdle;
       counter = 0;
     }
-    setAnimation();
     updateAnimationTick();
+
+    setAnimation();
   }
 
   @Override
@@ -92,14 +96,13 @@ public class Zombie extends Entity implements Cloneable {
     if (gp.elapsedTime % attack_speed == 0) { // Is this good practice? probably :)
       int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
       if (plantIndex != 9999) {
-        if (!(gp.plants[plantIndex] instanceof PotatoMine)) {
+        if (!(gp.plants[plantIndex] instanceof PotatoMine) && !(gp.plants[plantIndex] instanceof Squash)) {
           gp.plants[plantIndex].healthPoint -= damage;
           System.out.println("Zombie Attack");
           if (gp.plants[plantIndex].healthPoint <= 0) {
             gp.plants[plantIndex] = null;
           }
-        } else {
-
+        } else if (gp.plants[plantIndex] instanceof PotatoMine) {
           System.out.println(plantIndex);
           if (((PotatoMine) gp.plants[plantIndex]).isActive) {
             ((PotatoMine) gp.plants[plantIndex]).explode();
@@ -112,6 +115,9 @@ public class Zombie extends Entity implements Cloneable {
               gp.plants[plantIndex] = null;
             }
           }
+        } else if (gp.plants[plantIndex] instanceof Squash) {
+          ((Squash) gp.plants[plantIndex]).actionAttack();
+          gp.plants[plantIndex] = null;
         }
       }
     }
@@ -159,10 +165,14 @@ public class Zombie extends Entity implements Cloneable {
 
   protected void updateAnimationTick() {
     aniTick++;
+    if (aniIndex >= state) {
+      aniTick = 0;
+      aniIndex = 0;
+    }
     if (aniTick >= ANI_SPEED) {
       aniTick = 0;
       aniIndex++;
-      if (aniIndex >= GetSpriteAmount(RUNNING)) {
+      if (aniIndex >= state) {
         aniIndex = 0;
       }
     }

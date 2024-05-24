@@ -26,5 +26,13 @@ public class Squash extends Plants {
 
   @Override
   public void actionAttack() {
+    for (int i = 0; i < gp.zombie.length; i++) {
+      if (gp.zombie[i] != null) {
+        if (gp.zombie[i].solidArea.intersects(this.solidArea)) {
+          gp.zombie[i] = null;
+        }
+      }
+    }
   }
+
 }

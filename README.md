@@ -23,13 +23,13 @@ Run ```./gradlew ``` within root project
 - [ ]  Game Stop
 - [x]  Inventory
 - [x]  Deck
-- [ ]  All Zombie
-- [ ]  All Zombie
+- [x]  All Zombie
+- [x]  All Plants
 - [x]  Game Mode
 - [x]  Plant Placement
 - [x]  Tile Based Placement
 - [ ]  Shop
-- [ ]  Working Range
+- [x]  Working Range
 - [x]  Cost 
 - [x]  Sun
 - [x]  Cooldown
@@ -44,14 +44,15 @@ Run ```./gradlew ``` within root project
 - [x] Conehead Zombie
 - [x] Pole Vaulting Zombie
 - [x] Buckethead Zombie
-- [ ] Dolphinrider Zombie
-- [ ] Duckytube Zombie
-- [ ] Football
+- [x] Dolphinrider Zombie
+- [x] Duckytube Zombie
+- [x] Zombie Slime
+- [x] Zombie Brawler
 
 ## List Of Completed Plants : 
 - [x] Lilypad
 - [x] Peashooter
-- [ ] Squash
+- [x] Squash
 - [x] Snowpea 
 - [x] Sunflower
 - [x] Walnut
