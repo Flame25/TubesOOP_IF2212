@@ -34,6 +34,7 @@ public class Zombie extends Entity implements Cloneable {
   int numOfRunning = 9999;
   int state = 0;
   public String description;
+  public long timeSpawn;
 
   public Zombie(GamePanel gp, int healthPoint, int speed, int damage, int attack_speed, int attack_range,
       boolean isAquatic) { // TODO : ADD MORE ATTRIBUTES
@@ -101,7 +102,7 @@ public class Zombie extends Entity implements Cloneable {
   }
 
   public void actionAttack() {
-    if (gp.elapsedTime % attack_speed == 0) { // Is this good practice? probably :)
+    if ((gp.elapsedTime + timeSpawn) % attack_speed == 0) { // Is this good practice? probably :)
       int plantIndex = gp.cChecker.checkEntity(this, gp.plants);
       if (plantIndex != 9999) {
         if (!(gp.plants[plantIndex] instanceof PotatoMine) && !(gp.plants[plantIndex] instanceof Squash)) {

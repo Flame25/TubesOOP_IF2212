@@ -35,7 +35,7 @@ public class Zombie_Brawler extends Zombie {
 
   @Override
   public void actionAttack() {
-    if (gp.elapsedTime % attack_speed == 0) { // Is this good practice? probably :)
+    if ((gp.elapsedTime + timeSpawn) % attack_speed == 0) { // Is this good practice? probably :)
       int plantIndex = 9999;
       for (int i = 0; i < gp.plants.length; i++) {
         if (gp.plants[i] != null) {

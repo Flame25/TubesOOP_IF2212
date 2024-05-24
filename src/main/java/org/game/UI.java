@@ -271,7 +271,7 @@ public class UI {
     int textX = dFrameX + 25;
     int textY = frameY + 35;
     g2.setFont(g2.getFont().deriveFont(14F));
-    String text = "Selamat Datang, pada permainan ini semua pergerakan dilakukan\ndengan 'AWSD'.Permainan bisa dimulai dengan membuka terlebih dahulu\ninventory dengan key 'C' dan memilih tanaman yang ada.\nKemudian, game bisa dimulai dengan berjalan ke bed dan memencet 'E'\nSelanjutnya, game dimulai dan tanaman bisa ditanamn dengan key '1-6' dan \n'Q' untuk menghilangkan tanaman dari ground.\n\n Selamat Bermain :)";
+    String text = "Selamat Datang, pada permainan ini semua pergerakan dilakukan\ndengan 'AWSD'.Permainan bisa dimulai dengan membuka terlebih dahulu\ninventory dengan key 'C' dan memilih tanaman yang ada dengan 'E'.\nKemudian, game bisa dimulai dengan berjalan ke bed dan memencet 'E'\nSelanjutnya, game dimulai dan tanaman bisa ditanamn dengan key '1-6' dan \n'Q' untuk menghilangkan tanaman dari ground.\n\n Selamat Bermain :) \n Info : Tekan H untuk keluar dari menu ini\n Warning : Deck harus terisi 6 tanaman";
     for (String line : text.split("\n")) {
       g2.drawString(line, textX, textY);
       textY += 16;

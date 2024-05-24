@@ -171,7 +171,7 @@ public class Player extends Entity {
   public void interactObject(int i) {
     if (i != 9999) {
       if (gp.keyH.eKeyPressed) {
-        if (i == 2) {
+        if (i == 2 && gp.player.deck.size() == 6) {
 
           try {
             gp.obj[2].image = ImageIO.read(getClass().getResourceAsStream("/objects/Bed_Sleeping1.png"));

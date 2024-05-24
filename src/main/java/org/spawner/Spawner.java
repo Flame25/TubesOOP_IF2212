@@ -36,6 +36,7 @@ public class Spawner {
         zomb.worldY = lane * gp.tileSize - 16;
         zomb.worldX = 32 * gp.tileSize;
       }
+      zomb.timeSpawn = gp.elapsedTime;
       for (int i = 0; i < gp.zombie.length; i++) {
         if (gp.zombie[i] == null) {
           gp.zombie[i] = zomb;

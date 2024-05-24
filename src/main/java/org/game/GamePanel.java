@@ -91,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
     } catch (CloneNotSupportedException e) {
       e.printStackTrace();
     }
-    gameState = playState;
+    gameState = helpState;
     player = new Player(this, keyH);
   }
 
@@ -143,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < plants.length; i++) {
           if (plants[i] != null) {
             if (plants[i].attack_speed != 0) {
-              if (elapsedTime % plants[i].attack_speed == 0) {
+              if ((elapsedTime + plants[i].timeSpawn) % plants[i].attack_speed == 0) {
                 plants[i].actionAttack();
               }
             }
