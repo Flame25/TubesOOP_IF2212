@@ -20,7 +20,7 @@ Run ```./gradlew ``` within root project
 - [x]  Plant Base
 - [x]  Game Time 
 - [x]  Game Start
-- [ ]  Game Stop
+- [x]  Game Stop
 - [x]  Inventory
 - [x]  Deck
 - [x]  All Zombie
@@ -34,7 +34,7 @@ Run ```./gradlew ``` within root project
 - [x]  Sun
 - [x]  Cooldown
 - [x]  Zombie Spawn
-- [ ]  Zombie Time (Not Necessary) (Don't Use Thread)
+- [x]  Zombie Time (Not Necessary) (Don't Use Thread)
 - [x]  Plant Time (Not Necessary) (Don't Use Thread)
 
 ## List Of Completed Zombie (Animation and Code): 
