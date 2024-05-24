@@ -59,13 +59,14 @@ public class GamePanel extends JPanel implements Runnable {
   public final int dialogState = 2;
   public final int characterState = 3;
   public final int sleepState = 4;
+  public final int endState = 5;
 
   // ELAPSED TIME
   public long elapsedTime = 0;
   public long timer = 0;
 
-  // ANIMATION
-  private int aniTick, aniIndex, aniSpeed = 50;
+  // Boolean
+  public boolean isGameOver = false;
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -191,7 +192,10 @@ public class GamePanel extends JPanel implements Runnable {
       }
       spawner.update();
     } else if (gameState == pauseState) {
-    } else if (gameState == playState) {
+    } else if (gameState == endState) {
+    } else if (gameState == playState)
+
+    {
       player.update();
 
       for (int i = 0; i < npc.length; i++) {

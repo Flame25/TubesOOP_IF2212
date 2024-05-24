@@ -121,8 +121,8 @@ public class AssetSetter {
   }
 
   public void spawnZombie() throws CloneNotSupportedException { // Need to implement Zombie Spawner as Class
-    gp.zombie[0] = gp.listOfZombie[1].clone();
-    gp.zombie[0].worldX = gp.tileSize * 31;
-    gp.zombie[0].worldY = 7 * gp.tileSize - 32;
+    // gp.zombie[0] = gp.listOfZombie[1].clone();
+    // gp.zombie[0].worldX = gp.tileSize * 31;
+    // gp.zombie[0].worldY = 7 * gp.tileSize - 32;
   }
 }

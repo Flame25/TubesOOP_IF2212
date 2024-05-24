@@ -55,6 +55,13 @@ public class Zombie extends Entity implements Cloneable {
     gp.cChecker.checkObject(this, true);
 
     int projIndex = gp.cChecker.checkProjectile(this);
+
+    // Check Lose Condition
+    if (worldX <= 19 * gp.tileSize) {
+      gp.gameState = gp.endState;
+      gp.isGameOver = true;
+    }
+
     actionProjectiles(projIndex);
     if (statusEffect.equals("Slowed")) {
       if (howManySecs >= 3) {

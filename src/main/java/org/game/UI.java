@@ -84,6 +84,8 @@ public class UI {
       drawTilesCursor();
       drawCardSelector();
       drawGrassCount();
+    } else if (gp.gameState == gp.endState) {
+      drawEndScreen();
     }
   }
 
@@ -173,6 +175,27 @@ public class UI {
     int y = gp.screenHeight / 2;
 
     g2.drawString(text, x, y);
+  }
+
+  public void drawEndScreen() {
+    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+    String text = "";
+    String newText = "Esc to Continue";
+    if (gp.isGameOver) {
+      text = "Game Over";
+    } else {
+      text = "Win";
+    }
+    int x = getXforCenteredText(text);
+    int y = gp.screenHeight / 2;
+
+    int y2 = gp.screenHeight / 2 + 2 * 48;
+    g2.drawString(text, x, y);
+    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 45F));
+
+    int x2 = getXforCenteredText(newText);
+    g2.drawString(newText, x2, y2);
+
   }
 
   public void drawInventory() {

@@ -10,14 +10,19 @@ import org.zombies.Zombie_Giant;
 public class Spawner {
   private GamePanel gp;
   private long lastSec = 99999;
+  private int numberOfZombie = 20;
+  private int spawnedZombie = 0;
 
   public Spawner(GamePanel gp) {
     this.gp = gp;
     lastSec = gp.elapsedTime;
+    Random random = new Random();
+    numberOfZombie = random.nextInt(0, 41);
+    spawnedZombie = 0;
   }
 
   public void spawnZombies(int lane) {
-    if (isSpawn()) {
+    if (isSpawn() && spawnedZombie < numberOfZombie) {
       boolean isAq = false;
       if (lane == 12 || lane == 11) {
         isAq = true;
@@ -34,9 +39,13 @@ public class Spawner {
       for (int i = 0; i < gp.zombie.length; i++) {
         if (gp.zombie[i] == null) {
           gp.zombie[i] = zomb;
+
+          spawnedZombie++;
+          System.out.println(spawnedZombie + ", " + numberOfZombie);
           break;
         }
       }
+
     }
   }
 
@@ -72,11 +81,34 @@ public class Spawner {
 
   public void update() {
     int arr[] = { 7, 8, 15, 16, 11, 12 };
-    if ((3 + lastSec) == gp.elapsedTime) {
+    if (numberOfZombie <= spawnedZombie) {
+      // Check if all zombies are defeated
+      boolean isWin = true;
+      for (int i = 0; i < gp.zombie.length; i++) {
+        if (gp.zombie[i] != null) {
+          isWin = false;
+          break;
+        }
+      }
+      if (isWin) {
+        gp.gameState = gp.endState;
+      }
+
+    } else if ((3 + lastSec) == gp.elapsedTime)
+
+    {
       for (int i = 0; i < arr.length; i++) {
         spawnZombies(arr[i]);
       }
       lastSec = gp.elapsedTime;
     }
+  }
+
+  public int getSpawnedZombie() {
+    return spawnedZombie;
+  }
+
+  public int getNumberOfZombie() {
+    return numberOfZombie;
   }
 }

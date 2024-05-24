@@ -172,10 +172,23 @@ public class KeyHandler implements KeyListener {
           }
         }
       }
-      if (code == KeyEvent.VK_E) {
+    } else if (gp.gameState == gp.endState) {
+      if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.playState;
         gp.player.backToPost();
         ((Object_Bed) gp.obj[2]).imageToDef();
+        gp.elapsedTime = 0;
+        gp.player.setSun(100);
+        for (int i = 0; i < gp.plants.length; i++) {
+          if (gp.plants[i] != null) {
+            gp.plants[i] = null;
+          }
+        }
+        for (int i = 0; i < gp.zombie.length; i++) {
+          if (gp.plants[i] != null) {
+            gp.plants[i] = null;
+          }
+        }
       }
     }
   }
