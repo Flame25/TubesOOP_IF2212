@@ -99,6 +99,17 @@ public class KeyHandler implements KeyListener {
     }
     // SLEEP STATE
     else if (gp.gameState == gp.sleepState) {
+      if (code == KeyEvent.VK_Q) {
+        for (int i = 0; i < gp.plants.length; i++) {
+          if (gp.plants[i] != null) {
+            if (gp.plants[i].worldY == gp.player.worldY - 16 - gp.tileSize
+                && gp.plants[i].worldX == gp.player.worldX + 3) {
+              gp.plants[i] = null;
+              break;
+            }
+          }
+        }
+      }
       if (code == KeyEvent.VK_W) {
         if (gp.player.worldY != 8 * gp.tileSize) {
           gp.player.worldY -= gp.tileSize;

@@ -5,6 +5,7 @@ import java.util.Random;
 import org.asset.Action;
 import org.game.GamePanel;
 import org.zombies.Zombie;
+import org.zombies.Zombie_Giant;
 
 public class Spawner {
   private GamePanel gp;
@@ -17,13 +18,22 @@ public class Spawner {
 
   public void spawnZombies(int lane) {
     if (isSpawn()) {
+      boolean isAq = false;
+      if (lane == 12 || lane == 11) {
+        isAq = true;
+      }
       System.out.println("Zombie Spawned");
-      Zombie zomb = whichZombie();
+      Zombie zomb = whichZombie(isAq);
+      if (zomb instanceof Zombie_Giant) {
+        zomb.worldY = (lane - 1) * gp.tileSize - 32;
+        zomb.worldX = 32 * gp.tileSize;
+      } else {
+        zomb.worldY = lane * gp.tileSize - 16;
+        zomb.worldX = 32 * gp.tileSize;
+      }
       for (int i = 0; i < gp.zombie.length; i++) {
         if (gp.zombie[i] == null) {
           gp.zombie[i] = zomb;
-          gp.zombie[i].worldX = 32 * gp.tileSize;
-          gp.zombie[i].worldY = lane * gp.tileSize;
           break;
         }
       }
@@ -39,20 +49,30 @@ public class Spawner {
       return false;
   }
 
-  private Zombie whichZombie() {
+  private Zombie whichZombie(boolean isAq) {
     Random random = new Random();
     Zombie newZombie = null;
-    try {
-      newZombie = gp.listOfZombie[random.nextInt(0, 4)].clone();
-    } catch (CloneNotSupportedException e) {
-      e.printStackTrace();
+
+    if (!isAq) {
+
+      try {
+        newZombie = gp.listOfZombie[random.nextInt(0, 8)].clone();
+      } catch (CloneNotSupportedException e) {
+        e.printStackTrace();
+      }
+    } else {
+      try {
+        newZombie = gp.listOfZombie[random.nextInt(8, 10)].clone();
+      } catch (CloneNotSupportedException e) {
+        e.printStackTrace();
+      }
     }
     return newZombie;
   }
 
   public void update() {
-    int arr[] = { 7, 8, 15, 16 };
-    if ((4 + lastSec) == gp.elapsedTime) {
+    int arr[] = { 7, 8, 15, 16, 11, 12 };
+    if ((3 + lastSec) == gp.elapsedTime) {
       for (int i = 0; i < arr.length; i++) {
         spawnZombies(arr[i]);
       }

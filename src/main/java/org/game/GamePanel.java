@@ -121,8 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
       }
 
       if (timer >= 1000000000) {
-        if (gameState == sleepState
-            || gameState == playState) {
+        if (gameState == sleepState) {
           elapsedTime++;
           if (elapsedTime == lastAddedTime + randomInt) {
             player.setSun(player.getSun() + 25);
@@ -154,7 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
   }
 
   public void update() {
-    if (gameState == playState || gameState == sleepState) {
+    if (gameState == sleepState) {
       player.update();
 
       for (int i = 0; i < proj.length; i++) {
@@ -190,8 +189,16 @@ public class GamePanel extends JPanel implements Runnable {
           player.deck.get(i).update();
         }
       }
-
+      spawner.update();
     } else if (gameState == pauseState) {
+    } else if (gameState == playState) {
+      player.update();
+
+      for (int i = 0; i < npc.length; i++) {
+        if (npc[i] != null) {
+          npc[i].update();
+        }
+      }
     }
   }
 
